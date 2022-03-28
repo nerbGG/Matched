@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+ {% block content %}
+
+{% if user.is_authenticated %}
+
+
+    <a href="/accounts/logout/">
+        Logout
+    </a>
+{%else%}
+    <a href="/accounts/login/"><button type="button">login</button></a>
+{%endif%}
+{% endblock %}
