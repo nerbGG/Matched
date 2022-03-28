@@ -1,0 +1,5 @@
+Apply/__pycache__/
+Matched/__pycache__/
+db.sqlite3
+static/
+.idea/
