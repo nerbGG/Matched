@@ -23,8 +23,7 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("accounts/register", apply_views.register_view),
-    path("", TemplateView.as_view(template_name="../Templates/home.html"), name="home"),
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
-
 ]
