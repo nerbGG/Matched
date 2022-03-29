@@ -11,12 +11,16 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views import View
+from Matched.settings import EMAIL_HOST_USER
 
 from Apply.constants import ActionNames
 from Apply.form import RegistrationForm
 # from Apply.models import Courses
 from Apply.utils import token_generator
 
+from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site
 logger = logging.getLogger(__name__)
 
 
@@ -53,20 +57,18 @@ login_name = ""
 
 
 def send_activation_email(request, user):
-    # subject = "Test",
-    # message = "Hello This is a Test Email",
-    # email_from = "team.matched@gmail.com",
-    # recipient_list = ["karthikioi98@gmail.com"]
+    # karthiks code working for email send.
+    # email_subject = ActionNames.EmailSubject
     #
-    # mail = send_mail(subject=subject, message=message, from_email=email_from, recipient_list=recipient_list)
-    #
-    # mail.send()
+    # user_email = request.POST.get("email")
+    # send_mail(email_subject, "Hello!!", "team.matched@gmail.com", ["ahsanshuja1127@gmail.com"])
+    # logger.debug(f"Verification Email has been sent to {user_email}")
     global login_name
     login_name = user.username
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     domain = get_current_site(request).domain
     link = reverse(
-        viewname="activate",
+        "activate",
         kwargs={"uidb64": uidb64, "token": token_generator.make_token(user)},
     )
     activity_url = f"http://{domain}{link}"
@@ -76,7 +78,7 @@ def send_activation_email(request, user):
     email = EmailMessage(
         email_subject,
         email_body,
-        "noreply@cs.umb.edu",
+        "noreply@TeamMatched.com",
         [user_email],
     )
     email.send()
@@ -87,6 +89,4 @@ def verification_view(request, uidb64, token):
     user = User.objects.get(username=login_name)
     activate_user(user)
     logger.debug("Verification link has been generated")
-    return render(request, "../templates/home.html", {"activated": True})
-
-
+    return render(request, "../Templates/home.html", {"activated": True})
