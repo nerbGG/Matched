@@ -19,8 +19,11 @@ from Apply import views as apply_views
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/register", apply_views.register_view),
     path("", TemplateView.as_view(template_name="../Templates/home.html"), name="home"),
+
 ]
