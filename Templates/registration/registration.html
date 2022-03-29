@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+<!--        if user is already logged in and the user tries to access the login page, it will redirect
+               them to the courses page -->
+        <meta http-equiv="Refresh" content="0; url='/' />
+<!--        <h2>You are already logged in, please <a href="/accounts/logout"> log out </a></h2>-->
+    {% else  %}
+        <div class="p-1 w-100 h-100">
+            <h2>Create your UMB CS Portal Account</h2>
+            <form  method="POST" class=" from-group nt-weight-bold p-2 border-bottom">
+                {% csrf_token %}
+                {{ form | crispy }}
+    {#            <div>#}
+                    <button type="submit" class="btn btn-primary w-100">Join</button>
+    {#            </div>#}
+            </form>
+            <br>
+            <p style="font-size: 14px;">Already have an account? <a href="/accounts/login">Login</a>!</p>
+        </div>
+    {%endif%}
+{% endblock %}
