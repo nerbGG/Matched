@@ -9,7 +9,7 @@
 <!--        <h2>You are already logged in, please <a href="/accounts/logout"> log out </a></h2>-->
     {% else  %}
         <div class="p-1 w-100 h-100">
-            <h2>Create your UMB CS Portal Account</h2>
+            <h2>Registration</h2>
             <form  method="POST" class=" from-group nt-weight-bold p-2 border-bottom">
                 {% csrf_token %}
                 {{ form | crispy }}

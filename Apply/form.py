@@ -10,8 +10,8 @@ class RegistrationForm(UserCreationForm):
     # by default, fields are required
     email = forms.EmailField(required=True)
     POSITION_CHOICES = (
-        ("jobS", "Job Seeker"),
-        ("empl", "Employer"),
+        ("jobSeeker", "Job Seeker"),
+        ("employer", "Employer"),
         # ("alumni", "Alumni"),
         # ("faculty", "Faculty"),
         # ("staff", "Staff"),

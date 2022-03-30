@@ -21,6 +21,7 @@ from Apply.utils import token_generator
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.models import Group
 logger = logging.getLogger(__name__)
 
 
@@ -44,6 +45,10 @@ def register_view(request):
             form.save()
             # path to view getting the domain we are on relative url to verification encode uid token
             user = User.objects.get(username=request.POST["username"])
+            group_name = request.POST["position"]
+            group = Group.objects.get(name=group_name)
+            user.groups.add(group)
+
             deactivate_user(user)
             send_activation_email(request, user)
 
