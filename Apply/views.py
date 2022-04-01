@@ -48,10 +48,8 @@ def register_view(request):
             group_name = request.POST["position"]
             group = Group.objects.get(name=group_name)
             user.groups.add(group)
-
             deactivate_user(user)
             send_activation_email(request, user)
-
             return render(request, "../templates/home.html", {"activated": False})
     else:
         form = RegistrationForm()
