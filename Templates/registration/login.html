@@ -5,9 +5,8 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form | crispy }}
-    <input type="submit" value="Submit" class="btn btn-secondary">
-
-
+    <input type="submit" value="Submit" class="btn btn-primary">
 </form>
+    <p>Don't have an account? <a class="alert-link">Register</a></p>
 {% endblock %}
 
