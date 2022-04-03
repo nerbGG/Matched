@@ -1,0 +1,60 @@
+ html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow: auto;
+    overflow:hidden;
+}
+ .nav-bar{
+     min-width: 72px;
+     width:23%;
+     overflow: hidden;
+     /*transition:width .5s linear;*/
+     padding:15px;
+ }
+ .shrink{
+    /*min-width: 72px;*/
+    width:85px;
+        /*padding: 0px;*/
+ }
+ .hide{
+     display:none;
+ }
+ .bigger{
+     height:70px;
+ }
+
+.navbar-colors {
+    background: #f8f8f8;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #333;
+}
+a{
+    color:black;
+}
+a:hover{
+    /*color:#2e6da4;*/
+    color:black;
+}
+#logoandburger{
+    height:70px;
+}
+
+.link-container{
+     height:50px;
+}
+.link-container:hover{
+    cursor: pointer;
+    border-bottom: 1px solid black;
+    font-size: large;
+    cursor: pointer;
+}
+.link-section-text-center{
+    margin-left: -20%;
+}
+
+
+
