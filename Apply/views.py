@@ -1,6 +1,7 @@
 import datetime
 import logging
 
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
@@ -14,7 +15,7 @@ from django.views import View
 from Matched.settings import EMAIL_HOST_USER
 
 from Apply.constants import ActionNames
-from Apply.form import RegistrationForm
+from Apply.form import RegistrationForm, AuthenticationForm, loginForm
 # from Apply.models import Courses
 from Apply.utils import token_generator
 
@@ -22,6 +23,7 @@ from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeEr
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
+
 logger = logging.getLogger(__name__)
 
 
@@ -57,6 +59,31 @@ def register_view(request):
 
 
 login_name = ""
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = loginForm
+        username = request.POST['username']
+        password = request.POST["password"]
+        not_active = "Please confirm your account. "
+        user = User.objects.get(username=username)
+        if user is not None:
+            if not user.is_active:
+                return render(request, "../templates/registration/login.html", {"form": form, "message": not_active})
+        user = authenticate(request, username=username, password=password)
+
+        user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
+
+        if user is not None:
+
+            login(request, user)
+            return redirect('/')
+        else:
+            return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
+    else:
+        form = loginForm
+        return render(request, "../templates/registration/login.html", {"form": form})
 
 
 def send_activation_email(request, user):

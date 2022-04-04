@@ -1,12 +1,15 @@
-{% extends 'base.html' %}
-{% load crispy_forms_filters %}
-{% block content %}
-  Login
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form | crispy }}
-    <input type="submit" value="Submit" class="btn btn-primary">
-</form>
-    <p>Don't have an account? <a class="alert-link">Register</a></p>
-{% endblock %}
+{% extends 'base.html' %} {% load crispy_forms_filters %} {% block content %}
 
+<h1><strong>LOGIN</strong></h1>
+{% if mesaage %}
+<div class="w-100 alert alert-danger">{{ message }}</div>
+{% endif %}
+<form action="" method="post">
+  {% csrf_token %} {{ form | crispy }}
+  <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+<p>
+  Don't have an account?
+  <a href="/accounts/register/" class="alert-link">Register</a>
+</p>
+{% endblock %}
