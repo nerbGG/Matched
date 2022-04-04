@@ -120,3 +120,8 @@ def verification_view(request, uidb64, token):
     activate_user(user)
     logger.debug("Verification link has been generated")
     return render(request, "../Templates/home.html", {"activated": True})
+
+
+
+
+

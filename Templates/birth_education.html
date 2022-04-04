@@ -1,0 +1,51 @@
+{% extends 'userBase.html' %} {% load crispy_forms_filters %}
+
+
+ {% block content %}
+{#     <div class=" w-100 d-flex align-items-center justify-content-center " >#}
+    <div class=" w-100 d-flex align-items-center " >
+    <form class="w-100" method="post">
+        <div class="form-group w-100 d-flex flex-row border-bottom">
+        <label class="w-50" for="profile picture"><strong>Profile Picture</strong></label>
+        <input   class="w-50" type="file" id="img" name="img" accept="image/*">
+        <br>
+        </div>
+
+        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
+        <label class="w-50" for="birthday"><strong>Birthday:</strong></label>
+        <input class="w-50" type="date" id="birthday" name="birthday" required>
+        <br>
+        </div>
+
+        <div class="form-group w-100  border-bottom">
+        <label><strong>Highest Level of Education</strong></label>
+        <br>
+        <input type="radio" id="html" name="fav_language" value="high school">
+        <label for="html">High School</label><br>
+        <input type="radio" id="html" name="fav_language" value="Bachelors">
+        <label for="html">Undergraduate</label><br>
+        <input type="radio" id="html" name="fav_language" value="graduate">
+        <label for="html">Graduate</label><br>
+        </div>
+
+        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
+        <label class="w-50"><strong>What Sport you played?</strong></label>
+        <input  class="w-50"type="text" id="username" name="username" required>
+        <br>
+        </div>
+
+        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
+        <label class="w-50"><strong>Resume </strong></label>
+        <input class="w-50" name="resume" type="file" accept="application/pdf, application/vnd.ms-excel" required />
+        <br>
+        </div>
+
+        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
+        <button class ="w-100 btn btn-primary" type="submit" >Done</button>
+        <br>
+         </div>
+
+
+    </form>
+    </div>
+      {% endblock %}
