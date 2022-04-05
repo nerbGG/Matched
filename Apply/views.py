@@ -132,12 +132,14 @@ def user_profile(request, username):
 
         user = User.objects.get(username=request.user.username)
         # profile = Profile.objects.get(user=user)
+        tags = request.POST.getlist("tags")
         profile = Profile(user = user,
                           profile_pic=img,
                           birth_date=birth_date,
                           education=edu_choices,
                           sport=sport,
-                          resume=resume)
+                          resume=resume,
+                          interests=tags)
 
         # profile.profile_pic = img
         # profile.birth_date = birth_date
