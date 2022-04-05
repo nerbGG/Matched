@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import Profile
-    # Interests
+
+# , user_Interests
 
 # Register your models here.
 admin.site.register(Profile)
-# admin.site.register(Interests)
+# admin.site.register(user_Interests)
