@@ -13,7 +13,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views import View
 from Matched.settings import EMAIL_HOST_USER
-
+from Apply.models import Profile
 from Apply.constants import ActionNames
 from Apply.form import RegistrationForm, AuthenticationForm, loginForm
 # from Apply.models import Courses
@@ -122,6 +122,30 @@ def verification_view(request, uidb64, token):
     return render(request, "../Templates/home.html", {"activated": True})
 
 
+def user_profile(request, username):
+    if request.method == "POST":
+        img = request.POST['img']
+        birth_date = request.POST['birthday']
+        edu_choices = request.POST['fav_language']
+        sport = request.POST['username']
+        resume = request.POST['resume']
 
+        user = User.objects.get(username=request.user.username)
+        # profile = Profile.objects.get(user=user)
+        profile = Profile(user = user,
+                          profile_pic=img,
+                          birth_date=birth_date,
+                          education=edu_choices,
+                          sport=sport,
+                          resume=resume)
 
+        # profile.profile_pic = img
+        # profile.birth_date = birth_date
+        # profile.education = edu_choices
+        # profile.sport = sport
+        # profile.resume = resume
+        profile.save()
 
+        return redirect('/')
+    else:
+        return render(request, "../Templates/birth_education.html")

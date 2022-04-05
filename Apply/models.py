@@ -7,7 +7,7 @@ from .validators import validate_file_extension
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key= True)
     birth_date = models.DateField()
     # edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
     education = models.CharField(max_length=100)
