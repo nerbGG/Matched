@@ -148,4 +148,4 @@ def user_profile(request, username):
 
         return redirect('/')
     else:
-        return render(request, "../Templates/birth_education.html")
+        return render(request, "birth_education.html")
