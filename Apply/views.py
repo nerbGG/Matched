@@ -129,6 +129,8 @@ def user_profile(request, username):
         edu_choices = request.POST['fav_language']
         sport = request.POST['username']
         resume = request.POST['resume']
+        #interest = request.POST['interest']
+
 
         user = User.objects.get(username=request.user.username)
         # profile = Profile.objects.get(user=user)
@@ -148,4 +150,4 @@ def user_profile(request, username):
 
         return redirect('/')
     else:
-        return render(request, "../Templates/birth_education.html")
+        return render(request, "birth_education.html")
