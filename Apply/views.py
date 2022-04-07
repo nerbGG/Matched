@@ -1,6 +1,6 @@
 import datetime
 import logging
-
+import os
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -23,6 +23,7 @@ from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeEr
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
+import base64
 
 logger = logging.getLogger(__name__)
 
@@ -130,10 +131,13 @@ def user_profile(request, username):
         sport = request.POST['username']
         resume = request.POST['resume']
 
+        # with open("Downloads/"+resume_pdf) as pdf_file:
+        #     resume = base64.b64decode(pdf_file.read())
+
         user = User.objects.get(username=request.user.username)
         # profile = Profile.objects.get(user=user)
         tags = request.POST.getlist("tags")
-        profile = Profile(user = user,
+        profile = Profile(user=user,
                           profile_pic=img,
                           birth_date=birth_date,
                           education=edu_choices,
