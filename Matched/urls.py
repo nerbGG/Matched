@@ -18,7 +18,6 @@ from django.urls import path, include
 from Apply import views as apply_views
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', apply_views.login_view),
@@ -28,3 +27,4 @@ urlpatterns = [
     path("accounts/register/", apply_views.register_view),
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
 ]
+# urlpatterns += staticfiles_urlpatterns()

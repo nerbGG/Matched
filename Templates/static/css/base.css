@@ -9,7 +9,7 @@
  .nav-bar{
      min-width: 72px;
      width:23%;
-     overflow: hidden;
+     /*overflow: hidden;*/
      /*transition:width .5s linear;*/
      padding:15px;
  }
