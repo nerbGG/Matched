@@ -1,6 +1,5 @@
 // linksDiv = document.getElementById("links");
 // linksDiv.style.backgroundColor="red";
-navBtn = document.getElementById("nav-toggle");
 toggleNav = () => {
   let matchedLogo = document.getElementById("matched-logo");
   matchedLogo.classList.toggle("hide");
@@ -22,8 +21,39 @@ toggleNav = () => {
   for (const section of linkSections) {
     section.classList.toggle("link-section-text-center");
   }
-
   // document.getElementById("links").classList.toggle("align-items-center")
 };
+let expandBtnActive = false;
+togglePage = () => {
+  let main = document.getElementById("main");
+  let nav = document.getElementById("navigation-bar");
+  let button = document.getElementById("expand-btn");
+  let navWidth = nav.offsetWidth
+  nav.classList.toggle("hide");
+  button.classList.toggle("rotate");
+  // console.log(navWidth)
+  // if(expandBtnActive == false){
+  //    nav.style.transform ="translateX(-"+navWidth+"px)";
+    // main.style.transform ="translateX(-"+navWidth+"px)";
+    // let newMainWidth = main.offsetWidth + navWidth;
+    // let divisor  = newMainWidth / navWidth;
+    //  let newWidthStr = newMainWidth +"%";
+    // console.log(newWidthStr);
+    // main.style.width = newWidthStr;
+    // button.classList.toggle("rotate");
+    // expandBtnActive = true;
+  // }
+  // else{
+  //    nav.style.removeProperty("transform");
+  //   // main.style.removeProperty("transform");
+  //   button.classList.remove("rotate")
+  //   // nav.style.width="23%";
+  //   // main.style.width ="100%";
+  //   expandBtnActive = false;
+  // }
+};
 
+expandBtn = document.getElementById("expand-btn");
+expandBtn.addEventListener("click", togglePage);
+navBtn = document.getElementById("nav-toggle");
 navBtn.addEventListener("click", toggleNav);
