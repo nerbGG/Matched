@@ -1,6 +1,7 @@
 import datetime
 import logging
 import os
+from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -15,7 +16,7 @@ from django.views import View
 from Matched.settings import EMAIL_HOST_USER
 from Apply.models import Profile
 from Apply.constants import ActionNames
-from Apply.form import RegistrationForm, AuthenticationForm, loginForm
+from Apply.form import RegistrationForm, AuthenticationForm, loginForm, UploadBookForm
 # from Apply.models import Courses
 from Apply.utils import token_generator
 
@@ -123,35 +124,65 @@ def verification_view(request, uidb64, token):
     return render(request, "../Templates/home.html", {"activated": True})
 
 
-def user_profile(request, username):
-    if request.method == "POST":
-        img = request.POST['img']
-        birth_date = request.POST['birthday']
-        edu_choices = request.POST['fav_language']
-        sport = request.POST['username']
-        resume = request.POST['resume']
+# def user_profile(request, username):
+#     if request.method == "POST":
+#         img_st = request.POST['img']
+#         birth_date = request.POST['birthday']
+#         edu_choices = request.POST['fav_language']
+#         sport = request.POST['username']
+#         resume = request.POST['resume']
+#
+#         with open(img_st, "rb") as img_file:
+#             img = base64.b64decode(img_file.read())
+#
+#         user = User.objects.get(username=request.user.username)
+#         # profile = Profile.objects.get(user=user)
+#         tags = request.POST.getlist("tags")
+#         profile = Profile(user=user,
+#                           profile_pic=img,
+#                           birth_date=birth_date,
+#                           education=edu_choices,
+#                           sport=sport,
+#                           resume=resume,
+#                           interests=tags)
+#
+#         profile.save()
+#
+#         return redirect('/')
+#     else:
+#         return render(request, "birth_education.html")
 
-        # with open("Downloads/"+resume_pdf) as pdf_file:
-        #     resume = base64.b64decode(pdf_file.read())
+
+def FileUploadView(request):
+    if request.method == 'POST':
+        form = UploadBookForm(request.POST, request.FILES)
+        profile_pic = request.FILES['profile_pic']
+        birth_date = request.POST['birthday']
+        edu_choices = request.POST['edu_choices']
+        sport = request.POST['sport']
+        resume = request.FILES['resume']
+
+        # with open(img_st, "rb") as img_file:
+        #     img = base64.b64decode(img_file.read())
 
         user = User.objects.get(username=request.user.username)
         # profile = Profile.objects.get(user=user)
         tags = request.POST.getlist("tags")
         profile = Profile(user=user,
-                          profile_pic=img,
+                          profile_pic=profile_pic,
                           birth_date=birth_date,
                           education=edu_choices,
                           sport=sport,
-                          resume=resume,
-                          interests=tags)
+                          resume=resume)
+                          #interests=tags)
 
-        # profile.profile_pic = img
-        # profile.birth_date = birth_date
-        # profile.education = edu_choices
-        # profile.sport = sport
-        # profile.resume = resume
         profile.save()
-
-        return redirect('/')
+        if form.is_valid():
+            form.save()
+            return HttpResponse('The file is saved')
     else:
-        return render(request, "birth_education.html")
+        form = UploadBookForm()
+        context = {
+            'form': form,
+        }
+    return render(request, "test.html", {'form':form})
