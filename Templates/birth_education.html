@@ -1,73 +1,69 @@
-{% extends 'userBase.html' %} {% load crispy_forms_filters %}
+{% extends 'base.html' %} {% load crispy_forms_filters %}
 
 
  {% block content %}
 {#     <div class=" w-100 d-flex align-items-center justify-content-center " >#}
     <div class=" w-100 d-flex align-items-center " >
-    <form class="w-100" method="POST">
-         {% csrf_token %}
-        <div class="form-group w-100 d-flex flex-row border-bottom">
-        <label class="w-50" for="profile picture"><strong>Profile Picture</strong></label>
-        <input   class="w-50" type="file" id="img" name="img" accept="image/*">
-        <br>
-        </div>
+        <form class="w-100" method="POST">
+             {% csrf_token %}
+            <div class="p-2 form-group w-100 d-flex flex-row border-bottom">
+                <label class="w-50" for="profile picture"><strong>Choose Profile Picture</strong></label>
+                <input   class="w-50" type="file" id="img" name="img" accept="image/*">
+                <br>
+            </div>
 
-        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
-        <label class="w-50" for="birthday"><strong>Birthday:</strong></label>
-        <input class="w-50" type="date" id="birthday" name="birthday" required>
-        <br>
-        </div>
+            <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
+                <label class="w-50" for="birthday"><strong>Date of Birth</strong></label>
+                <input class="w-50" type="date" id="birthday" name="birthday" required>
+                <br>
+            </div>
 
-        <div class="form-group w-100  border-bottom">
-        <label><strong>Highest Level of Education</strong></label>
-        <br>
-        <input type="radio" id="html" name="fav_language" value="high school">
-        <label for="html">High School</label><br>
-        <input type="radio" id="html" name="fav_language" value="Bachelors">
-        <label for="html">Undergraduate</label><br>
-        <input type="radio" id="html" name="fav_language" value="graduate">
-        <label for="html">Graduate</label><br>
-        </div>
+            <div class="p-2 form-group w-100  d-flex flex-row border-bottom justify-content-between">
+                <label class="w-50"><strong>Highest Level of Education</strong></label>
+                <div class="w-50">
+                    <input type="radio" id="html" name="fav_language" value="hs">
+                    <label for="html">High School</label><br>
+                    <input type="radio" id="html" name="fav_language" value="ud">
+                    <label for="html">Undergraduate</label><br>
+                    <input type="radio" id="html" name="fav_language" value="gd">
+                    <label for="html">Graduate</label><br>
+                </div>
+            </div>
 
-        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
-        <label class="w-50"><strong>What Sport you played?</strong></label>
-        <input  class="w-50"type="text" id="username" name="username" required>
-        <br>
-        </div>
+            <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
+                <label class="w-50"><strong>What Sport you played?</strong></label>
+                <input  class="w-50"type="text" id="username" name="username" required>
+                <br>
+            </div>
 
-        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
-        <label class="w-50"><strong>Resume </strong></label>
-        <input class="w-50" name="resume" type="file" accept="application/pdf, application/vnd.ms-excel" required />
-        <br>
-        </div>
+            <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
+                <label class="w-50"><strong>Resume </strong></label>
+                <input class="w-50" name="resume" type="file" accept="application/pdf, application/vnd.ms-excel" required />
+                <br>
+            </div>
 
-        </div>
-        <div class="form-group  w-100 d-flex flex-row border-bottom justify-content-between">
-        <label class="w-50" name="interest"><strong>What's your interests</strong></label>
-        <div class="w-50">
-        <input type="checkbox" id="vehicle1" name="tech" value="true">
-               <label for="vehicle1"> Technology</label><br>
-         <input type="checkbox" id="vehicle1" name="med" value="true">
-               <label for="vehicle1"> Medical</label><br>
-        <input type="checkbox" id="vehicle1" name="art" value="true">
-               <label for="vehicle1"> Art</label><br>
-        <input type="checkbox" id="vehicle1" name="ath" value="true">
-               <label for="vehicle1"> Athletics</label><br>
-        <input type="checkbox" id="vehicle1" name="fin" value="true">
-               <label for="vehicle1"> Finance</label><br>
-        <input type="checkbox" id="vehicle1" name="bus" value="true">
-               <label for="vehicle1"> Business</label><br>
-        </div>
-        </div>
+            <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
+                <label class="w-50" name="interest"><strong>What's your interests</strong></label>
+                <div class="w-50">
+                    <input type="checkbox" id="vehicle1" name="tags" value="tech">
+                       <label for="vehicle1"> Technology</label><br>
+                    <input type="checkbox" id="vehicle1" name="tags" value="med">
+                       <label for="vehicle1"> Medical</label><br>
+                    <input type="checkbox" id="vehicle1" name="tags" value="art">
+                       <label for="vehicle1"> Art</label><br>
+                    <input type="checkbox" id="vehicle1" name="tags" value="ath">
+                       <label for="vehicle1"> Athletics</label><br>
+                    <input type="checkbox" id="vehicle1" name="tags" value="fin">
+                       <label for="vehicle1"> Finance</label><br>
+                    <input type="checkbox" id="vehicle1" name="tags" value="bus">
+                       <label for="vehicle1"> Business</label><br>
+                </div>
+            </div>
 
-
-
-        <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
-        <button class ="w-100 btn btn-primary" type="submit" >Done</button>
-        <br>
-         </div>
-
-
-    </form>
+            <div class="form-group w-100 d-flex flex-row border-bottom justify-content-between">
+                <button class ="w-100 btn btn-primary" type="submit" >Done</button>
+                <br>
+            </div>
+     </form>
     </div>
       {% endblock %}

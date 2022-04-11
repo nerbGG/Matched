@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .validators import validate_file_extension
 from multiselectfield import MultiSelectField
 
+
 # Create your models here.
 # class user_Interests(models.Model):
 #     tech = models.BooleanField(default=False)
@@ -24,9 +25,9 @@ class Profile(models.Model):
     birth_date = models.DateField()
     edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
     education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
-    interest_choices = (('tech','Technology'),('med','Medical'),('art','Art'),('ath','Athletics'),
-                        ('fin','Finance'),('bus','Business'),)
-    interests = MultiSelectField(choices=interest_choices,max_length=5, blank=True)
+    interest_choices = (('tech', 'Technology'), ('med', 'Medical'), ('art', 'Art'), ('ath', 'Athletics'),
+                        ('fin', 'Finance'), ('bus', 'Business'),)
+    interests = MultiSelectField(choices=interest_choices, max_length=5, blank=True)
     # interest = models.OneToOneField(user_Interests, on_delete=models.CASCADE, null=True, blank=True)
     # interests = models.CharField(max_length=100, blank=True)
     sport = models.CharField(max_length=100)
@@ -45,3 +46,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return "%s 's profile" % self.user.username
+
+
+class Jobs(models.Model):
+    user = models.ManyToManyField(User)
+    position = models.CharField(max_length=100, blank=False)
+    description = models.TextField(max_length=100000, blank=False)
+    expected_salary = models.IntegerField()
+    company_logo = models.ImageField(blank= True)
+    resume = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension])
+
+    def __str__(self):
+        return "%s job" % self.user.username
+
