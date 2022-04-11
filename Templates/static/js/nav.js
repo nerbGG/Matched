@@ -1,5 +1,6 @@
 // linksDiv = document.getElementById("links");
 // linksDiv.style.backgroundColor="red";
+console.log(window.innerWidth)
 toggleNav = () => {
   let matchedLogo = document.getElementById("matched-logo");
   matchedLogo.classList.toggle("hide");
@@ -28,32 +29,52 @@ togglePage = () => {
   let main = document.getElementById("main");
   let nav = document.getElementById("navigation-bar");
   let button = document.getElementById("expand-btn");
-  let navWidth = nav.offsetWidth
-  nav.classList.toggle("hide");
-  button.classList.toggle("rotate");
-  // console.log(navWidth)
-  // if(expandBtnActive == false){
-  //    nav.style.transform ="translateX(-"+navWidth+"px)";
-    // main.style.transform ="translateX(-"+navWidth+"px)";
-    // let newMainWidth = main.offsetWidth + navWidth;
-    // let divisor  = newMainWidth / navWidth;
-    //  let newWidthStr = newMainWidth +"%";
-    // console.log(newWidthStr);
-    // main.style.width = newWidthStr;
-    // button.classList.toggle("rotate");
-    // expandBtnActive = true;
-  // }
-  // else{
-  //    nav.style.removeProperty("transform");
-  //   // main.style.removeProperty("transform");
-  //   button.classList.remove("rotate")
-  //   // nav.style.width="23%";
-  //   // main.style.width ="100%";
-  //   expandBtnActive = false;
-  // }
+  if(expandBtnActive === false){
+    nav.classList.add("hide");
+    button.classList.add("rotate");
+    expandBtnActive = true;
+  }
+  else{
+    nav.classList.remove("hide");
+    button.classList.remove("rotate");
+    expandBtnActive = false;
+  }
+  // nav.classList.toggle("hide");
+  // button.classList.toggle("rotate");
 };
+window.addEventListener('resize',function(event){
+  // let nav = document.getElementById("navigation-bar");
+  // let button = document.getElementById("expand-btn");
+  // if(window.innerWidth <= 975) {
+  //   nav.style.display = "none";
+  //   button.classList.add("rotate");
+  // }else{
+  //   nav.style.removeProperty("display");
+  //   button.classList.remove("rotate");
+  // }
+      let main = document.getElementById("main");
+      let nav = document.getElementById("navigation-bar");
+      let button = document.getElementById("expand-btn");
+    clearTimeout(window.resizedFinished);
+    window.resizedFinished = setTimeout(function(){
+      if(window.innerWidth <=999) {
+        if (expandBtnActive == false) {
+          nav.classList.add("hide");
+          button.classList.add("rotate");
+          expandBtnActive = true;
+        }
+      }
+      // else{
+      //   nav.classList.remove("hide");
+      //   button.classList.remove("rotate");
+      //   expandBtnActive = false;
+      // }
+    }, 150);
 
-expandBtn = document.getElementById("expand-btn");
+
+
+});
+ expandBtn = document.getElementById("expand-btn");
 expandBtn.addEventListener("click", togglePage);
 navBtn = document.getElementById("nav-toggle");
 navBtn.addEventListener("click", toggleNav);
