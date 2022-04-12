@@ -1,11 +1,37 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from Apply.models import Profile
 
 
 class loginForm(AuthenticationForm):
     username = forms.CharField(required=True)
     password = forms.PasswordInput
+
+
+class UploadBookForm(forms.ModelForm):
+    # profile_pic = forms.ImageField(required=True)
+    # birthday = forms.DateField(required=False)
+    sport = forms.CharField(max_length=100, required=100)
+    resume = forms.FileField(required=True)
+    education_choices = (
+        ("hs", "High School"),
+        ("ud", "Undergrad"),
+        ("gd", "graduate")
+    )
+    interests_choices = (
+        ("tech", "Technology"),
+        ("med", "Medical"),
+        ("art", "Art"),
+        ("ath", "Athletics"),
+        ("bus", "Business"),
+    )
+    edu_choices = forms.ChoiceField(choices=education_choices, required=True)
+    # interests = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=interests_choices)
+
+    class Meta:
+        model = Profile
+        fields = ('profile_pic', 'sport', 'resume', 'edu_choices',)
 
 
 class RegistrationForm(UserCreationForm):
