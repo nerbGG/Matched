@@ -22,18 +22,18 @@ from multiselectfield import MultiSelectField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    birth_date = models.DateField()
+    birth_date = models.DateField(blank= True, null=True)
     edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
     education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
     interest_choices = (('tech', 'Technology'), ('med', 'Medical'), ('art', 'Art'), ('ath', 'Athletics'),
                         ('fin', 'Finance'), ('bus', 'Business'),)
-    interests = MultiSelectField(choices=interest_choices, max_length=5, blank=True)
-    # interest = models.OneToOneField(user_Interests, on_delete=models.CASCADE, null=True, blank=True)
-    # interests = models.CharField(max_length=100, blank=True)
+    interests = MultiSelectField(choices=interest_choices, blank=True)
+
     sport = models.CharField(max_length=100)
     # pdf only
-    resume = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension])
-    profile_pic = models.ImageField(blank=True)
+    resume = models.FileField(upload_to="pdfs/")
+    profile_pic = models.FileField(upload_to="images/")
+    # profile_pic = models.ImageField(blank=True)
     success_story = models.TextField(blank=True)
 
     # location=
@@ -53,9 +53,19 @@ class Jobs(models.Model):
     position = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=100000, blank=False)
     expected_salary = models.IntegerField()
-    company_logo = models.ImageField(blank= True)
+    company_logo = models.ImageField(blank=True)
     resume = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension])
 
     def __str__(self):
         return "%s job" % self.user.username
 
+
+class UploadModel(models.Model):
+    title = models.CharField(max_length=80)
+    pdf = models.FileField(upload_to='pdfs/')
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return f"{self.title}"
