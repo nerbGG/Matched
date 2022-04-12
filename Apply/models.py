@@ -22,12 +22,12 @@ from multiselectfield import MultiSelectField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    birth_date = models.DateField()
+    birth_date = models.DateField(blank= True, null=True)
     edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
     education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
     interest_choices = (('tech', 'Technology'), ('med', 'Medical'), ('art', 'Art'), ('ath', 'Athletics'),
                         ('fin', 'Finance'), ('bus', 'Business'),)
-    interests = MultiSelectField(choices=interest_choices, max_length=5, blank=True)
+    interests = MultiSelectField(choices=interest_choices, blank=True)
 
     sport = models.CharField(max_length=100)
     # pdf only

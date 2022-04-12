@@ -11,7 +11,7 @@ class loginForm(AuthenticationForm):
 
 class UploadBookForm(forms.ModelForm):
     # profile_pic = forms.ImageField(required=True)
-    birthday = forms.DateField(required=True)
+    # birthday = forms.DateField(required=False)
     sport = forms.CharField(max_length=100, required=100)
     resume = forms.FileField(required=True)
     education_choices = (
@@ -19,7 +19,7 @@ class UploadBookForm(forms.ModelForm):
         ("ud", "Undergrad"),
         ("gd", "graduate")
     )
-    interests = (
+    interests_choices = (
         ("tech", "Technology"),
         ("med", "Medical"),
         ("art", "Art"),
@@ -27,10 +27,11 @@ class UploadBookForm(forms.ModelForm):
         ("bus", "Business"),
     )
     edu_choices = forms.ChoiceField(choices=education_choices, required=True)
+    # interests = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=interests_choices)
 
     class Meta:
         model = Profile
-        fields = ('profile_pic', 'birthday', 'sport', 'resume', 'edu_choices',  'interests')
+        fields = ('profile_pic', 'sport', 'resume', 'edu_choices',)
 
 
 class RegistrationForm(UserCreationForm):

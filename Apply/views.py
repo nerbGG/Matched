@@ -153,14 +153,15 @@ def verification_view(request, uidb64, token):
 #         return render(request, "birth_education.html")
 
 
-def FileUploadView(request):
+def FileUploadView(request, username):
     if request.method == 'POST':
-        form = UploadBookForm(request.POST, request.FILES)
-        profile_pic = request.FILES['profile_pic']
+        # form = UploadBookForm(request.POST, request.FILES)
         birth_date = request.POST['birthday']
+        profile_pic = request.FILES['profile_pic']
         edu_choices = request.POST['edu_choices']
         sport = request.POST['sport']
         resume = request.FILES['resume']
+        # intrests = request.POST['interests']
 
         # with open(img_st, "rb") as img_file:
         #     img = base64.b64decode(img_file.read())
@@ -173,16 +174,13 @@ def FileUploadView(request):
                           birth_date=birth_date,
                           education=edu_choices,
                           sport=sport,
-                          resume=resume)
-                          #interests=tags)
-
+                          resume=resume,
+                          interests=tags)
         profile.save()
-        if form.is_valid():
-            form.save()
-            return HttpResponse('The file is saved')
+        return redirect("/")
     else:
         form = UploadBookForm()
         context = {
             'form': form,
         }
-    return render(request, "test.html", {'form':form})
+    return render(request, "test.html", {'form': form})
