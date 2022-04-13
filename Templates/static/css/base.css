@@ -11,28 +11,33 @@ html, body {
      /*min-width: 23%;*/
      overflow: hidden;
      /*transition:width .5s linear;*/
-     transition:transform .5s linear;
+/*      transition:transform .5s linear; */
      padding:15px;
  }
  #main{
      height: 85%;
      width: 100%;
-     transition:width .5s ease-in-out;
+/*      transition:width .5s ease-in-out; */
  }
  #expand-btn{
-    transition:transform .5s linear;
+/*     transition:transform .5s linear; */
  }
  #main{
-     transition:width .5s linear;
+     /*width:100%;*/
+/*      transition:width .5s linear; */
  }
  .rotate{
      transform: rotate(180deg);
  }
  .shrink{
-    /*min-width: 72px;*/
-    width:85px;
+    max-width: 85px;
+    /*width:85px;*/
         /*padding: 0px;*/
  }
+ /*.force-max{*/
+ /*    min-width: 100%;*/
+ /*}*/
+
  .hide{
      display:none;
  }
