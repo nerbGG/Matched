@@ -51,7 +51,6 @@ window.addEventListener('resize',function(event){
           if(displayNav == true){
               displayNav=false;
           }
-
           pageBtn.classList.add("rotate");
         document.getElementById("navigation-bar").style.display ="none";
       }
