@@ -23,7 +23,7 @@
         {% endif %}
         <form class="d-flex flex-column justify-content-center" action="" method="POST">
             {% csrf_token %} {{ form | crispy }}
-            <input type="Log in" value="Log in" class="btn btn-primary" />
+            <input  type="submit" value="Log in" class="btn btn-primary">
         </form>
         <p>
             Don't have an account?
