@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apply',
     "crispy_forms",
+    "storages",
 ]
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
@@ -137,3 +138,13 @@ EMAIL_USE_SSL = False
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+#S3 BUCKETS CONFIG
+AWS_ACCESS_KEY_ID = 'AKIATS4DULUZRCBJLMVO'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'matched-umb-cs410'
+
+AWS_S3_FILE_OVERWRITE= False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
