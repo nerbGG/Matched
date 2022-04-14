@@ -27,5 +27,6 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("accounts/register/", apply_views.register_view),
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
-    path("profile/<username>/", apply_views.FileUploadView, name="FileUploadView")
+    path("profile/<username>/", apply_views.FileUploadView, name="FileUploadView"),
+    path("test/", apply_views.test),
 ]

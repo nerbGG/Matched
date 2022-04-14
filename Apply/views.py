@@ -184,3 +184,9 @@ def FileUploadView(request, username):
             'form': form,
         }
     return render(request, "test.html", {'form': form})
+
+
+def test(request):
+    user = User.objects.get(username=request.user.username)
+    resume = user.profile.resume
+    return render(request, 'aws-test.html', {'resume':resume})
