@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% load crispy_forms_filters %}
+
+{% block content %}
+    {% if resume %}
+        <a href= "https://matched-umb-cs410.s3.amazonaws.com/media/{{ resume }}">
+            {{resume}}
+        </a>
+    {% endif %}
+{% endblock %}
