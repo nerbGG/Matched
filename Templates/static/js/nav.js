@@ -43,7 +43,7 @@ toggleDisplayNavBar = () =>{
 window.addEventListener('resize',function(event){
     // clearTimeout(window.resizedFinished);
     // window.resizedFinished = setTimeout(function(){
-      if(window.innerWidth >= 600){
+      if(window.innerWidth >= 500){
         document.getElementById("main").style.width ="100%";
         document.getElementById("navigation-bar").style.display ="flex";
       }

@@ -7,35 +7,19 @@ html, body {
     overflow: auto;
 }
  .nav-bar{
-     /*width:23%;*/
-     /*min-width: 23%;*/
+
      overflow: hidden;
      padding:15px;
  }
  #main{
      height: 85%;
-     /*width:100%;*/
-/*      transition:width .5s ease-in-out; */
- }
- #expand-btn{
-/*     transition:transform .5s linear; */
- }
- #main{
-     /*width:100%;*/
-/*      transition:width .5s linear; */
  }
  .rotate{
      transform: rotate(180deg);
  }
- .shrink{
-    max-width: 85px;
-    /*width:85px;*/
-        /*padding: 0px;*/
+ .shrink {
+     max-width: 85px;
  }
- /*.force-max{*/
- /*    min-width: 100%;*/
- /*}*/
-
  .hide{
      display:none;
  }
@@ -53,7 +37,6 @@ a{
     color:black;
 }
 a:hover{
-    /*color:#2e6da4;*/
     color:black;
 }
 #logoandburger{
@@ -96,7 +79,4 @@ a:hover{
     }
 
 }
-
-
-
 
