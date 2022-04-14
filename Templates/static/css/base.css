@@ -7,16 +7,14 @@ html, body {
     overflow: auto;
 }
  .nav-bar{
-     width:23%;
+     /*width:23%;*/
      /*min-width: 23%;*/
      overflow: hidden;
-     /*transition:width .5s linear;*/
-/*      transition:transform .5s linear; */
      padding:15px;
  }
  #main{
      height: 85%;
-     width: 100%;
+     /*width:100%;*/
 /*      transition:width .5s ease-in-out; */
  }
  #expand-btn{
@@ -72,6 +70,22 @@ a:hover{
 }
 .link-section-text-center{
     margin-left: -20%;
+}
+@media only screen and (max-width: 600px) {
+    #main {
+        width:100%;
+    }
+    #navigation-bar{
+        width:100%;
+    }
+}
+@media only screen and (min-width: 977px) {
+    #main {
+        width:100%;
+    }
+    #navigation-bar{
+        width:23%;
+    }
 }
 
 
