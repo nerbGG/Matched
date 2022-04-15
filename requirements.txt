@@ -16,7 +16,6 @@ identify==2.4.4
 importlib-metadata==4.8.3
 importlib-resources==5.2.3
 jmespath==1.0.0
-ldap3==2.9.1
 mysqlclient==2.1.0
 nodeenv==1.6.0
 nulltype==2.3.1

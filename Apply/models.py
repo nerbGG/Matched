@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .constant_variables import fields
 from .validators import validate_file_extension
 from multiselectfield import MultiSelectField
 
@@ -25,8 +26,7 @@ class Profile(models.Model):
     birth_date = models.DateField(blank= True, null=True)
     edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
     education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
-    interest_choices = (('tech', 'Technology'), ('med', 'Medical'), ('art', 'Art'), ('ath', 'Athletics'),
-                        ('fin', 'Finance'), ('bus', 'Business'),)
+    interest_choices = fields
     interests = MultiSelectField(choices=interest_choices, blank=True)
 
     sport = models.CharField(max_length=100)
@@ -49,19 +49,19 @@ class Profile(models.Model):
 
 
 class Jobs(models.Model):
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(User, blank=True)
+    company = models.CharField(max_length=100, blank=False)
     position = models.CharField(max_length=100, blank=False)
-    description = models.TextField(max_length=100000, blank=False)
-    expected_salary = models.IntegerField()
+    description = models.TextField(max_length=100000, blank=True)
+    expected_salary = models.IntegerField(blank=False)
     company_logo = models.ImageField(blank=True)
     # resume = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension])
     # location =
-    interest_choices = (('tech', 'Technology'), ('med', 'Medical'), ('art', 'Art'), ('ath', 'Athletics'),
-                        ('fin', 'Finance'), ('bus', 'Business'),)
+    interest_choices = fields
     interests = MultiSelectField(choices=interest_choices, blank=True)
 
     def __str__(self):
-        return "%s job" % self.user.username
+        return "%s job" % self.position
 
 
 class UploadModel(models.Model):

@@ -34,16 +34,15 @@ toggleDisplayNavBar = () =>{
     }
     else if(displayNav == true){
         pageBtn.classList.add("rotate");
-       main = document.getElementById("main").style.width ="100%";
-       navBar.style.display ="none";
-       displayNav = false;
+        main = document.getElementById("main").style.width ="100%";
+        navBar.style.display ="none";
+        displayNav = false;
     }
-
 };
 window.addEventListener('resize',function(event){
     // clearTimeout(window.resizedFinished);
     // window.resizedFinished = setTimeout(function(){
-      if(window.innerWidth >= 500){
+      if(window.innerWidth > 500) {
         document.getElementById("main").style.width ="100%";
         document.getElementById("navigation-bar").style.display ="flex";
       }
@@ -52,11 +51,12 @@ window.addEventListener('resize',function(event){
               displayNav=false;
           }
           pageBtn.classList.add("rotate");
-        document.getElementById("navigation-bar").style.display ="none";
+          document.getElementById("navigation-bar").style.display ="none";
       }
     // }, 150);
 });
-let navBtn = document.getElementById("nav-toggle");
+
+// let navBtn = document.getElementById("nav-toggle");
 // navBtn.addEventListener("click", toggleShrinkNav);
 let pageBtn = document.getElementById("page-btn");
 pageBtn.addEventListener("click", toggleDisplayNavBar);
