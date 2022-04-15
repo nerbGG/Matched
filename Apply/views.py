@@ -150,7 +150,7 @@ def verification_view(request, uidb64, token):
 #
 #         return redirect('/')
 #     else:
-#         return render(request, "birth_education.html")
+#         return render(request, "profile.html")
 
 
 def FileUploadView(request, username):
@@ -183,7 +183,7 @@ def FileUploadView(request, username):
         context = {
             'form': form,
         }
-    return render(request, "test.html", {'form': form})
+    return render(request, "profile.html", {'form': form})
 
 
 def test(request):

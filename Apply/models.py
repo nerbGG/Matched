@@ -54,7 +54,11 @@ class Jobs(models.Model):
     description = models.TextField(max_length=100000, blank=False)
     expected_salary = models.IntegerField()
     company_logo = models.ImageField(blank=True)
-    resume = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension])
+    # resume = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/', validators=[validate_file_extension])
+    # location =
+    interest_choices = (('tech', 'Technology'), ('med', 'Medical'), ('art', 'Art'), ('ath', 'Athletics'),
+                        ('fin', 'Finance'), ('bus', 'Business'),)
+    interests = MultiSelectField(choices=interest_choices, blank=True)
 
     def __str__(self):
         return "%s job" % self.user.username
