@@ -68,17 +68,14 @@ def login_view(request):
         form = loginForm
         username = request.POST['username']
         password = request.POST["password"]
-        not_active = "Please confirm your account. "
+        not_active = "Please confirm your account."
         user = User.objects.get(username=username)
         if user is not None:
             if not user.is_active:
                 return render(request, "../templates/registration/login.html", {"form": form, "message": not_active})
         user = authenticate(request, username=username, password=password)
-
         user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
-
         if user is not None:
-
             login(request, user)
             return redirect('/')
         else:

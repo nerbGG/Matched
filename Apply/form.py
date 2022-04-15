@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from Apply.models import Profile
+from .constant_variables import fields
 
 
 class loginForm(AuthenticationForm):
@@ -19,14 +20,9 @@ class UploadBookForm(forms.ModelForm):
         ("ud", "Undergrad"),
         ("gd", "graduate")
     )
-    interests_choices = (
-        ("tech", "Technology"),
-        ("med", "Medical"),
-        ("art", "Art"),
-        ("ath", "Athletics"),
-        ("bus", "Business"),
-    )
+    interests_choices = fields
     edu_choices = forms.ChoiceField(choices=education_choices, required=True)
+
     # interests = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=interests_choices)
 
     class Meta:
