@@ -29,7 +29,7 @@ toggleDisplayNavBar = () =>{
     // navBar.classList.toggle("d-none");
     if (displayNav == false) {
         pageBtn.classList.remove("rotate");
-        document.getElementById("main").style.width = "50%";
+        document.getElementById("main").style.width = " 0%";
         navBar.style.display = "flex";
         displayNav = true;
     }
@@ -44,7 +44,7 @@ window.addEventListener('resize',function(event){
     // clearTimeout(window.resizedFinished);
     // window.resizedFinished = setTimeout(function(){
       if(window.innerWidth > 500) {
-        document.getElementById("main").style.width ="80%";
+        document.getElementById("main").style.width ="100%";
         document.getElementById("navigation-bar").style.display ="flex";
       }
       else{
@@ -57,6 +57,7 @@ window.addEventListener('resize',function(event){
       }
     // }, 150);
 });
+
 
 // let navBtn = document.getElementById("nav-toggle");
 // navBtn.addEventListener("click", toggleShrinkNav);
