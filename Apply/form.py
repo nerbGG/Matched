@@ -10,11 +10,11 @@ class loginForm(AuthenticationForm):
     password = forms.PasswordInput
 
 
-class UploadBookForm(forms.ModelForm):
-    # profile_pic = forms.ImageField(required=True)
+class ProfileForm(forms.ModelForm):
+    profile_pic = forms.ImageField(required=False)
     # birthday = forms.DateField(required=False)
     sport = forms.CharField(max_length=100, required=100)
-    resume = forms.FileField(required=True)
+    resume = forms.FileField(required=False)
     education_choices = (
         ("hs", "High School"),
         ("ud", "Undergrad"),

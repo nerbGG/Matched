@@ -1,5 +1,5 @@
-fields = (('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
-          ('fin', 'Finance'), ('bus', 'Business'),)
+fields = [('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
+          ('fin', 'Finance'), ('bus', 'Business')]
 jobs = [
     {
         "company": "BitSight",
@@ -8,7 +8,7 @@ jobs = [
         "interests": ["tech"]
     },
     {
-        "company": "Brigham and Womens's",
+        "company": "Brigham and Women's",
         "position": "Neuroscientist",
         "salary": 300000,
         "interests": ["tech", "bio"]
@@ -16,8 +16,14 @@ jobs = [
     {
         "company": "Ai Proteins",
         "position": "protein expert",
+        "salary": 500000,
+        "interests": ["bio"]
+    },
+    {
+        "company": "Ai Proteins",
+        "position": "test Subject",
         "salary": 50000,
-        "interests": ["med"]
+        "interests": ["bio", "ath"]
     },
     {
         "company": "Flux marine",
@@ -41,7 +47,7 @@ jobs = [
         "company": "RH",
         "position": "AI engineer",
         "salary": 100000000,
-        "interests": ["tech","art"]
+        "interests": ["tech", "art"]
     },
     {
         "company": "Isomics",
@@ -55,4 +61,48 @@ jobs = [
         "salary": 300000,
         "interests": ["tech", "bus", "eng"]
     },
+    {
+        "company": "Ultimaco",
+        "position": "Senior CyberSecurity Expert",
+        "salary": 300000,
+        "interests": ["tech", "bus", "eng"]
+    },
+    {
+        "company": "Ultimaco",
+        "position": "Entry Software engineer",
+        "salary": 100000,
+        "interests": ["tech"]
+    },
+    {
+        "company": "Ultimaco",
+        "position": "Senior CyberSecurity Expert",
+        "salary": 300000,
+        "interests": ["tech", "bus", "eng"]
+    },
+    {
+        "company": "CompBioLab",
+        "position": "Bioinformatics Expert",
+        "salary": 200000,
+        "interests": ["tech", "bio"]
+    },
+    {
+        "company": "HourWork",
+        "position": "Junior Software Engineer",
+        "salary": 150000,
+        "interests": ["tech"]
+    },
+    {
+        "company": "HourWork",
+        "position": "Senior Software Engineer",
+        "salary": 300000,
+        "interests": ["tech"]
+    },
+    {
+        "company": "NYU Langone Health",
+        "position": "Financial Adivisor",
+        "salary": 800000,
+        "interests": ["tech", "fin"]
+    },
 ]
+
+

@@ -1,30 +1,28 @@
-import datetime
-import logging
 import os
+import datetime
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+# from django.utils.encoding import force_bytes
+# from django.utils.http import urlsafe_base64_encode
+# from django.views import View
+# from Matched.settings import EMAIL_HOST_USER
+import logging
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from Apply.models import Profile, Jobs
+from Apply.constants import ActionNames
+from Apply.form import RegistrationForm, loginForm, ProfileForm
+from Apply.utils import token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from django.views import View
-from Matched.settings import EMAIL_HOST_USER
-from Apply.models import Profile
-from Apply.constants import ActionNames
-from Apply.form import RegistrationForm, AuthenticationForm, loginForm, UploadBookForm
-# from Apply.models import Courses
-from Apply.utils import token_generator
-
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
-import base64
+from .constant_variables import fields
 
 logger = logging.getLogger(__name__)
 
@@ -129,6 +127,7 @@ def verification_view(request, uidb64, token):
 #         sport = request.POST['username']
 #         resume = request.POST['resume']
 #
+
 #         with open(img_st, "rb") as img_file:
 #             img = base64.b64decode(img_file.read())
 #
@@ -150,21 +149,17 @@ def verification_view(request, uidb64, token):
 #         return render(request, "profile.html")
 
 
-def FileUploadView(request, username):
+def create_profile(request, username):
     if request.method == 'POST':
-        # form = UploadBookForm(request.POST, request.FILES)
         birth_date = request.POST['birthday']
         profile_pic = request.FILES['profile_pic']
         edu_choices = request.POST['edu_choices']
         sport = request.POST['sport']
         resume = request.FILES['resume']
         # intrests = request.POST['interests']
-
         # with open(img_st, "rb") as img_file:
         #     img = base64.b64decode(img_file.read())
-
         user = User.objects.get(username=request.user.username)
-        # profile = Profile.objects.get(user=user)
         tags = request.POST.getlist("tags")
         profile = Profile(user=user,
                           profile_pic=profile_pic,
@@ -176,14 +171,18 @@ def FileUploadView(request, username):
         profile.save()
         return redirect("/")
     else:
-        form = UploadBookForm()
-        context = {
-            'form': form,
-        }
-    return render(request, "profile.html", {'form': form})
+        form = ProfileForm()
+    return render(request, "profile.html", {'form': form, "fields": fields})
 
 
 def test(request):
     user = User.objects.get(username=request.user.username)
     resume = user.profile.resume
-    return render(request, 'aws-test.html', {'resume':resume})
+    return render(request, 'aws-test.html', {'resume': resume})
+
+
+def jobs_view(request):
+    # user = User.objects.get(username=request.user.username)
+    jobs = Jobs.objects.all()
+    interests = fields
+    return render(request, "jobs.html", {"jobs": jobs, "fields": interests})
