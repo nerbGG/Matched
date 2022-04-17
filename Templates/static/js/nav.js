@@ -63,10 +63,10 @@ makePop =()=>{
 // let navBtn = document.getElementById("nav-toggle");
 // navBtn.addEventListener("click", toggleShrinkNav);
 let pageBtn = document.getElementById("page-btn");
-let jobs = document.getElementsByClassName("jobs");
-Array.from(jobs).forEach(job =>{
-    job.addEventListener("hover",makePop);
-});
+// let jobs = document.getElementsByClassName("jobs");
+// Array.from(jobs).forEach(job =>{
+//     job.addEventListener("hover",makePop);
+// });
 
 
 pageBtn.addEventListener("click", toggleDisplayNavBar);

@@ -2,12 +2,12 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-    {% if user.is_authenticated %}
+{#    {% if user.is_authenticated %}#}
 <!--        if user is already logged in and the user tries to access the login page, it will redirect
                them to the courses page -->
-        <meta http-equiv="Refresh" content="0; url='/' />
+{#        <meta http-equiv="Refresh" content="0; url='/' />#}
 <!--        <h2>You are already logged in, please <a href="/accounts/logout"> log out </a></h2>-->
-    {% else  %}
+{#    {% else  %}#}
         <div class="p-1 w-100 h-100">
             <h2>Registration</h2>
             <form  method="POST" class=" from-group nt-weight-bold p-2 border-bottom">
@@ -18,8 +18,8 @@
     {#            </div>#}
             </form>
             <br>
-            <p style="font-size: 14px;">Already have an account? <a href="/accounts/login">Login</a>!</p>
+            <p style="font-size: 14px;">Already have an account? <a href="/accounts/login"><strong>Login</strong></a>!</p>
 
         </div>
-    {%endif%}
+{#    {%endif%}#}
 {% endblock %}

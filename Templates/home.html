@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
- {% block content %}
+{% block content %}
+{% if message %}
+     <div class="alert alert-warning w-100 ">{{ message }}</div>
+{% endif%}
 
 {% if user.is_authenticated %}
     <a href="/accounts/logout/">

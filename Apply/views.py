@@ -38,25 +38,28 @@ def deactivate_user(user):
 
 
 def register_view(request):
-    # send_activation_email(request)
-    """"""
-    # send_activation_email(request)
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # path to view getting the domain we are on relative url to verification encode uid token
-            user = User.objects.get(username=request.POST["username"])
-            group_name = request.POST["position"]
-            group = Group.objects.get(name=group_name)
-            user.groups.add(group)
-            deactivate_user(user)
-            send_activation_email(request, user)
-            return render(request, "../templates/home.html", {"activated": False})
+    if not request.user.is_authenticated:
+        # send_activation_email(request)
+        """"""
+        # send_activation_email(request)
+        if request.method == "POST":
+            form = RegistrationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                # path to view getting the domain we are on relative url to verification encode uid token
+                user = User.objects.get(username=request.POST["username"])
+                group_name = request.POST["position"]
+                group = Group.objects.get(name=group_name)
+                user.groups.add(group)
+                deactivate_user(user)
+                send_activation_email(request, user)
+                return render(request, "../templates/home.html", {"activated": False})
+        else:
+            form = RegistrationForm()
+        return render(request, "../templates/registration/registration.html", {"form": form})
     else:
-        form = RegistrationForm()
-    return render(request, "../templates/registration/registration.html", {"form": form})
-
+        message = "You need to be logged out to access the registration page"
+        return render(request, "home.html", {"message": message})
 
 login_name = ""
 
@@ -116,7 +119,9 @@ def verification_view(request, uidb64, token):
     user = User.objects.get(username=login_name)
     activate_user(user)
     logger.debug("Verification link has been generated")
-    return render(request, "../Templates/home.html", {"activated": True})
+    # return render(request, "../Templates/home.html", {"activated": True})
+    redirect_link ="/profile/"+user.username+"/"
+    return redirect(redirect_link)
 
 
 # def user_profile(request, username):
@@ -150,29 +155,33 @@ def verification_view(request, uidb64, token):
 
 
 def create_profile(request, username):
-    if request.method == 'POST':
-        birth_date = request.POST['birthday']
-        profile_pic = request.FILES['profile_pic']
-        edu_choices = request.POST['edu_choices']
-        sport = request.POST['sport']
-        resume = request.FILES['resume']
-        # intrests = request.POST['interests']
-        # with open(img_st, "rb") as img_file:
-        #     img = base64.b64decode(img_file.read())
-        user = User.objects.get(username=request.user.username)
-        tags = request.POST.getlist("tags")
-        profile = Profile(user=user,
-                          profile_pic=profile_pic,
-                          birth_date=birth_date,
-                          education=edu_choices,
-                          sport=sport,
-                          resume=resume,
-                          interests=tags)
-        profile.save()
-        return redirect("/")
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            birth_date = request.POST['birthday']
+            profile_pic = request.FILES['profile_pic']
+            edu_choices = request.POST['edu_choices']
+            sport = request.POST['sport']
+            resume = request.FILES['resume']
+            # intrests = request.POST['interests']
+            # with open(img_st, "rb") as img_file:
+            #     img = base64.b64decode(img_file.read())
+            user = User.objects.get(username=request.user.username)
+            tags = request.POST.getlist("tags")
+            profile = Profile(user=user,
+                              profile_pic=profile_pic,
+                              birth_date=birth_date,
+                              education=edu_choices,
+                              sport=sport,
+                              resume=resume,
+                              interests=tags)
+            profile.save()
+            return redirect("/")
+        else:
+            form = ProfileForm()
+        return render(request, "profile.html", {'form': form, "fields": fields})
     else:
-        form = ProfileForm()
-    return render(request, "profile.html", {'form': form, "fields": fields})
+        message = "You need to be logged in to access the profile page"
+        return render(request, "home.html", {"message": message})
 
 
 def test(request):
@@ -182,7 +191,12 @@ def test(request):
 
 
 def jobs_view(request):
-    # user = User.objects.get(username=request.user.username)
-    jobs = Jobs.objects.all()
-    interests = fields
-    return render(request, "jobs.html", {"jobs": jobs, "fields": interests})
+    if request.user.is_authenticated:
+        # user = User.objects.get(username=request.user.username)
+        jobs = Jobs.objects.all()
+        interests = fields
+        return render(request, "jobs.html", {"jobs": jobs, "fields": interests})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
