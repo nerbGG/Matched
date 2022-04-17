@@ -1,10 +1,31 @@
+/* width */
+::-webkit-scrollbar {
+    width: 5px; /* width of vertical scrollbar */
+    height:3px; /* height of horizontal scrollbar */
+    /*display:none;*/
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /*background: #888;*/
+    background:black;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 html, body {
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    overflow: auto;
+    /*overflow: hidden;*/
 }
  .nav-bar{
      overflow: hidden;
@@ -12,13 +33,15 @@ html, body {
  }
  #main{
      height: 85%;
+     /*overflow-y:hidden;*/
+     /*overflow-x: hidden;*/
  }
  .rotate{
      transform: rotate(180deg);
  }
- .shrink {
-     max-width: 85px;
- }
+ /*.shrink {*/
+ /*    max-width: 85px;*/
+ /*}*/
  .hide{
      display:none;
  }
@@ -35,6 +58,11 @@ html, body {
 a{
     color:black;
 }
+/*label{*/
+/* font-weight: bolder;*/
+/*}*/
+
+
 a:hover{
     color:black;
 }
@@ -53,15 +81,17 @@ a:hover{
 .link-section-text-center{
     margin-left: -20%;
 }
-.jobs:hover{
-    box-shadow: 2px solid black;
-}
+/*.jobs:hover{*/
+/*    box-shadow: 3px 3px 3px 3px grey;*/
+/*    !*z-index:;*!*/
+/*    !*cursor: pointer;*!*/
+/*}*/
 
 /*small screens*/
 @media only screen and (max-width: 600px) {
-    #main {
-        width:100%;
-    }
+    /*#main {*/
+    /*    width:100%;*/
+    /*}*/
     #navigation-bar{
         width:100%;
         display: none;
@@ -76,7 +106,8 @@ a:hover{
         width:100%;
     }
     #navigation-bar{
-        width:23%;
+        width:20%;
+        min-width:20%;
         display: flex;
     }
     #page-btn{
