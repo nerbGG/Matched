@@ -39,9 +39,9 @@ html, body {
  .rotate{
      transform: rotate(180deg);
  }
- .shrink {
-     max-width: 85px;
- }
+ /*.shrink {*/
+ /*    max-width: 85px;*/
+ /*}*/
  .hide{
      display:none;
  }
@@ -93,7 +93,7 @@ a:hover{
         width:100%;
     }
     #navigation-bar{
-        width:100%;
+        width:50%;
         display: none;
     }
     #page-btn{
@@ -103,7 +103,7 @@ a:hover{
 /*big screens*/
 @media only screen and (min-width: 501px) {
     #main {
-        width:80%;
+        width:100%;
     }
     #navigation-bar{
         width:20%;

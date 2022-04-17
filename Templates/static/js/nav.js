@@ -29,7 +29,7 @@ toggleDisplayNavBar = () =>{
     // navBar.classList.toggle("d-none");
     if (displayNav == false) {
         pageBtn.classList.remove("rotate");
-        document.getElementById("main").style.width = " 0%";
+        document.getElementById("main").style.width = "50%";
         navBar.style.display = "flex";
         displayNav = true;
     }
