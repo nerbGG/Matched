@@ -54,6 +54,7 @@ a:hover{
 .link-section-text-center{
     margin-left: -20%;
 }
+
 /*small screens*/
 @media only screen and (max-width: 600px) {
     #main {
@@ -79,6 +80,5 @@ a:hover{
     #page-btn{
         display:none;
     }
-
 }
 
