@@ -29,5 +29,7 @@ urlpatterns = [
     path("profile/<username>/", apply_views.create_profile, name="FileUploadView"),
     path("jobs/", apply_views.jobs_view),
     path("test/", apply_views.test),
+    path("story/", apply_views.story_view, name="successStoryView"),
+    path("success-stories/", apply_views. users_success_story, name="allTheUsersSuccessStories")
 ]
 # urlpatterns += staticfiles_urlpatterns()

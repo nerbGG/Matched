@@ -30,6 +30,14 @@ class ProfileForm(forms.ModelForm):
         fields = ('profile_pic', 'sport', 'resume', 'edu_choices',)
 
 
+class SuccessStoryForm(forms.ModelForm):
+    success_story = forms.TextInput()
+
+    class Meta:
+        model = Profile
+        fields = ('success_story',)
+
+
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)

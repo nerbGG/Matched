@@ -16,7 +16,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from Apply.models import Profile, Jobs
 from Apply.constants import ActionNames
-from Apply.form import RegistrationForm, loginForm, ProfileForm
+from Apply.form import RegistrationForm, loginForm, ProfileForm, SuccessStoryForm
 from Apply.utils import token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -60,6 +60,7 @@ def register_view(request):
     else:
         message = "You need to be logged out to access the registration page"
         return render(request, "home.html", {"message": message})
+
 
 login_name = ""
 
@@ -120,7 +121,7 @@ def verification_view(request, uidb64, token):
     activate_user(user)
     logger.debug("Verification link has been generated")
     # return render(request, "../Templates/home.html", {"activated": True})
-    redirect_link ="/profile/"+user.username+"/"
+    redirect_link = "/profile/" + user.username + "/"
     return redirect(redirect_link)
 
 
@@ -200,3 +201,33 @@ def jobs_view(request):
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
 
+
+def story_view(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            story = request.POST['success_story']
+            user = User.objects.get(username=request.user.username)
+            profile = Profile(user=user, success_story=story)
+            profile.save()
+            return redirect('/')
+        else:
+            form = SuccessStoryForm()
+        return render(request, 'story.html', {"form": form})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
+def users_success_story(request):
+    if request.user.is_authenticated:
+        # user = User.objects.get(username=request.user.username)
+        profileList = Profile.objects.all()
+        # story = user.profile.success_story
+        story_list = []
+        for profile in profileList:
+            story_list.append(profile.success_story)
+
+        return render(request, "storiesToView.html", {'story_list': story_list})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
