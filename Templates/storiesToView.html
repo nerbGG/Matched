@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% load crispy_forms_filters %}
+{% block content %}
+    {% if story_list %}
+        {% for story in story_list %}
+            <div>
+                {{story}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock %}
