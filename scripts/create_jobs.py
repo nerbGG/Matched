@@ -7,6 +7,8 @@ from Apply.constant_variables import jobs
 
 
 def run():
+    job_delete = Jobs.objects.all()
+    job_delete.delete()
     for job in jobs:
         company = job["company"]
         position = job["position"]

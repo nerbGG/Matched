@@ -88,6 +88,7 @@ def login_view(request):
 
 
 def send_activation_email(request, user):
+
     # karthiks code working for email send.
     # email_subject = ActionNames.EmailSubject
     #
@@ -231,3 +232,28 @@ def users_success_story(request):
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
+
+
+def contain(l1, l2):
+    check_list = []
+    for m in l1:
+        for n in l2:
+            if m == n:
+                check_list.append(m)
+
+    return check_list
+
+
+def matched_jobs_for_user(request):
+    user = User.objects.get(username=request.user.username)
+    user_intrest = user.profile.interests
+    user_intrest_list = []
+    for intrest in user_intrest:
+        user_intrest_list.append(intrest)
+    jobs_intrest = Jobs.interests
+    matched_jobs = []
+    for jobs in Jobs.objects.all():
+        jobs_intrest = jobs.interests
+        matched_jobs.append(jobs_intrest)
+    user_intrest_jobs = contain(user_intrest_list, matched_jobs)
+    return render(request, "test.html", {'user-intrest': user_intrest})
