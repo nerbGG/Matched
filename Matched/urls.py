@@ -31,7 +31,7 @@ urlpatterns = [
     path("resume/", apply_views.test),
     path("story/", apply_views.story_view, name="successStoryView"),
     path("success-stories/", apply_views. users_success_story, name="allTheUsersSuccessStories"),
-    path("test/", apply_views.matched_jobs_for_user),
+    path("jobs/<filter>/", apply_views.filtered_jobs),
 
 ]
 # urlpatterns += staticfiles_urlpatterns()
