@@ -123,7 +123,7 @@
                       <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
                     </svg>
                 </button>
-                <form class="input-group justify-content-start m-4 shadow " style="width:35%">
+                <form id="search-box" class="input-group justify-content-start m-4 shadow" style="width:35%">
                     {% block search %}
                         <input type="search" id="form1" class="form-control" placeholder= "Search..." >
                     {% endblock %}
@@ -144,10 +144,10 @@
                             <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <strong>{{user.first_name.title}} {{user.last_name.title}}</strong>
                             </a>
-                             <div class="dropdown-menu shadow " aria-labelledby="dropdownMenuLink">
+                             <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="/accounts/logout/">Logout</a>
                                 <a class="dropdown-item" href="/profile/{{ user.username }}">Profile</a>
-                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="/story/{{ user.username }}>">Edit Success Story</a>
                             </div>
                         </div>
                     {% else %}

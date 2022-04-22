@@ -66,26 +66,29 @@ login_name = ""
 
 
 def login_view(request):
-    if request.method == "POST":
-        form = loginForm
-        username = request.POST['username']
-        password = request.POST["password"]
-        not_active = "Please confirm your account."
-        user = User.objects.get(username=username)
-        if user is not None:
-            if not user.is_active:
-                return render(request, "../templates/registration/login.html", {"form": form, "message": not_active})
-        user = authenticate(request, username=username, password=password)
-        user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
-        if user is not None:
-            login(request, user)
-            return redirect('/')
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form = loginForm
+            username = request.POST['username']
+            password = request.POST["password"]
+            not_active = "Please confirm your account."
+            user = User.objects.get(username=username)
+            if user is not None:
+                if not user.is_active:
+                    return render(request, "../templates/registration/login.html", {"form": form, "message": not_active})
+            user = authenticate(request, username=username, password=password)
+            user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            else:
+                return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
         else:
-            return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
+            form = loginForm
+            return render(request, "../templates/registration/login.html", {"form": form})
     else:
-        form = loginForm
-        return render(request, "../templates/registration/login.html", {"form": form})
-
+        message = "You need to be logged out to access the login page"
+        return render(request, "home.html", {"message": message})
 
 def send_activation_email(request, user):
     # karthiks code working for email send.
@@ -191,7 +194,7 @@ def test(request):
     return render(request, 'aws-test.html', {'resume': resume})
 
 
-def story_view(request):
+def story_view(request, username):
     if request.user.is_authenticated:
         if request.method == 'POST':
             story = request.POST['success_story']
@@ -207,27 +210,12 @@ def story_view(request):
         return render(request, "home.html", {"message": message})
 
 
-def users_success_story(request):
-    if request.user.is_authenticated:
-        # user = User.objects.get(username=request.user.username)
-        profileList = Profile.objects.all()
-        # story = user.profile.success_story
-        story_list = []
-        for profile in profileList:
-            story_list.append(profile.success_story)
-
-        return render(request, "storiesToView.html", {'story_list': story_list})
-    else:
-        message = "You need to be logged in to access the jobs page"
-        return render(request, "home.html", {"message": message})
-
-
 def all_jobs_view(request):
     if request.user.is_authenticated:
         jobs = Jobs.objects.all()
-        return render(request, "jobs.html", {"fields": fields, "jobs": jobs,
-                                             "link_url": "/jobs/",
-                                             "active": "all"}, )
+        return render(request, "content.html", {"fields": fields, "contents": jobs,
+                                                "link_url": "/jobs/",
+                                                "active": "all"}, )
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
@@ -263,9 +251,53 @@ def filtered_jobs(request, selected_filter):
                 matches = contains_string(job.interests, selected_filter)
             if matches is True:
                 matched_jobs.append(job)
-        return render(request, "jobs.html", {"fields": fields, "jobs": matched_jobs,
-                                             "link_url": "/jobs/",
-                                             "active": selected_filter}, )
+        return render(request, "content.html", {"fields": fields, "contents": matched_jobs,
+                                                "link_url": "/jobs/",
+                                                "active": selected_filter}, )
     else:
         message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
+def all_success_stories(request):
+    if request.user.is_authenticated:
+        profile_list = Profile.objects.all()
+        story_list = []
+        for profile in profile_list:
+            story = {"user": profile.user.username,
+                     "story": profile.success_story,
+                     "interests": profile.interests}
+            story_list.append(story)
+        return render(request, "content.html", {"fields": fields, "contents": story_list,
+                                                "link_url": "/success-stories/",
+                                                "active": "all", })
+    else:
+        message = "You need to be logged in to access the stories page"
+        return render(request, "home.html", {"message": message})
+
+
+def filtered_success_stories(request, selected_filter):
+    if request.user.is_authenticated:
+        profile_list = Profile.objects.all()
+        user = User.objects.get(username=request.user.username)
+        user_intrest = user.profile.interests
+        story_list = []
+        for profile in profile_list:
+            story = {"user": profile.user.username,
+                     "story": profile.success_story,
+                     "interests": profile.interests}
+            story_list.append(story)
+        stories = []
+        for story in story_list:
+            if selected_filter == "recommended":
+                matches = contains(story["interests"], user_intrest)
+            else:
+                matches = contains_string(story["interests"], selected_filter)
+            if matches is True:
+                stories.append(story)
+        return render(request, "content.html", {"fields": fields, "contents": stories,
+                                                "link_url": "/success-stories/",
+                                                "active": selected_filter}, )
+    else:
+        message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})

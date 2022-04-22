@@ -36,20 +36,32 @@
                 {% endfor %}
             </div>
         </div>
-        {% block jobs %}
+        {% block data %}
            <div class="w-100 h-100 d-flex flex-column"style="overflow: auto;">
-            {% for job in jobs %}
-                <div class="jobs p-2 d-flex flex-column border-bottom job-div">
-                    <h4> <strong>{{ job.position.title }}</strong></h4>
-                    <h5> {{ job.company.title }}</h5>
-                    <h5>Expected Salary: ${{ job.expected_salary }}</h5>
-                    <div class="p-1 d-flex flex-row">
-                        {% for field in job.interests %}
-                            <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %}
+                {% for content in contents %}
+                    {% if link_url == "/jobs/" %}
+                        <div class="jobs p-2 d-flex flex-column border-bottom job-div">
+                            <h4> <strong>{{ content.position.title }}</strong></h4>
+                            <h5> {{ content.company.title }}</h5>
+                            <h5>Expected Salary: ${{ content.expected_salary }}</h5>
+                            <div class="p-1 d-flex flex-row">
+                                {% for field in content.interests %}
+                                    <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% elif link_url == "/success-stories/" %}
+                        <div class="jobs p-2 d-flex flex-column border-bottom job-div">
+                            <h4><strong>{{ content.user }}</strong></h4>
+                            <h5 class="mb-3"> {{ content.story }}</h5>
+                            <div class="p-1 d-flex flex-row">
+                                {% for field in content.interests %}
+                                    <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {%  endif %}
+                {% endfor %}
             </div>
         {% endblock %}
     </div>
