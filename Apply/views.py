@@ -88,7 +88,6 @@ def login_view(request):
 
 
 def send_activation_email(request, user):
-
     # karthiks code working for email send.
     # email_subject = ActionNames.EmailSubject
     #
@@ -209,7 +208,7 @@ def story_view(request):
             story = request.POST['success_story']
             user = User.objects.get(username=request.user.username)
             profile = Profile(user=user, success_story=story)
-            profile.save()
+            profile.save(update_fields=["success_story"])
             return redirect('/')
         else:
             form = SuccessStoryForm()
@@ -234,26 +233,21 @@ def users_success_story(request):
         return render(request, "home.html", {"message": message})
 
 
-def contain(l1, l2):
-    check_list = []
-    for m in l1:
-        for n in l2:
-            if m == n:
-                check_list.append(m)
-
-    return check_list
+def contains(list1, list2):
+    var = False
+    for item1 in list1:
+        for item2 in list2:
+            if item1 == item2:
+                var = True
+    return var
 
 
 def matched_jobs_for_user(request):
     user = User.objects.get(username=request.user.username)
     user_intrest = user.profile.interests
-    user_intrest_list = []
-    for intrest in user_intrest:
-        user_intrest_list.append(intrest)
-    jobs_intrest = Jobs.interests
     matched_jobs = []
-    for jobs in Jobs.objects.all():
-        jobs_intrest = jobs.interests
-        matched_jobs.append(jobs_intrest)
-    user_intrest_jobs = contain(user_intrest_list, matched_jobs)
-    return render(request, "test.html", {'user-intrest': user_intrest})
+    for job in Jobs.objects.all():
+        matches = contains(job.interests, user_intrest)
+        if matches is True:
+            matched_jobs.append(job)
+    return render(request, "jobs.html", {"user-intrest": user_intrest, "jobs": matched_jobs})

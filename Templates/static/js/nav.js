@@ -35,7 +35,7 @@ toggleDisplayNavBar = () =>{
     }
     else if (displayNav == true) {
         pageBtn.classList.add("rotate");
-        document.getElementById("main").style.width = "100%";
+        document.getElementById("main").style.width = "80%";
         navBar.style.display = "none";
         displayNav = false;
     }
