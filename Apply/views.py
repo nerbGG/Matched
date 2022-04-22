@@ -191,17 +191,6 @@ def test(request):
     return render(request, 'aws-test.html', {'resume': resume})
 
 
-def jobs_view(request):
-    if request.user.is_authenticated:
-        # user = User.objects.get(username=request.user.username)
-        jobs = Jobs.objects.all()
-        interests = fields
-        return render(request, "jobs.html", {"jobs": jobs, "fields": interests})
-    else:
-        message = "You need to be logged in to access the jobs page"
-        return render(request, "home.html", {"message": message})
-
-
 def story_view(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -233,6 +222,17 @@ def users_success_story(request):
         return render(request, "home.html", {"message": message})
 
 
+def all_jobs_view(request):
+    if request.user.is_authenticated:
+        jobs = Jobs.objects.all()
+        return render(request, "jobs.html", {"fields": fields, "jobs": jobs,
+                                             "link_url": "/jobs/",
+                                             "active": "all"}, )
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
 def contains(list1, list2):
     var = False
     for item1 in list1:
@@ -242,12 +242,30 @@ def contains(list1, list2):
     return var
 
 
-def matched_jobs_for_user(request):
-    user = User.objects.get(username=request.user.username)
-    user_intrest = user.profile.interests
-    matched_jobs = []
-    for job in Jobs.objects.all():
-        matches = contains(job.interests, user_intrest)
-        if matches is True:
-            matched_jobs.append(job)
-    return render(request, "jobs.html", {"user-intrest": user_intrest, "jobs": matched_jobs})
+def contains_string(list, string):
+    var = False
+    for item1 in list:
+        if item1 == string:
+            var = True
+    return var
+
+
+# pass a filter parameter
+def filtered_jobs(request, selected_filter):
+    if request.user.is_authenticated:
+        user = User.objects.get(username=request.user.username)
+        user_intrest = user.profile.interests
+        matched_jobs = []
+        for job in Jobs.objects.all():
+            if selected_filter == "recommended":
+                matches = contains(job.interests, user_intrest)
+            else:
+                matches = contains_string(job.interests, selected_filter)
+            if matches is True:
+                matched_jobs.append(job)
+        return render(request, "jobs.html", {"fields": fields, "jobs": matched_jobs,
+                                             "link_url": "/jobs/",
+                                             "active": selected_filter}, )
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
