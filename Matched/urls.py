@@ -27,11 +27,11 @@ urlpatterns = [
     path("accounts/register/", apply_views.register_view),
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
     path("profile/<username>/", apply_views.create_profile, name="FileUploadView"),
-    path("jobs/", apply_views.jobs_view),
+    path("jobs/", apply_views.all_jobs_view),
     path("resume/", apply_views.test),
     path("story/", apply_views.story_view, name="successStoryView"),
     path("success-stories/", apply_views. users_success_story, name="allTheUsersSuccessStories"),
-    path("jobs/<filter>/", apply_views.filtered_jobs),
+    path("jobs/<selected_filter>/", apply_views.filtered_jobs),
 
 ]
 # urlpatterns += staticfiles_urlpatterns()
