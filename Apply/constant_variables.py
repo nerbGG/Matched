@@ -105,4 +105,17 @@ jobs = [
     },
 ]
 
+users = [
+    {
+        "first_name": "Shujaullah",
+        "last_name": "Ahsan",
+        "username": "shuja12",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+
+
+    },
+]
 
