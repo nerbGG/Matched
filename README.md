@@ -5,5 +5,7 @@
       pip install -r requirements.txt
 4. run the migrations:
    ./manage.py migrate
+5. run the setup scripts to populate the database(users,groups,jobs)
+   ./maange.py runscript setup
 5.now you are ready to launch the site:
   ./manage.py runserver
