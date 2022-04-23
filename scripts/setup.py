@@ -3,14 +3,34 @@
 # django.setup()
 
 from Apply.models import Jobs
-from Apply.constant_variables import jobs, users
+from Apply.constant_variables import jobs, groups, users
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 
 
-def run():
-    job_delete = Jobs.objects.all()
-    job_delete.delete()
+def remove_all_jobs():
+    jobs_to_delete = Jobs.objects.all()
+    jobs_to_delete.delete()
+
+
+def remove_all_users():
+    #     getting all the users then loop over that list
+    #  so we can just delete all of them except the superuser.
+    users_to_delete = User.objects.all()
+    for del_user in users_to_delete:
+        if del_user.is_superuser:
+            continue
+        else:
+            del_user.delete()
+
+
+def remove_all_groups():
+    groups_to_delete = Group.objects.all()
+    groups_to_delete.delete()
+
+
+def create_jobs():
+    remove_all_jobs()
     for job in jobs:
         company = job["company"]
         position = job["position"]
@@ -18,14 +38,18 @@ def run():
         interests = job["interests"]
         new_job = Jobs(company=company, position=position, expected_salary=salary, interests=interests)
         new_job.save()
-    #     getting all the users then loop over that list
-    #  so we can just delete all of them except the super user.
-    user_delete = User.objects.all()
-    for del_user in user_delete:
-        if del_user.is_superuser:
-            continue
-        else:
-            del_user.delete()
+
+
+def create_groups():
+    remove_all_groups()
+    for group in groups:
+        name = group["name"]
+        new_group = Group(name=name)
+        new_group.save()
+
+
+def create_users():
+    remove_all_users()
     #  Creating the new users
     for user in users:
         first_name = user["first_name"]
@@ -44,5 +68,7 @@ def run():
         new_user.is_active = True
 
 
-
-
+def run():
+    create_jobs()
+    create_users()
+    create_groups()
