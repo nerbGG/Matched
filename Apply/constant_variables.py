@@ -103,8 +103,27 @@ jobs = [
         "salary": 800000,
         "interests": ["tech", "fin"]
     },
+    {
+        "company": "NYU Langone Health",
+        "position": "Doctor",
+        "salary": 800000,
+        "interests": ["bio"]
+    },
+    {
+        "company": "FC Barcelona",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
 ]
-
+groups = [
+    {
+        "name":"jobSeeker"
+    },
+    {
+        "name":"employer"
+     },
+]
 users = [
     {
         "first_name": "Shujaullah",
@@ -114,8 +133,88 @@ users = [
         "password1": "RedCar123@",
         "password2": "RedCar123@",
         "position": "jobSeeker",
-
-
     },
+    {
+        "first_name": "Krishna",
+        "last_name": "Patel",
+        "username": "Krishnap",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Jacob",
+        "last_name": "Redd",
+        "username": "ReddJ",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Lady",
+        "last_name": "Feet",
+        "username": "FeetLover123",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Malania",
+        "last_name": "Miquella",
+        "username": "Blade",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Leonel",
+        "last_name": "Messi",
+        "username": "Messi10",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Cristiano",
+        "last_name": "Ronaldo",
+        "username": "R7",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "karim",
+        "last_name": "Benzema",
+        "username": "BigBenz",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Kyle",
+        "last_name": "jackson",
+        "username": "Mongraal",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+    {
+        "first_name": "Ronaldinho",
+        "last_name": "Gaucho",
+        "username": "BestSkiller",
+        "email": "shujaullah.ahsan001@umb.edu",
+        "password1": "RedCar123@",
+        "password2": "RedCar123@",
+        "position": "jobSeeker",
+    },
+
 ]
 
