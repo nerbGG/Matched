@@ -71,11 +71,12 @@ def login_view(request):
             form = loginForm
             username = request.POST['username']
             password = request.POST["password"]
-            not_active = "Please confirm your account."
+            not_active = "Please check you email to activate your account."
             user = User.objects.get(username=username)
             if user is not None:
                 if not user.is_active:
-                    return render(request, "../templates/registration/login.html", {"form": form, "message": not_active})
+                    return render(request, "../templates/registration/login.html",
+                                  {"form": form, "message": not_active})
             user = authenticate(request, username=username, password=password)
             user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
             if user is not None:
@@ -89,6 +90,7 @@ def login_view(request):
     else:
         message = "You need to be logged out to access the login page"
         return render(request, "home.html", {"message": message})
+
 
 def send_activation_email(request, user):
     # karthiks code working for email send.
@@ -123,9 +125,10 @@ def verification_view(request, uidb64, token):
     user = User.objects.get(username=login_name)
     activate_user(user)
     logger.debug("Verification link has been generated")
-    # return render(request, "../Templates/home.html", {"activated": True})
-    redirect_link = "/profile/" + user.username + "/"
-    return redirect(redirect_link)
+    return render(request, "../Templates/home.html",
+                  {"message": "Thank you for activating your account, please login!"})
+    # redirect_link = "/profile/" + user.username + "/"
+    # return redirect(redirect_link)
 
 
 # def user_profile(request, username):
@@ -259,15 +262,22 @@ def filtered_jobs(request, selected_filter):
         return render(request, "home.html", {"message": message})
 
 
-def all_success_stories(request):
-    if request.user.is_authenticated:
-        profile_list = Profile.objects.all()
-        story_list = []
-        for profile in profile_list:
+def get_stories():
+    story_list = []
+    profile_list = Profile.objects.all()
+    for profile in profile_list:
+        if not profile.success_story == "":
             story = {"user": profile.user.username,
                      "story": profile.success_story,
                      "interests": profile.interests}
             story_list.append(story)
+    return story_list
+
+
+def all_success_stories(request):
+    if request.user.is_authenticated:
+        # l = list(Profile.objects.all().values_list('success_story', flat=True))
+        story_list = get_stories()
         return render(request, "content.html", {"fields": fields, "contents": story_list,
                                                 "link_url": "/success-stories/",
                                                 "active": "all", })
@@ -278,15 +288,8 @@ def all_success_stories(request):
 
 def filtered_success_stories(request, selected_filter):
     if request.user.is_authenticated:
-        profile_list = Profile.objects.all()
-        user = User.objects.get(username=request.user.username)
-        user_intrest = user.profile.interests
-        story_list = []
-        for profile in profile_list:
-            story = {"user": profile.user.username,
-                     "story": profile.success_story,
-                     "interests": profile.interests}
-            story_list.append(story)
+        story_list = get_stories()
+        user_intrest = Profile.objects.get(user=request.user).interests
         stories = []
         for story in story_list:
             if selected_filter == "recommended":

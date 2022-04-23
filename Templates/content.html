@@ -2,7 +2,11 @@
 {% block title %}Matched Jobs{% endblock %}
 {% load crispy_forms_filters %}
 {% block search %}
-     <input type="search" id="form1" class="form-control" placeholder= "Search Jobs..." >
+    {% if link_url == "/jobs/" %}
+        <input type="search" id="form1" class="form-control" placeholder= "Search Jobs..." >
+    {% elif link_url == "/success-stories/" %}
+        <input type="search" id="form1" class="form-control" placeholder= "Search Stories..." >
+    {% endif %}
 {% endblock %}
 {% block content %}
 {#    <div class="w-100 h-100" style="overflow: auto">#}
