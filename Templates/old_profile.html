@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load crispy_forms_filters %}
+{% block content %}
+<div class=" w-100 h-100" style = "overflow: auto;">
+<form method ='post' enctype ="multipart/form-data" >
+    {% csrf_token %}
+    {{form | crispy}}
+    <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
+        <label class="w-50" for="birthday">Date of Birth</label>
+        <input class="w-50" type="date" id="birthday" name="birthday" required>
+        <br>
+    </div>
+    <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
+        <label class="w-50" name="interest">Fields of Interests</label>
+        <div class="w-50">
+            {% for field in fields %}
+                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}}>
+                <label for={{ field.0}}> {{ field.1}}</label>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+    <div class ="w-100 d-flex justify-content-end">
+        <input type="submit" class="w-100 btn btn-primary" value="Submit">
+    </div>
+
+</form>
+</div>
+{% endblock %}

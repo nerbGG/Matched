@@ -1,28 +1,103 @@
-{% extends 'base.html' %} {% load crispy_forms_filters %}
+{% extends 'base.html' %}
+{% block title %} Profile {% endblock %}
+{#{% load crispy_forms_filters %}#}
 {% block content %}
-<div class=" w-100 h-100" style = "overflow: auto;">
-<form method ='post' enctype ="multipart/form-data" >
-    {% csrf_token %}
-    {{form | crispy}}
-    <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
-        <label class="w-50" for="birthday">Date of Birth</label>
-        <input class="w-50" type="date" id="birthday" name="birthday" required>
-        <br>
-    </div>
-    <div class="p-2 form-group w-100 d-flex flex-row border-bottom justify-content-between">
-        <label class="w-50" name="interest">Fields of Interests</label>
-        <div class="w-50">
-            {% for field in fields %}
-                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}}>
-                <label for={{ field.0}}> {{ field.1}}</label>
-                <br>
-            {% endfor %}
+{#    <div class="h-100 w-100 d-flex flex-column">#}
+    <form class="w-100 h-100 shadow d-flex flex-column flex-md-row  align-items-center" method="POST">
+        {% csrf_token %}
+        <div id="img-div" class="w-25 h-100 border-right d-flex flex-column justify-content-center align-items-center">
+            {%if user.profile.profile_pic %}
+             <img class="rounded-circle border border-dark" src="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="150" width="150">
+            {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">#}
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            {% endif %}
+            <strong>{{ user.username }}</strong>
+            <p class="text-muted">Last login: {{ user.last_login }}</p>
         </div>
-    </div>
-    <div class ="w-100 d-flex justify-content-end">
-        <input type="submit" class="  w-100 btn btn-primary" value="Submit">
-    </div>
-
-</form>
-</div>
+        <div class="w-50 h-100 p-3 border-right d-flex flex-column"style="overflow: auto;">
+            <h3 class="pb-3 mb-3 border-bottom font-weight-bold">Profile</h3>
+            <div class="w-100 d-flex flex-row ">
+               <div class="w-100 mb-3 d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-column" style="width: 45%;">
+                        <label>First Name</label>
+                        <input class="form-control" type="text" value="{{ user.first_name }}" name="first_name">
+                    </div>
+                   <div class="d-flex flex-column"style="width: 45%;">
+                        <label>Last Name</label>
+                        <input class="form-control" type="text" value="{{ user.last_name }}" name="last_name">
+                    </div>
+               </div>
+            </div>
+             <div class="w-100 mb-3 d-flex flex-column" >
+                <label>Username</label>
+                <input class="form-control" type="text" value="{{ user.username }}" name="username">
+            </div>
+            <div class="w-100  mb-3 d-flex flex-column" >
+                <label>Email</label>
+                <input class="form-control" type="text" value="{{ user.email }}" name="username">
+            </div>
+            <div class="w-100 mb-3 d-flex flex-column" >
+                <label>Date of birth</label>
+                <input class="form-control" type="text" value={{ user.profile.birth_date |date:"2021-09-13"}} name="birthday">
+            </div>
+             <div class="w-100 mb-3 d-flex flex-column" >
+                <label>Sport</label>
+                <input class="form-control" type="text" value="{{ user.profile.sport }}" name="sport">
+            </div>
+            <div class="w-100 mb-3 d-flex flex-column" style="width: 45%;">
+                <label for="education" class="form-contol">Education</label>
+                <select id="education" name="education" class="form-control form-select">
+                  {% for ed in education_choices %}
+                    {% if ed.0 == user.profile.education %}
+                         <option value="hs"selected>{{ ed.1 }}</option>
+                    {% else %}
+                        <option value="hs">{{ ed.1 }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="p-2 w-100 mb-3 d-flex flex-row justify-content-between">
+                <label class="w-50" name="interest" class="form-control">Fields of Interests</label>
+                <div class="w-50 form-group">
+                    {% for field in fields %}
+                        {% for interest in user_interests %}
+                            {% if field.0 == interest %}
+                                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}} checked>
+                            {% else %}
+                                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}}>
+                            {% endif %}
+                            <label for={{ field.0}}> {{ field.1}}</label>
+                            <br>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+             <div class="w-100 mb-3 d-flex flex-column justify-content-between">
+                <label>Resume</label>
+                <a class="form-control" href="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank">
+                    {{user.profile.resume}}
+                </a>
+            </div>
+        </div>
+        <div class="w-25 h-100 p-2 d-flex flex-column">
+            <div class="w-100 mb-5">
+                <label>Profile Pic</label>
+                <input class="form-control p-1" type="file" name="profile_pic">
+            </div>
+            <div class="w-100 mb-5">
+                <label>Resume</label>
+                <input class="form-control p-1" type="file" name="resume">
+            </div>
+            <div class ="w-100 h-75 d-flex align-items-end">
+                <input type="submit" class="w-100 btn btn-primary" value="Save">
+            </div>
+        </div>
+    </form>
+    <script>
+        let data  =  JSON.parse("{{fields|escapejs}}");
+        console.log(data);
+    </script>
 {% endblock %}

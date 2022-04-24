@@ -1,5 +1,10 @@
 fields = [('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
           ('fin', 'Finance'), ('bus', 'Business')]
+education_choices = [
+        ("hs", "High School"),
+        ("ud", "Undergrad"),
+        ("gd", "graduate")
+    ]
 jobs = [
     {
         "company": "BitSight",

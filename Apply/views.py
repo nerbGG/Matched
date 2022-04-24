@@ -22,8 +22,8 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
-from .constant_variables import fields
-
+from .constant_variables import fields, education_choices
+from json import dumps
 logger = logging.getLogger(__name__)
 
 
@@ -140,14 +140,28 @@ def verification_view(request, uidb64, token):
     # return redirect(redirect_link)
 
 
-def create_profile(request, username, edit):
+def profile(request, username):
     if request.user.is_authenticated:
+        user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
             birth_date = request.POST['birthday']
-            profile_pic = request.FILES['profile_pic']
-            edu_choices = request.POST['edu_choices']
+            try:
+                profile_pic = request.FILES['profile_pic']
+            except:
+                if user.profile.profile_pic:
+                    profile_pic = user.profile.profile_pic
+                else:
+                    profile_pic =None
+            try:
+                profile_pic = request.FILES['resume']
+            except:
+                if user.profile.resume:
+                    resume = user.profile.resume
+                else:
+                    resume =None
+
+            edu_choices = request.POST['education']
             sport = request.POST['sport']
-            resume = request.FILES['resume']
             user = User.objects.get(username=request.user.username)
             tags = request.POST.getlist("tags")
             profile = Profile.objects.update_or_create(
@@ -160,13 +174,43 @@ def create_profile(request, username, edit):
                     "resume": resume,
                     "interests": tags
                 }, )
-            return redirect("/")
-        else:
-            form = ProfileForm()
-        return render(request, "profile.html", {'form': form, "fields": fields})
+        # fields_json = dumps(fields)
+        return render(request, "profile.html", {'user_interests': user.profile.interests,
+                                                "fields": fields,
+                                                "education_choices": education_choices
+                                                })
     else:
         message = "You need to be logged in to access the profile page"
         return render(request, "home.html", {"message": message})
+
+
+# def create_profile(request, username, edit):
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
+#             birth_date = request.POST['birthday']
+#             profile_pic = request.FILES['profile_pic']
+#             edu_choices = request.POST['edu_choices']
+#             sport = request.POST['sport']
+#             resume = request.FILES['resume']
+#             user = User.objects.get(username=request.user.username)
+#             tags = request.POST.getlist("tags")
+#             profile = Profile.objects.update_or_create(
+#                 user=user,
+#                 defaults={
+#                     "profile_pic": profile_pic,
+#                     "birth_date": birth_date,
+#                     "education": edu_choices,
+#                     "sport": sport,
+#                     "resume": resume,
+#                     "interests": tags
+#                 }, )
+#             return redirect("/")
+#         else:
+#             form = ProfileForm()
+#         return render(request, "old_profile.html", {'form': form, "fields": fields})
+#     else:
+#         message = "You need to be logged in to access the profile page"
+#         return render(request, "home.html", {"message": message})
 
 
 def test(request):
