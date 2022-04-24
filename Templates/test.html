@@ -2,74 +2,74 @@
 {% block title %} Profile {% endblock %}
 {#{% load crispy_forms_filters %}#}
 {% block content %}
-    <div class="h-100 w-100 d-flex flex-column">
-        <header class="p-2 shadow-sm h-20 w-100 d-flex flex-row justify-content-between align-items-center">
+{#    <div class="h-100 w-100 d-flex flex-column">#}
+    <div class=" w-100 h-100 border rounded  d-flex flex-column align-items-center">
+        <header class="p-2 border rounded shadow-sm h-20 w-100 d-flex flex-row justify-content-between align-items-center">
              <h2 class="d-flex justify-content-end" style="width: 55%;">Profile</h2>
             <span class="d-flex justify-content-end align-items-center mr-2"style="width: 45%;">
-                <a class="btn btn-light" href="/profile/{{ user.username }}/edit">
+                <a class="btn btn-info" href="/profile/{{ user.username }}/edit">
                     Edit profile
                 </a>
             </span>
         </header>
-        <div class="p-2 w-100 d-flex flex-column"
-            style="overflow: auto;">
-            <div id="img-div" class="p-3 w-100 d-flex justify-content-center align-items-center">
-                {%if user.profile.profile_pic %}
-                 <img class="shadow rounded-circle border border-dark" src="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="150" width="150">
-                {% else %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">#}
-                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                    </svg>
-                {% endif %}
+        <div id="img-div" class="p-3 w-100 d-flex justify-content-center align-items-center">
+            {%if user.profile.profile_pic %}
+             <img class="shadow rounded-circle border border-dark" src="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="150" width="150">
+            {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">#}
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            {% endif %}
+        </div>
+        <div class="shadow-sm w-75 d-flex flex-column"
+            style="overflow-x: hidden;overflow-y: auto;">
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50">
+                    First Name
+                </span>
+                <span class="w-50 ">
+                    {{ user.first_name}}
+                </span>
             </div>
-            <div class="shadow-sm w-100 d-flex flex-column">
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50">
-                        <h4 class="font-weight-bold">First Name</h4>
-                    </span>
-                    <span class="w-50 ">
-                        <h4 >{{ user.first_name}}</h4>
-                    </span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50 "><h4 class="font-weight-bold">Last Name</h4></span>
-                    <span class="w-50"><h4 >{{ user.last_name}}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50"><h4 class="font-weight-bold">Username</h4></span>
-                    <span class="w-50"><h4 >{{ user.username}}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50 "><h4 class="font-weight-bold">Email</h4></span>
-                    <span class="w-50"><h4 > {{ user.email}}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50 "><h4 class="font-weight-bold">Birthdate</h4></span>
-                    <span class="w-50"><h4 >{{ user.profile.birth_date}}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50 "><h4 class="font-weight-bold">Education</h4></span>
-                    <span class="w-50"><h4 >{{ user.profile.education}}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50"><h4 class="font-weight-bold">Sport</h4></span>
-                    <span class="w-50"><h4>{{ user.profile.sport}}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50"><h4 class="font-weight-bold">Interests</h4></span>
-                    <span class="w-50"><h4 >{{ user.profile.interests }}</h4></span>
-                </div>
-                <div class="w-100 p-3 d-flex flex-row border-bottom">
-                    <span class="w-50"><h4 class="font-weight-bold">Resume </h4></span>
-                    <span class="w-50">
-                        <a href= "https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank">
-                            <h4 >{{user.profile.resume}}</h4>
-                        </a>
-                    </span>
-                </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50 ">Last Name</span>
+                <span class="w-50">{{ user.last_name}}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50">Username</span>
+                <span class="w-50">{{ user.username}}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50 ">Email</span>
+                <span class="w-50"> {{ user.email}}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50 ">Birthdate</span>
+                <span class="w-50">{{ user.profile.birth_date}}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50 ">Education</span>
+                <span class="w-50">{{ user.profile.education}}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50">Sport</span>
+                <span class="w-50">{{ user.profile.sport}}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50"> Interests</span>
+                <span class="w-50">{{ user.profile.interests }}</span>
+            </div>
+            <div class="w-100 p-3 d-flex flex-row border-bottom">
+                <span class="w-50">Resume </span>
+                <span class="w-50">
+                    <a href= "https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank">
+                        {{user.profile.resume}}
+                    </a>
+                </span>
             </div>
         </div>
-
     </div>
+
+{#    </div>#}
 {% endblock %}
