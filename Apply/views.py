@@ -37,6 +37,12 @@ def deactivate_user(user):
     user.save()
 
 
+# def home(request):
+#     user = User.objects.get(id=request.user.id)
+#     profile_pic = Profile.objects.get(user=user).profile_pic
+#     return render(request, "base.html", {"profile_pic": profile_pic})
+
+
 def register_view(request):
     if not request.user.is_authenticated:
         # send_activation_email(request)
@@ -72,7 +78,10 @@ def login_view(request):
             username = request.POST['username']
             password = request.POST["password"]
             not_active = "Please check you email to activate your account."
-            user = User.objects.get(username=username)
+            try:
+                user = User.objects.get(username=username)
+            except:
+                user = None
             if user is not None:
                 if not user.is_active:
                     return render(request, "../templates/registration/login.html",
@@ -131,37 +140,7 @@ def verification_view(request, uidb64, token):
     # return redirect(redirect_link)
 
 
-# def user_profile(request, username):
-#     if request.method == "POST":
-#         img_st = request.POST['img']
-#         birth_date = request.POST['birthday']
-#         edu_choices = request.POST['fav_language']
-#         sport = request.POST['username']
-#         resume = request.POST['resume']
-#
-
-#         with open(img_st, "rb") as img_file:
-#             img = base64.b64decode(img_file.read())
-#
-#         user = User.objects.get(username=request.user.username)
-#         # profile = Profile.objects.get(user=user)
-#         tags = request.POST.getlist("tags")
-#         profile = Profile(user=user,
-#                           profile_pic=img,
-#                           birth_date=birth_date,
-#                           education=edu_choices,
-#                           sport=sport,
-#                           resume=resume,
-#                           interests=tags)
-#
-#         profile.save()
-#
-#         return redirect('/')
-#     else:
-#         return render(request, "profile.html")
-
-
-def create_profile(request, username):
+def create_profile(request, username, edit):
     if request.user.is_authenticated:
         if request.method == 'POST':
             birth_date = request.POST['birthday']
@@ -169,19 +148,18 @@ def create_profile(request, username):
             edu_choices = request.POST['edu_choices']
             sport = request.POST['sport']
             resume = request.FILES['resume']
-            # intrests = request.POST['interests']
-            # with open(img_st, "rb") as img_file:
-            #     img = base64.b64decode(img_file.read())
             user = User.objects.get(username=request.user.username)
             tags = request.POST.getlist("tags")
-            profile = Profile(user=user,
-                              profile_pic=profile_pic,
-                              birth_date=birth_date,
-                              education=edu_choices,
-                              sport=sport,
-                              resume=resume,
-                              interests=tags)
-            profile.save()
+            profile = Profile.objects.update_or_create(
+                user=user,
+                defaults={
+                    "profile_pic": profile_pic,
+                    "birth_date": birth_date,
+                    "education": edu_choices,
+                    "sport": sport,
+                    "resume": resume,
+                    "interests": tags
+                }, )
             return redirect("/")
         else:
             form = ProfileForm()

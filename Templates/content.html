@@ -1,5 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Matched Jobs{% endblock %}
+{% block title %}
+    {% if link_url == "/jobs/" %}
+        Matched Jobs
+    {% elif link_url == "/success-stories/" %}
+      Matched Stories
+    {% endif %}
+{% endblock %}
 {% load crispy_forms_filters %}
 {% block search %}
     {% if link_url == "/jobs/" %}
