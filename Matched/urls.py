@@ -18,18 +18,21 @@ from django.urls import path, include
 from Apply import views as apply_views
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', apply_views.login_view),
-    # path('profile/<username>/', apply_views.user_profile),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    path("profile/<username>/", apply_views.profile),
     path("accounts/register/", apply_views.register_view),
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
-    path("profile/<username>/", apply_views.create_profile, name="FileUploadView"),
-    path("jobs/", apply_views.jobs_view),
-    path("test/", apply_views.test),
-    path("story/", apply_views.story_view, name="successStoryView"),
-    path("success-stories/", apply_views. users_success_story, name="allTheUsersSuccessStories")
+    # path("profile/<username>/<edit>/", apply_views.create_profile, name="FileUploadView"),
+    path("jobs/", apply_views.all_jobs_view),
+    path("resume/", apply_views.test),
+    path("story/<username>", apply_views.story_view, name="successStoryView"),
+    path("success-stories/", apply_views.all_success_stories, name="allTheUsersSuccessStories"),
+    path("success-stories/<selected_filter>", apply_views.filtered_success_stories),
+    path("jobs/<selected_filter>/", apply_views.filtered_jobs),
 ]
 # urlpatterns += staticfiles_urlpatterns()

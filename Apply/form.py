@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from Apply.models import Profile
-from .constant_variables import fields
+from .constant_variables import fields, education_choices
 
 
 class loginForm(AuthenticationForm):
@@ -15,11 +15,6 @@ class ProfileForm(forms.ModelForm):
     # birthday = forms.DateField(required=False)
     sport = forms.CharField(max_length=100, required=100)
     resume = forms.FileField(required=False)
-    education_choices = (
-        ("hs", "High School"),
-        ("ud", "Undergrad"),
-        ("gd", "graduate")
-    )
     interests_choices = fields
     edu_choices = forms.ChoiceField(choices=education_choices, required=True)
 

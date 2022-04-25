@@ -35,14 +35,12 @@ toggleDisplayNavBar = () =>{
     }
     else if (displayNav == true) {
         pageBtn.classList.add("rotate");
-        document.getElementById("main").style.width = "100%";
+        document.getElementById("main").style.width = "80%";
         navBar.style.display = "none";
         displayNav = false;
     }
 };
 window.addEventListener('resize',function(event){
-    // clearTimeout(window.resizedFinished);
-    // window.resizedFinished = setTimeout(function(){
       if(window.innerWidth > 500) {
         document.getElementById("main").style.width ="80%";
         document.getElementById("navigation-bar").style.display ="flex";
@@ -55,7 +53,6 @@ window.addEventListener('resize',function(event){
           pageBtn.classList.add("rotate");
           document.getElementById("navigation-bar").style.display ="none";
       }
-    // }, 150);
 });
 
 

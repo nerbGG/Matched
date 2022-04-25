@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if link_url == "/jobs/" %}
+        Matched Jobs
+    {% elif link_url == "/success-stories/" %}
+      Matched Stories
+    {% endif %}
+{% endblock %}
+{% load crispy_forms_filters %}
+{% block search %}
+    {% if link_url == "/jobs/" %}
+        <input type="search" id="form1" class="form-control" placeholder= "Search Jobs..." >
+    {% elif link_url == "/success-stories/" %}
+        <input type="search" id="form1" class="form-control" placeholder= "Search Stories..." >
+    {% endif %}
+{% endblock %}
+{% block content %}
+{#    <div class="w-100 h-100" style="overflow: auto">#}
+    <div class="w-100 h-100">
+        <div class="w-100 d-flex align-items-center border-bottom ">
+    {#        Filters:#}
+            <div id="tags" class="w-100 d-flex flex-row "
+            style="overflow:auto">
+                <a href="{{link_url}}">
+                    {% if active == "all" %}
+                        <h5 class="btn btn-dark fields mr-3 filter">All</h5>
+                    {% else%}
+                        <h5 class="btn btn-light fields mr-3 filter">All</h5>
+                    {% endif %}
+                </a>
+                <a href="{{ link_url }}recommended">
+                    {% if active == "recommended" %}
+                        <h5 class="btn btn-dark mr-3 filter"> Recommended</h5>
+                    {% else%}
+                        <h5 class="btn btn-light fields mr-3 filter">Recommended</h5>
+                    {% endif %}
+                </a>
+                {% for field in fields %}
+                    <a href="{{link_url}}{{ field.0 }}">
+                        {% if active == field.0 %}
+                             <h5 class="btn btn-dark fields mr-3 filter">{{ field.1 }} </h5>
+                        {% else%}
+                             <h5 class="btn btn-light fields mr-3 filter">{{ field.1 }} </h5>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% block data %}
+           <div class="w-100 h-100 d-flex flex-column"style="overflow: auto;">
+                {% for content in contents %}
+                    {% if link_url == "/jobs/" %}
+                        <div class="jobs p-2 d-flex flex-column border-bottom job-div">
+                            <h4> <strong>{{ content.position.title }}</strong></h4>
+                            <h5> {{ content.company.title }}</h5>
+                            <h5>Expected Salary: ${{ content.expected_salary }}</h5>
+                            <div class="p-1 d-flex flex-row">
+                                {% for field in content.interests %}
+                                    <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% elif link_url == "/success-stories/" %}
+                        <div class="jobs p-2 d-flex flex-column border-bottom job-div">
+                            <h4><strong>{{ content.user }}</strong></h4>
+                            <h5 class="mb-3"> {{ content.story }}</h5>
+                            <div class="p-1 d-flex flex-row">
+                                {% for field in content.interests %}
+                                    <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {%  endif %}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -22,8 +22,8 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
-from .constant_variables import fields
-
+from .constant_variables import fields, education_choices
+from json import dumps
 logger = logging.getLogger(__name__)
 
 
@@ -35,6 +35,12 @@ def activate_user(user):
 def deactivate_user(user):
     user.is_active = False
     user.save()
+
+
+# def home(request):
+#     user = User.objects.get(id=request.user.id)
+#     profile_pic = Profile.objects.get(user=user).profile_pic
+#     return render(request, "base.html", {"profile_pic": profile_pic})
 
 
 def register_view(request):
@@ -66,25 +72,33 @@ login_name = ""
 
 
 def login_view(request):
-    if request.method == "POST":
-        form = loginForm
-        username = request.POST['username']
-        password = request.POST["password"]
-        not_active = "Please confirm your account."
-        user = User.objects.get(username=username)
-        if user is not None:
-            if not user.is_active:
-                return render(request, "../templates/registration/login.html", {"form": form, "message": not_active})
-        user = authenticate(request, username=username, password=password)
-        user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
-        if user is not None:
-            login(request, user)
-            return redirect('/')
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form = loginForm
+            username = request.POST['username']
+            password = request.POST["password"]
+            not_active = "Please check you email to activate your account."
+            try:
+                user = User.objects.get(username=username)
+            except:
+                user = None
+            if user is not None:
+                if not user.is_active:
+                    return render(request, "../templates/registration/login.html",
+                                  {"form": form, "message": not_active})
+            user = authenticate(request, username=username, password=password)
+            user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            else:
+                return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
         else:
-            return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
+            form = loginForm
+            return render(request, "../templates/registration/login.html", {"form": form})
     else:
-        form = loginForm
-        return render(request, "../templates/registration/login.html", {"form": form})
+        message = "You need to be logged out to access the login page"
+        return render(request, "home.html", {"message": message})
 
 
 def send_activation_email(request, user):
@@ -120,69 +134,83 @@ def verification_view(request, uidb64, token):
     user = User.objects.get(username=login_name)
     activate_user(user)
     logger.debug("Verification link has been generated")
-    # return render(request, "../Templates/home.html", {"activated": True})
-    redirect_link = "/profile/" + user.username + "/"
-    return redirect(redirect_link)
+    return render(request, "../Templates/home.html",
+                  {"message": "Thank you for activating your account, please login!"})
+    # redirect_link = "/profile/" + user.username + "/"
+    # return redirect(redirect_link)
 
 
-# def user_profile(request, username):
-#     if request.method == "POST":
-#         img_st = request.POST['img']
-#         birth_date = request.POST['birthday']
-#         edu_choices = request.POST['fav_language']
-#         sport = request.POST['username']
-#         resume = request.POST['resume']
-#
-
-#         with open(img_st, "rb") as img_file:
-#             img = base64.b64decode(img_file.read())
-#
-#         user = User.objects.get(username=request.user.username)
-#         # profile = Profile.objects.get(user=user)
-#         tags = request.POST.getlist("tags")
-#         profile = Profile(user=user,
-#                           profile_pic=img,
-#                           birth_date=birth_date,
-#                           education=edu_choices,
-#                           sport=sport,
-#                           resume=resume,
-#                           interests=tags)
-#
-#         profile.save()
-#
-#         return redirect('/')
-#     else:
-#         return render(request, "profile.html")
-
-
-def create_profile(request, username):
+def profile(request, username):
     if request.user.is_authenticated:
+        user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
             birth_date = request.POST['birthday']
-            profile_pic = request.FILES['profile_pic']
-            edu_choices = request.POST['edu_choices']
+            try:
+                profile_pic = request.FILES['profile_pic']
+            except:
+                if user.profile.profile_pic:
+                    profile_pic = user.profile.profile_pic
+                else:
+                    profile_pic =None
+            try:
+                profile_pic = request.FILES['resume']
+            except:
+                if user.profile.resume:
+                    resume = user.profile.resume
+                else:
+                    resume =None
+
+            edu_choices = request.POST['education']
             sport = request.POST['sport']
-            resume = request.FILES['resume']
-            # intrests = request.POST['interests']
-            # with open(img_st, "rb") as img_file:
-            #     img = base64.b64decode(img_file.read())
             user = User.objects.get(username=request.user.username)
             tags = request.POST.getlist("tags")
-            profile = Profile(user=user,
-                              profile_pic=profile_pic,
-                              birth_date=birth_date,
-                              education=edu_choices,
-                              sport=sport,
-                              resume=resume,
-                              interests=tags)
-            profile.save()
-            return redirect("/")
-        else:
-            form = ProfileForm()
-        return render(request, "profile.html", {'form': form, "fields": fields})
+            profile = Profile.objects.update_or_create(
+                user=user,
+                defaults={
+                    "profile_pic": profile_pic,
+                    "birth_date": birth_date,
+                    "education": edu_choices,
+                    "sport": sport,
+                    "resume": resume,
+                    "interests": tags
+                }, )
+        # fields_json = dumps(fields)
+        return render(request, "profile.html", {'user_interests': user.profile.interests,
+                                                "fields": fields,
+                                                "education_choices": education_choices
+                                                })
     else:
         message = "You need to be logged in to access the profile page"
         return render(request, "home.html", {"message": message})
+
+
+# def create_profile(request, username, edit):
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
+#             birth_date = request.POST['birthday']
+#             profile_pic = request.FILES['profile_pic']
+#             edu_choices = request.POST['edu_choices']
+#             sport = request.POST['sport']
+#             resume = request.FILES['resume']
+#             user = User.objects.get(username=request.user.username)
+#             tags = request.POST.getlist("tags")
+#             profile = Profile.objects.update_or_create(
+#                 user=user,
+#                 defaults={
+#                     "profile_pic": profile_pic,
+#                     "birth_date": birth_date,
+#                     "education": edu_choices,
+#                     "sport": sport,
+#                     "resume": resume,
+#                     "interests": tags
+#                 }, )
+#             return redirect("/")
+#         else:
+#             form = ProfileForm()
+#         return render(request, "old_profile.html", {'form': form, "fields": fields})
+#     else:
+#         message = "You need to be logged in to access the profile page"
+#         return render(request, "home.html", {"message": message})
 
 
 def test(request):
@@ -191,24 +219,13 @@ def test(request):
     return render(request, 'aws-test.html', {'resume': resume})
 
 
-def jobs_view(request):
-    if request.user.is_authenticated:
-        # user = User.objects.get(username=request.user.username)
-        jobs = Jobs.objects.all()
-        interests = fields
-        return render(request, "jobs.html", {"jobs": jobs, "fields": interests})
-    else:
-        message = "You need to be logged in to access the jobs page"
-        return render(request, "home.html", {"message": message})
-
-
-def story_view(request):
+def story_view(request, username):
     if request.user.is_authenticated:
         if request.method == 'POST':
             story = request.POST['success_story']
             user = User.objects.get(username=request.user.username)
             profile = Profile(user=user, success_story=story)
-            profile.save()
+            profile.save(update_fields=["success_story"])
             return redirect('/')
         else:
             form = SuccessStoryForm()
@@ -218,16 +235,94 @@ def story_view(request):
         return render(request, "home.html", {"message": message})
 
 
-def users_success_story(request):
+def all_jobs_view(request):
     if request.user.is_authenticated:
-        # user = User.objects.get(username=request.user.username)
-        profileList = Profile.objects.all()
-        # story = user.profile.success_story
-        story_list = []
-        for profile in profileList:
-            story_list.append(profile.success_story)
-
-        return render(request, "storiesToView.html", {'story_list': story_list})
+        jobs = Jobs.objects.all()
+        return render(request, "content.html", {"fields": fields, "contents": jobs,
+                                                "link_url": "/jobs/",
+                                                "active": "all"}, )
     else:
         message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
+def contains(list1, list2):
+    var = False
+    for item1 in list1:
+        for item2 in list2:
+            if item1 == item2:
+                var = True
+    return var
+
+
+def contains_string(list, string):
+    var = False
+    for item1 in list:
+        if item1 == string:
+            var = True
+    return var
+
+
+# pass a filter parameter
+def filtered_jobs(request, selected_filter):
+    if request.user.is_authenticated:
+        user = User.objects.get(username=request.user.username)
+        user_intrest = user.profile.interests
+        matched_jobs = []
+        for job in Jobs.objects.all():
+            if selected_filter == "recommended":
+                matches = contains(job.interests, user_intrest)
+            else:
+                matches = contains_string(job.interests, selected_filter)
+            if matches is True:
+                matched_jobs.append(job)
+        return render(request, "content.html", {"fields": fields, "contents": matched_jobs,
+                                                "link_url": "/jobs/",
+                                                "active": selected_filter}, )
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
+def get_stories():
+    story_list = []
+    profile_list = Profile.objects.all()
+    for profile in profile_list:
+        if not profile.success_story == "":
+            story = {"user": profile.user.username,
+                     "story": profile.success_story,
+                     "interests": profile.interests}
+            story_list.append(story)
+    return story_list
+
+
+def all_success_stories(request):
+    if request.user.is_authenticated:
+        # l = list(Profile.objects.all().values_list('success_story', flat=True))
+        story_list = get_stories()
+        return render(request, "content.html", {"fields": fields, "contents": story_list,
+                                                "link_url": "/success-stories/",
+                                                "active": "all", })
+    else:
+        message = "You need to be logged in to access the stories page"
+        return render(request, "home.html", {"message": message})
+
+
+def filtered_success_stories(request, selected_filter):
+    if request.user.is_authenticated:
+        story_list = get_stories()
+        user_intrest = Profile.objects.get(user=request.user).interests
+        stories = []
+        for story in story_list:
+            if selected_filter == "recommended":
+                matches = contains(story["interests"], user_intrest)
+            else:
+                matches = contains_string(story["interests"], selected_filter)
+            if matches is True:
+                stories.append(story)
+        return render(request, "content.html", {"fields": fields, "contents": stories,
+                                                "link_url": "/success-stories/",
+                                                "active": selected_filter}, )
+    else:
+        message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})
