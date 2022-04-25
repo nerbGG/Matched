@@ -41,7 +41,7 @@
             </div>
             <div class="w-100 mb-3 d-flex flex-column" >
                 <label>Date of birth</label>
-                <input class="form-control" type="text" value={{ user.profile.birth_date |date:"2021-09-13"}} name="birthday">
+                <input class="form-control" type="date" value="1985-08-19" name="birthday">
             </div>
              <div class="w-100 mb-3 d-flex flex-column" >
                 <label>Sport</label>
@@ -52,27 +52,27 @@
                 <select id="education" name="education" class="form-control form-select">
                   {% for ed in education_choices %}
                     {% if ed.0 == user.profile.education %}
-                         <option value="hs"selected>{{ ed.1 }}</option>
+                         <option value={{ ed.0 }} selected>{{ ed.1 }}</option>
                     {% else %}
-                        <option value="hs">{{ ed.1 }}</option>
+                        <option value={{ ed.0 }}>{{ ed.1 }}</option>
                     {% endif %}
                   {% endfor %}
                 </select>
             </div>
             <div class="p-2 w-100 mb-3 d-flex flex-row justify-content-between">
                 <label class="w-50" name="interest" class="form-control">Fields of Interests</label>
-                <div class="w-50 form-group">
-                    {% for field in fields %}
-                        {% for interest in user_interests %}
-                            {% if field.0 == interest %}
-                                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}} checked>
-                            {% else %}
-                                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}}>
-                            {% endif %}
-                            <label for={{ field.0}}> {{ field.1}}</label>
-                            <br>
-                        {% endfor %}
-                    {% endfor %}
+                <div id="fields-div" class="w-50 form-group d-flex flex-column">
+{#                    {% for field in fields %}#}
+{#                        {% for interest in user_interests %}#}
+{#                            {% if field.0 == interest %}#}
+{#                                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}} checked>#}
+{#                            {% else %}#}
+{#                                <input id={{ field.0}} type="checkbox" name="tags" value={{field.0}}>#}
+{#                            {% endif %}#}
+{#                            <label for={{ field.0}}> {{ field.1}}</label>#}
+{#                            <br>#}
+{#                        {% endfor %}#}
+{#                    {% endfor %}#}
                 </div>
             </div>
              <div class="w-100 mb-3 d-flex flex-column justify-content-between">
@@ -83,6 +83,7 @@
             </div>
         </div>
         <div class="w-25 h-100 p-2 d-flex flex-column">
+            <h4 class="pb-3 mb-3 border-bottom font-weight-bold">Upload</h4>
             <div class="w-100 mb-5">
                 <label>Profile Pic</label>
                 <input class="form-control p-1" type="file" name="profile_pic">
@@ -97,7 +98,38 @@
         </div>
     </form>
     <script>
-        let data  =  JSON.parse("{{fields|escapejs}}");
-        console.log(data);
+        let fields  =  JSON.parse("{{fields|escapejs}}");
+        let userInterests = JSON.parse("{{ user_interests|escapejs }}");
+        console.log(fields);
+        console.log(userInterests);
+        let fieldsdiv = document.getElementById("fields-div");
+        for(let i=0;i < fields.length;i++){
+            let checked = false
+            for(let z=0; z < userInterests.length;z++){
+                if(fields[i][0] == userInterests[z]){
+                    checked = true ;
+                    break;
+                }
+            }
+            let input  = document.createElement("input");
+            input.id = fields[i][0];
+            input.type = "checkbox";
+            input.name = "tags";
+            input.value = fields[i][0];
+            input.checked = checked;
+
+            let label = document.createElement("label");
+            label.setAttribute("for", input.id);
+            label.innerHTML = fields[i][1];
+
+            let inputAndLabelDiv = document.createElement("div");
+            inputAndLabelDiv.appendChild(input);
+            inputAndLabelDiv.appendChild(label);
+
+            fieldsdiv.appendChild(inputAndLabelDiv);
+
+
+        }
+
     </script>
 {% endblock %}
