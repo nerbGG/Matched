@@ -120,6 +120,90 @@ jobs = [
         "salary": 800000,
         "interests": ["ath"]
     },
+    {
+        "company": "New York Knicks",
+        "position": "Coach",
+        "salary": 600000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Dallas Cowboys",
+        "position": "Coach",
+        "salary": 900000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Los Angeles Lakers",
+        "position": "Coach",
+        "salary": 1000000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Boston Celtics",
+        "position": "Coach",
+        "salary": 700000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "New York Jets",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Boston Red Sox",
+        "position": "Coach",
+        "salary": 1500000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Manchester United F.C.",
+        "position": "Coach",
+        "salary": 160000000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Atlanta Falcons",
+        "position": "Coach",
+        "salary": 9000000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "FC Bayern Munich",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Liverpool F.C.",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Real Madrid CF",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Brooklyn Nets",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Chicago Cubs",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
+    {
+        "company": "Los Angeles Chargers",
+        "position": "Coach",
+        "salary": 800000,
+        "interests": ["ath"]
+    },
 ]
 groups = [
     {
