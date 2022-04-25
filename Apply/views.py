@@ -160,7 +160,7 @@ def profile(request, username):
                 else:
                     resume =None
 
-            edu_choices = request.POST['education']
+            education = request.POST['education']
             sport = request.POST['sport']
             user = User.objects.get(username=request.user.username)
             tags = request.POST.getlist("tags")
@@ -169,14 +169,15 @@ def profile(request, username):
                 defaults={
                     "profile_pic": profile_pic,
                     "birth_date": birth_date,
-                    "education": edu_choices,
+                    "education": education,
                     "sport": sport,
                     "resume": resume,
                     "interests": tags
                 }, )
-        # fields_json = dumps(fields)
-        return render(request, "profile.html", {'user_interests': user.profile.interests,
-                                                "fields": fields,
+        fields_json = dumps(fields)
+        user_interests_json = dumps(user.profile.interests)
+        return render(request, "profile.html", {"user_interests": user_interests_json,
+                                                "fields": fields_json,
                                                 "education_choices": education_choices
                                                 })
     else:

@@ -29,10 +29,10 @@ class Profile(models.Model):
     interest_choices = fields
     interests = MultiSelectField(choices=interest_choices, blank=True)
 
-    sport = models.CharField(max_length=100)
+    sport = models.CharField(max_length=100, blank=True)
     # pdf only
-    resume = models.FileField(upload_to="pdfs/")
-    profile_pic = models.FileField(upload_to="images/")
+    resume = models.FileField(upload_to="pdfs/", blank=True)
+    profile_pic = models.FileField(upload_to="images/", blank=True)
     # profile_pic = models.ImageField(blank=True)
     success_story = models.TextField(blank=True, max_length=8000)
 
