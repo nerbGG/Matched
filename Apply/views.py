@@ -141,45 +141,69 @@ def verification_view(request, uidb64, token):
 
 
 def profile(request, username):
+    # if request.user.is_authenticated:
+    #     user = User.objects.get(id=request.user.id)
+    #     if request.method == 'POST':
+    #         birth_date = request.POST['birthday']
+    #         try:
+    #             profile_pic = request.POST['profile_pic']
+    #         except:
+    #             if user.profile.profile_pic:
+    #                 profile_pic = user.profile.profile_pic
+    #             else:
+    #                 profile_pic =None
+    #         try:
+    #             resume = request.POST['resume']
+    #         except:
+    #             if user.profile.resume:
+    #                 resume = user.profile.resume
+    #             else:
+    #                 resume =None
+    #
+    #         education = request.POST['education']
+    #         sport = request.POST['sport']
+    #         user = User.objects.get(username=request.user.username)
+    #         tags = request.POST.getlist("tags")
+    #         profile = Profile.objects.update_or_create(
+    #             user=user,
+    #             defaults={
+    #                 "profile_pic": profile_pic,
+    #                 "birth_date": birth_date,
+    #                 "education": education,
+    #                 "sport": sport,
+    #                 "resume": resume,
+    #                 "interests": tags
+    #             }, )
+    #     fields_json = dumps(fields)
+    #     user_interests_json = dumps(user.profile.interests)
+    #     return render(request, "profile.html", {"user_interests": user_interests_json,
+    #                                             "fields": fields_json,
+    #                                             "education_choices": education_choices
+    #                                             })
     if request.user.is_authenticated:
-        user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
             birth_date = request.POST['birthday']
-            try:
-                profile_pic = request.FILES['profile_pic']
-            except:
-                if user.profile.profile_pic:
-                    profile_pic = user.profile.profile_pic
-                else:
-                    profile_pic =None
-            try:
-                profile_pic = request.FILES['resume']
-            except:
-                if user.profile.resume:
-                    resume = user.profile.resume
-                else:
-                    resume =None
-
-            education = request.POST['education']
+            profile_pic = request.FILES['profile_pic']
+            edu_choices = request.POST['edu_choices']
             sport = request.POST['sport']
+            resume = request.FILES['resume']
+            # intrests = request.POST['interests']
+            # with open(img_st, "rb") as img_file:
+            #     img = base64.b64decode(img_file.read())
             user = User.objects.get(username=request.user.username)
             tags = request.POST.getlist("tags")
-            profile = Profile.objects.update_or_create(
-                user=user,
-                defaults={
-                    "profile_pic": profile_pic,
-                    "birth_date": birth_date,
-                    "education": education,
-                    "sport": sport,
-                    "resume": resume,
-                    "interests": tags
-                }, )
-        fields_json = dumps(fields)
-        user_interests_json = dumps(user.profile.interests)
-        return render(request, "profile.html", {"user_interests": user_interests_json,
-                                                "fields": fields_json,
-                                                "education_choices": education_choices
-                                                })
+            profile = Profile(user=user,
+                              profile_pic=profile_pic,
+                              birth_date=birth_date,
+                              education=edu_choices,
+                              sport=sport,
+                              resume=resume,
+                              interests=tags)
+            profile.save()
+            return redirect("/")
+        else:
+            form = ProfileForm()
+        return render(request, "profile.html", {'form': form, "fields": fields})
     else:
         message = "You need to be logged in to access the profile page"
         return render(request, "home.html", {"message": message})
