@@ -17,91 +17,94 @@
 {#            <h5>Upload</h5>#}
 {#        </div>#}
 {#    </div>#}
-    <div class="h-100 w-100 d-flex flex-column">
-    <form id="profile-form" class="w-100 h-100 shadow justify-content-center align-items-center" method="POST">
+{#    <div class="h-100 w-100 d-flex flex-column">#}
+    <form id="profile-form" class="w-100 h-100 shadow" method="POST">
         {% csrf_token %}
-        <div id="img-div" class=" border-right d-flex flex-column justify-content-center align-items-center">
-            {%if user.profile.profile_pic %}
-                <img class="rounded-circle border border-dark" src="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="150" width="150">
-            {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                </svg>
-            {% endif %}
-            <strong>{{ user.username }}</strong>
-            <p class="text-muted">Last login: {{ user.last_login }}</p>
-        </div>
-        <div id="profile-section" class="shadow border-right d-flex flex-column">
-            <h3 class="pb-3 mb-3 border-bottom font-weight-bold">Profile</h3>
-            <div class="w-100 d-flex flex-row ">
-               <div class="w-100 mb-3 d-flex flex-row justify-content-between">
-                    <div class="d-flex flex-column" style="width: 45%;">
-                        <label>First Name</label>
-                        <input class="form-control" type="text" value="{{ user.first_name }}" name="first_name">
-                    </div>
-                   <div class="d-flex flex-column"style="width: 45%;">
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" value="{{ user.last_name }}" name="last_name">
-                    </div>
-               </div>
+        <div id="profile-container">
+            <div id="img-div" class="border-right d-flex flex-column justify-content-center align-items-center">
+                {%if user.profile.profile_pic %}
+                    <img class="rounded-circle border border-dark" src="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="150" width="150">
+                {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                {% endif %}
+                <strong>{{ user.username }}</strong>
+                <p class="text-muted">Last login: {{ user.last_login }}</p>
             </div>
-            <div class="w-100 mb-3 d-flex flex-column" >
-                <label>Username</label>
-                <input class="form-control" type="text" value="{{ user.username }}" name="username">
-            </div>
-            <div class="w-100  mb-3 d-flex flex-column" >
-                <label>Email</label>
-                <input class="form-control" type="text" value="{{ user.email }}" name="username">
-            </div>
-            <div class="w-100 mb-3 d-flex flex-column" >
-                <label>Date of birth</label>
-                <input class="form-control" type="date" value="1985-08-19" name="birthday">
-            </div>
-            <div class="w-100 mb-3 d-flex flex-column" >
-                <label>Sport</label>
-                <input class="form-control" type="text" value="{{ user.profile.sport }}" name="sport">
-            </div>
-            <div class="w-100 mb-3 d-flex flex-column" style="width: 45%;">
-                <label for="education" class="form-contol">Education</label>
-                <select id="education" name="education" class="form-control form-select">
-                  {% for ed in education_choices %}
-                    {% if ed.0 == user.profile.education %}
-                         <option value={{ ed.0 }} selected>{{ ed.1 }}</option>
-                    {% else %}
-                        <option value={{ ed.0 }}>{{ ed.1 }}</option>
-                    {% endif %}
-                  {% endfor %}
-                </select>
-            </div>
-            <div class="p-2 w-100 mb-3 d-flex flex-row justify-content-between">
-                <label class="w-50" name="interest" class="form-control">Fields of Interests</label>
-                <div id="fields-div" class="w-50 form-group d-flex flex-column">
+            <div id="profile-section" class="shadow border-right d-flex flex-column">
+                <h3 class="pb-3 mb-3 border-bottom font-weight-bold">Profile</h3>
+                <div class="w-100 d-flex flex-row ">
+                   <div class="w-100 mb-3 d-flex flex-row justify-content-between">
+                        <div class="d-flex flex-column" style="width: 45%;">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" value="{{ user.first_name }}" name="first_name">
+                        </div>
+                       <div class="d-flex flex-column" style="width: 45%;">
+                            <label>Last Name</label>
+                            <input class="form-control" type="text" value="{{ user.last_name }}" name="last_name">
+                        </div>
+                   </div>
+                </div>
+                <div class="w-100 mb-3 d-flex flex-column" >
+                    <label>Username</label>
+                    <input class="form-control" type="text" value="{{ user.username }}" name="username">
+                </div>
+                <div class="w-100  mb-3 d-flex flex-column" >
+                    <label>Email</label>
+                    <input class="form-control" type="text" value="{{ user.email }}" name="username">
+                </div>
+                <div class="w-100 mb-3 d-flex flex-column" >
+                    <label>Date of birth</label>
+                    <input class="form-control" type="date" value="1985-08-19" name="birthday">
+                </div>
+                <div class="w-100 mb-3 d-flex flex-column" >
+                    <label>Sport</label>
+                    <input class="form-control" type="text" value="{{ user.profile.sport }}" name="sport">
+                </div>
+                <div class="w-100 mb-3 d-flex flex-column" style="width: 45%;">
+                    <label for="education">Education</label>
+                    <select id="education" name="education" class="form-control form-select">
+                      {% for ed in education_choices %}
+                        {% if ed.0 == user.profile.education %}
+                             <option value={{ ed.0 }} selected>{{ ed.1 }}</option>
+                        {% else %}
+                            <option value={{ ed.0 }}>{{ ed.1 }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                </div>
+                <div class="p-2 w-100 mb-3 d-flex flex-row justify-content-between">
+                    <label class="w-50" name="interest" class="form-control">Fields of Interests</label>
+                    <div id="fields-div" class="w-50 form-group d-flex flex-column">
 
+                    </div>
+                </div>
+                <div class="w-100 mb-3 d-flex flex-column justify-content-between">
+                    <label>Resume</label>
+                    <a class="form-control" href="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank"
+                        style="overflow: hidden;">
+                        {{user.profile.resume}}
+                    </a>
                 </div>
             </div>
-            <div class="w-100 mb-3 d-flex flex-column justify-content-between">
-                <label>Resume</label>
-                <a class="form-control" href="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank"
-                    style="overflow: hidden;">
-                    {{user.profile.resume}}
-                </a>
+            <div id="upload-section" class="pr-0 d-flex flex-column">
+                <h4 class="pb-3 mb-3 border-bottom font-weight-bold">Upload</h4>
+                <div class="w-100 mb-5">
+                    <label>Profile Pic</label>
+                    <input class="form-control p-1" type="file" name="profile_pic">
+                </div>
+                <div class="w-100 mb-5">
+                    <label>Resume</label>
+                    <input class="form-control p-1" type="file" name="resume">
+                </div>
+                <div id="profile-save" class="w-100 h-75 d-flex justify-content-center align-items-end">
+                    <input type="submit" class="w-100 shadow btn btn-primary" value="Save">
+                </div>
             </div>
         </div>
-        <div id="upload-section" class="pr-0 d-flex flex-column">
-            <h4 class="pb-3 mb-3 border-bottom font-weight-bold">Upload</h4>
-            <div class="w-100 mb-5">
-                <label>Profile Pic</label>
-                <input class="form-control p-1" type="file" name="profile_pic">
-            </div>
-            <div class="w-100 mb-5">
-                <label>Resume</label>
-                <input class="form-control p-1" type="file" name="resume">
-            </div>
-            <div class ="w-100 h-75 d-flex justify-content-center align-items-end">
-                <input type="submit" class="w-100 shadow btn btn-primary" value="Save">
-            </div>
-        </div>
+
     </form>
     <script>
         {#grabbing data from the view#}
