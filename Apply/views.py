@@ -59,7 +59,8 @@ def register_view(request):
                 user.groups.add(group)
                 deactivate_user(user)
                 send_activation_email(request, user)
-                return render(request, "../templates/home.html", {"activated": False})
+                return render(request, "../templates/home.html", {"activated": False, "message": "Please Check your email for the verification", })
+
         else:
             form = RegistrationForm()
         return render(request, "../templates/registration/registration.html", {"form": form})
