@@ -34,8 +34,9 @@ urlpatterns = [
     path("success-stories/", apply_views.all_success_stories, name="allTheUsersSuccessStories"),
     path("success-stories/<selected_filter>", apply_views.filtered_success_stories),
     path("jobs/<selected_filter>/", apply_views.filtered_jobs),
-    path('reset_password/', auth_views.PasswordResetView.as_view(template_name='password_reset.html'), name='reset_password'),
+    path('accounts/login/reset_password/', auth_views.PasswordResetView.as_view(template_name='password_reset.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_content.html'), name ='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_form.html'), name='password_reset_confirm'),
     path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
 ]
 # urlpatterns += staticfiles_urlpatterns()
