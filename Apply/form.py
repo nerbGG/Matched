@@ -10,19 +10,21 @@ class loginForm(AuthenticationForm):
     password = forms.PasswordInput
 
 
-class ProfileForm(forms.ModelForm):
+class FileUploadForm(forms.ModelForm):
     profile_pic = forms.ImageField(required=False)
     # birthday = forms.DateField(required=False)
-    sport = forms.CharField(max_length=100, required=100)
+    # sport = forms.CharField(max_length=100, required=100)
     resume = forms.FileField(required=False)
     interests_choices = fields
-    edu_choices = forms.ChoiceField(choices=education_choices, required=True)
+    # edu_choices = forms.ChoiceField(choices=education_choices, required=True)
 
     # interests = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=interests_choices)
 
     class Meta:
         model = Profile
-        fields = ('profile_pic', 'sport', 'resume', 'edu_choices',)
+        fields = ('profile_pic', 'resume',)
+
+        # fields = ('profile_pic', 'sport', 'resume', 'edu_choices',)
 
 
 class SuccessStoryForm(forms.ModelForm):

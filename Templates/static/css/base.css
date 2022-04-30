@@ -171,13 +171,14 @@ a:hover{
     #upload-section{
         /*height:200px;*/
         /*max-height: 200px;*/
-        height: 45px;
-        max-height: 45px;
+        height: 100px;
+        max-height: 300px;
+        min-height: 300px;
     }
-    #profile-save{
-        max-height: 40px;
-        height: 40px;
-    }
+    /*#profile-save{*/
+    /*    max-height: 40px;*/
+    /*    height: 40px;*/
+    /*}*/
     #img-div img, #img-div svg{
         height: 100px;
         width: 100px;
