@@ -31,7 +31,8 @@
                         </svg>
                     {% endif %}
                     <strong>{{ user.username }}</strong>
-                    <p class="text-muted">Last login: {{ user.last_login }}</p>
+{#                    <p class="text-muted">Last login: {{ user.last_login }}</p>#}
+                    <p class="text-muted">Date Joined: {{ user.date_joined }}</p>
                 </div>
                 <div id="profile-section" class="shadow border-right d-flex flex-column">
                     <h3 class="pb-3 mb-3 border-bottom font-weight-bold">Profile</h3>
@@ -83,7 +84,7 @@
                     </div>
                     <div class="w-100 mb-3 d-flex flex-column justify-content-between">
                         <label>Resume</label>
-                        <a class="form-control" href="https://matched-umb-cs410.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank"
+                        <a class="form-control" href="https://matched-umb.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank"
                             style="overflow: hidden;">
                             {{user.profile.resume}}
                         </a>
@@ -95,7 +96,7 @@
                          {% csrf_token %}
                         {{ form | crispy}}
                         <div class ="w-100 h-75 d-flex justify-content-end align-items-end">
-                            <input type="submit" class="  w-100 btn btn-primary" value="Submit">
+                            <input type="submit" class="  w-100 btn btn-primary" value="Save">
                         </div>
                     </form>
                 </div>

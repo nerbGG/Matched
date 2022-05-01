@@ -154,7 +154,7 @@ def profile(request, username):
                 else:
                     profile_pic =None
             try:
-                resume = request.FILESes['resume']
+                resume = request.FILES['resume']
             except:
                 if user.profile.resume:
                     resume = user.profile.resume
