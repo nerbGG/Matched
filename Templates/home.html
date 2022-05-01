@@ -6,10 +6,11 @@
 {% endif%}
 
 {% if user.is_authenticated %}
-    <a href="/accounts/logout/">
+    <div class="alert alert-info w-100 ">Welcome back {{ user.first_name }}!</div>
+    <a class="bold-link" href="/accounts/logout/">
         Logout
     </a>
 {%else%}
-    <a href="/accounts/login/">login</a>
+    <a class="bold-link" href="/accounts/login/">login</a>
 {%endif%}
 {% endblock %}
