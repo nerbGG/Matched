@@ -76,13 +76,13 @@ a:hover{
 }
 .link-container{
      height:50px;
+    /*text-decoration: none;*/
 }
 .link-container:hover{
     cursor: pointer;
     border-bottom: 1px solid black;
     font-size: large;
     cursor: pointer;
-    font-weight: bold;
 }
 .link-section-text-center{
     margin-left: -20%;
@@ -107,7 +107,7 @@ a:hover{
     width: 25%;
     height:100%;
 }
-#story-link:hover{
+.bold-link:hover{
     font-weight: bold;
 }
 #profile-section{
