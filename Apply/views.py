@@ -232,7 +232,7 @@ def story_view(request, username):
             profile.save(update_fields=["success_story"])
             return redirect('/')
         else:
-            form = SuccessStoryForm()
+            form = SuccessStoryForm(initial={"success_story":request.user.profile.success_story})
         return render(request, 'story.html', {"form": form})
     else:
         message = "You need to be logged in to access the jobs page"

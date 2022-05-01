@@ -107,6 +107,9 @@ a:hover{
     width: 25%;
     height:100%;
 }
+#story-link:hover{
+    font-weight: bold;
+}
 #profile-section{
     width: 46%;
     height: 100%;
