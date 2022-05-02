@@ -149,7 +149,7 @@ def profile(request, username):
     if request.user.is_authenticated:
         user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
-            birth_date = request.POST['birthday']
+            # birth_date = request.POST['birthday']
             try:
                 profile_pic = request.FILES['profile_pic']
             except:
@@ -173,7 +173,7 @@ def profile(request, username):
                 user=user,
                 defaults={
                     "profile_pic": profile_pic,
-                    "birth_date": birth_date,
+                    # "birth_date": birth_date,
                     "education": education,
                     "sport": sport,
                     "resume": resume,
