@@ -232,11 +232,6 @@ def contains_string(list, string):
     return var
 
 
-def save_job(request):
-    job = Jobs.objects.get(id=request.POST["selected_job"])
-    request.user.profile.saved_jobs.add(job)
-
-
 def get_saved_jobs(request):
     saved_jobs = request.user.profile.saved_jobs.all()
     saved_jobs_dict = {}
@@ -245,10 +240,19 @@ def get_saved_jobs(request):
     return saved_jobs_dict
 
 
+def save_or_remove_job(request):
+    job = Jobs.objects.get(id=request.POST["selected_job"])
+    saved_jobs = get_saved_jobs(request)
+    if job.id in saved_jobs:
+        request.user.profile.saved_jobs.remove(job)
+    else:
+        request.user.profile.saved_jobs.add(job)
+
+
 def all_jobs_view(request):
     if request.user.is_authenticated:
         if request.method == "POST":
-            save_job(request)
+            save_or_remove_job(request)
         jobs = Jobs.objects.all()
         saved_jobs_dict = get_saved_jobs(request)
         return render(request, "content.html", {"fields": fields,
@@ -265,18 +269,24 @@ def all_jobs_view(request):
 def filtered_jobs(request, selected_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
-            save_job(request)
+            save_or_remove_job(request)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
         matched_jobs = []
+        saved_jobs_dict = get_saved_jobs(request)
         for job in Jobs.objects.all():
             if selected_filter == "recommended":
                 matches = contains(job.interests, user_intrest)
+            elif selected_filter == "saved":
+                return render(request, "content.html", {"fields": fields,
+                                                        "contents": user.profile.saved_jobs.all(),
+                                                        "saved_jobs": saved_jobs_dict,
+                                                        "link_url": "/jobs/",
+                                                        "active": selected_filter})
             else:
                 matches = contains_string(job.interests, selected_filter)
             if matches is True:
                 matched_jobs.append(job)
-        saved_jobs_dict = get_saved_jobs(request)
         return render(request, "content.html", {"fields": fields,
                                                 "contents": matched_jobs,
                                                 "saved_jobs": saved_jobs_dict,
