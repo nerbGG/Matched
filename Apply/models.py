@@ -38,7 +38,7 @@ class Jobs(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    birth_date = models.DateField(blank=True, null=True)
+    # birth_date = models.DateField(blank=True, null=True)
     edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
     education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
     interest_choices = fields
