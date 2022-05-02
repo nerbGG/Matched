@@ -129,9 +129,6 @@ a:hover{
     padding: 1%;
     overflow: hidden;
 }
-.bookmark{
-
-}
 .bookmark :hover{
     cursor: pointer;
 }
@@ -144,7 +141,7 @@ a:hover{
         overflow: auto;
     }
     #profile-container{
-        justify-content: unset;
+        justify-content: space-between;
         height: 100%;
         min-height: 100%;
         flex-direction: column;
@@ -152,11 +149,11 @@ a:hover{
     #profile-form div{
         width: 100%;
     }
-    #img-div{
-        /*margin-top:600px;*/
-        height: 200px;
-        min-height: 200px;
-    }
+    /*#img-div{*/
+    /*    !*margin-top:600px;*!*/
+    /*    height: 200px;*/
+    /*    min-height: 200px;*/
+    /*}*/
     #profile-section{
         height:999px;
         min-height: 999px;
@@ -169,10 +166,7 @@ a:hover{
         max-height: 300px;
         min-height: 300px;
     }
-    /*#profile-save{*/
-    /*    max-height: 40px;*/
-    /*    height: 40px;*/
-    /*}*/
+
     #img-div img, #img-div svg{
         height: 100px;
         width: 100px;
