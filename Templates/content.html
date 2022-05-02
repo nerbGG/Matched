@@ -33,13 +33,15 @@
                         <h5 class="btn btn-light fields mr-3 filter">Recommended</h5>
                     {% endif %}
                 </a>
-                <a href="{{ link_url }}saved">
-                    {% if active == "saved" %}
-                        <h5 class="btn btn-dark mr-3 filter"> Saved Jobs</h5>
-                    {% else%}
-                        <h5 class="btn btn-light fields mr-3 filter">Saved Jobs</h5>
-                    {% endif %}
-                </a>
+                 {% if link_url == "/jobs/" %}
+                    <a href="{{ link_url }}saved">
+                        {% if active == "saved" %}
+                            <h5 class="btn btn-dark mr-3 filter"> Saved Jobs</h5>
+                        {% else%}
+                            <h5 class="btn btn-light fields mr-3 filter">Saved Jobs</h5>
+                        {% endif %}
+                    </a>
+                {% endif %}
                 {% for field in fields %}
                     <a href="{{link_url}}{{ field.0 }}">
                         {% if active == field.0 %}
