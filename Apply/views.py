@@ -297,12 +297,62 @@ def filtered_jobs(request, selected_filter):
         return render(request, "home.html", {"message": message})
 
 
+def filter_by_salary(request, job_list, salary_filter):
+    salary_filtered_list = []
+    for job in job_list:
+        sal = int(salary_filter)
+        if job.expected_salary >= sal:
+            salary_filtered_list.append(job)
+    return salary_filtered_list
+
+
+def filtered_jobs_salary(request, selected_filter, salary_filter):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            save_or_remove_job(request)
+        user = User.objects.get(username=request.user.username)
+        user_intrest = user.profile.interests
+        matched_jobs = []
+        saved_jobs_dict = get_saved_jobs(request)
+        if selected_filter == "saved":
+            salary_filtered = filter_by_salary(request, user.profile.saved_jobs.all(), salary_filter)
+            return render(request, "content.html", {"fields": fields,
+                                                "contents": salary_filtered,
+                                                "saved_jobs": saved_jobs_dict,
+                                                "link_url": "/jobs/",
+                                                "active": selected_filter})
+        elif selected_filter == "all":
+            salary_filtered = filter_by_salary(request, Jobs.objects.all(), salary_filter)
+            return render(request, "content.html", {"fields": fields,
+                                                    "contents": salary_filtered,
+                                                    "saved_jobs": saved_jobs_dict,
+                                                    "link_url": "/jobs/",
+                                                    "active": selected_filter})
+        else:
+            for job in Jobs.objects.all():
+                if selected_filter == "recommended":
+                    matches = contains(job.interests, user_intrest)
+                else:
+                    matches = contains_string(job.interests, selected_filter)
+                if matches is True:
+                    matched_jobs.append(job)
+            salary_filtered = filter_by_salary(request, matched_jobs, salary_filter)
+            return render(request, "content.html", {"fields": fields,
+                                                "contents": salary_filtered,
+                                                "saved_jobs": saved_jobs_dict,
+                                                "link_url": "/jobs/",
+                                                "active": selected_filter})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
 def get_stories():
     story_list = []
     profile_list = Profile.objects.all()
     for profile in profile_list:
         if not profile.success_story == "":
-            story = {"user": {"firstname":profile.user.first_name, "lastname":profile.user.last_name},
+            story = {"user": {"firstname": profile.user.first_name, "lastname": profile.user.last_name},
                      "story": profile.success_story,
                      "interests": profile.interests}
             story_list.append(story)
