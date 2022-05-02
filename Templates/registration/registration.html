@@ -1,25 +1,42 @@
-{% extends "base.html" %}
+
 {% load crispy_forms_filters %}
 
 {% block content %}
+    <title> Registration </title>
+    {% load static %}
+<meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
 {#    {% if user.is_authenticated %}#}
 <!--        if user is already logged in and the user tries to access the login page, it will redirect
                them to the courses page -->
 {#        <meta http-equiv="Refresh" content="0; url='/' />#}
 <!--        <h2>You are already logged in, please <a href="/accounts/logout"> log out </a></h2>-->
 {#    {% else  %}#}
-        <div class="p-1 w-100 h-100" style="overflow: auto;">
-            <h2>Registration</h2>
-            <form  method="POST" class=" from-group nt-weight-bold p-2 border-bottom">
-                {% csrf_token %}
-                {{ form | crispy }}
-    {#            <div>#}
-                    <button type="submit" class="btn btn-primary w-100">Join</button>
-    {#            </div>#}
-            </form>
-            <br>
-            <p style="font-size: 14px;">Already have an account? <a href="/accounts/login"><strong>Login</strong></a>!</p>
+        <body>
+        <div class="shadow-lg d-flex flex-row justify-content-center align-items-center"
+             style="width: 100%; height:100%;">
+            <div class=" bg-light h-100 d-flex justify-content-end align-items-center"
+                style="width:65%;">
+                <div class="p-1 w-100 h-100" style="overflow: auto;">
+                    <h2>Registration</h2>
+                    <form  method="POST" class=" from-group nt-weight-bold p-2 border-bottom">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        {#            <div>#}
+                        <button type="submit" class="btn btn-primary w-100">Join</button>
+                        {#            </div>#}
+                    </form>
+                    <br>
+                    <p style="font-size: 14px;">Already have an account? <a href="/accounts/login"><strong>Login</strong></a>!</p>
+                </div>
 
-        </div>
+            </div>
+            <div class=" h-100 bg-dark d-flex justify-content-center align-items-center"
+            style="width: 35%;" >
+                <img class="p-4 align-items-center" width="230" height="200" src= "{% static 'images/logo_transparency.png' %}">
+            </div>
+            </div>
 {#    {%endif%}#}
 {% endblock %}
