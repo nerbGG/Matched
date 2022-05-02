@@ -10,199 +10,264 @@ jobs = [
         "company": "BitSight",
         "position": "Entry Software Engineer",
         "salary": 100000,
-        "interests": ["tech"]
+        "interests": ["tech"],
+        "descriptions":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
     },
     {
         "company": "Brigham and Women's",
         "position": "Neuroscientist",
         "salary": 300000,
-        "interests": ["tech", "bio"]
+        "interests": ["tech", "bio"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Ai Proteins",
         "position": "protein expert",
         "salary": 500000,
-        "interests": ["bio"]
+        "interests": ["bio"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Ai Proteins",
         "position": "test Subject",
         "salary": 50000,
-        "interests": ["bio", "ath"]
+        "interests": ["bio", "ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Flux marine",
         "position": "Junior Software Engineer",
         "salary": 150000,
-        "interests": ["tech", "eng"]
+        "interests": ["tech", "eng"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Fritz",
         "position": "Senior Software Engineer",
         "salary": 200000,
-        "interests": ["tech"]
+        "interests": ["tech"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Heartifyio",
         "position": "Entry Software Developer",
         "salary": 100000,
-        "interests": ["tech", "bio"]
+        "interests": ["tech", "bio"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "RH",
         "position": "AI engineer",
         "salary": 100000000,
-        "interests": ["tech", "art"]
+        "interests": ["tech", "art"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Isomics",
         "position": "Senior coach",
         "salary": 100000,
-        "interests": ["tech", "ath"]
+        "interests": ["tech", "ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Ultimaco",
         "position": "Senior CyberSecurity Expert",
         "salary": 300000,
-        "interests": ["tech", "bus", "eng"]
+        "interests": ["tech", "bus", "eng"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Ultimaco",
         "position": "Senior CyberSecurity Expert",
         "salary": 300000,
-        "interests": ["tech", "bus", "eng"]
+        "interests": ["tech", "bus", "eng"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Ultimaco",
         "position": "Entry Software engineer",
         "salary": 100000,
-        "interests": ["tech"]
+        "interests": ["tech"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Ultimaco",
         "position": "Senior CyberSecurity Expert",
         "salary": 300000,
-        "interests": ["tech", "bus", "eng"]
+        "interests": ["tech", "bus", "eng"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "CompBioLab",
         "position": "Bioinformatics Expert",
         "salary": 200000,
-        "interests": ["tech", "bio"]
+        "interests": ["tech", "bio"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "HourWork",
         "position": "Junior Software Engineer",
         "salary": 150000,
-        "interests": ["tech"]
+        "interests": ["tech"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "HourWork",
         "position": "Senior Software Engineer",
         "salary": 300000,
-        "interests": ["tech"]
+        "interests": ["tech"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "NYU Langone Health",
         "position": "Financial Adivisor",
         "salary": 800000,
-        "interests": ["tech", "fin"]
+        "interests": ["tech", "fin"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "NYU Langone Health",
         "position": "Doctor",
         "salary": 800000,
-        "interests": ["bio"]
+        "interests": ["bio"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "FC Barcelona",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "New York Knicks",
         "position": "Coach",
         "salary": 600000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Dallas Cowboys",
         "position": "Coach",
         "salary": 900000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Los Angeles Lakers",
         "position": "Coach",
         "salary": 1000000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Boston Celtics",
         "position": "Coach",
         "salary": 700000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "New York Jets",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Boston Red Sox",
         "position": "Coach",
         "salary": 1500000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Manchester United F.C.",
         "position": "Coach",
         "salary": 160000000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Atlanta Falcons",
         "position": "Coach",
         "salary": 9000000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "FC Bayern Munich",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Liverpool F.C.",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Real Madrid CF",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Brooklyn Nets",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Chicago Cubs",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
     {
         "company": "Los Angeles Chargers",
         "position": "Coach",
         "salary": 800000,
-        "interests": ["ath"]
+        "interests": ["ath"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+
     },
 ]
 groups = [
