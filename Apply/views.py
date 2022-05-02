@@ -302,7 +302,7 @@ def get_stories():
     profile_list = Profile.objects.all()
     for profile in profile_list:
         if not profile.success_story == "":
-            story = {"user": profile.user.username,
+            story = {"user": {"firstname":profile.user.first_name, "lastname":profile.user.last_name},
                      "story": profile.success_story,
                      "interests": profile.interests}
             story_list.append(story)
