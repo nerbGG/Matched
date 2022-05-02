@@ -20,36 +20,8 @@ from multiselectfield import MultiSelectField
 #     def __str__(self):
 #         return "user Interests"
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    birth_date = models.DateField(blank=True, null=True)
-    edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
-    education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
-    interest_choices = fields
-    interests = MultiSelectField(choices=interest_choices, blank=True)
-
-    sport = models.CharField(max_length=100, blank=True)
-    # pdf only
-    resume = models.FileField(upload_to="pdfs/", blank=True)
-    profile_pic = models.FileField(upload_to="images/", blank=True)
-    # profile_pic = models.ImageField(blank=True)
-    success_story = models.TextField(blank=True, max_length=8000)
-
-    # location=
-    class Meta:
-        verbose_name = "user profile"
-        verbose_name_plural = "user profile"
-
-    def __unicode__(self):
-        return self.user.username
-
-    def __str__(self):
-        return "%s 's profile" % self.user.username
-
-
 class Jobs(models.Model):
-    user = models.ManyToManyField(User, blank=True)
+    # user = models.ManyToManyField(User, blank=True)
     company = models.CharField(max_length=100, blank=False)
     position = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=100000, blank=True)
@@ -62,6 +34,33 @@ class Jobs(models.Model):
 
     def __str__(self):
         return "%s job" % self.position
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    birth_date = models.DateField(blank=True, null=True)
+    edu_choices = [('hs', 'Highschool'), ('ud', 'Undergraduate'), ('gd', 'Graduate')]
+    education = models.CharField(max_length=2, choices=edu_choices, blank=True, default='ud')
+    interest_choices = fields
+    interests = MultiSelectField(choices=interest_choices, blank=True)
+    sport = models.CharField(max_length=100, blank=True)
+    # pdf only
+    resume = models.FileField(upload_to="pdfs/", blank=True)
+    profile_pic = models.FileField(upload_to="images/", blank=True)
+    # profile_pic = models.ImageField(blank=True)
+    success_story = models.TextField(blank=True, max_length=8000)
+    saved_jobs = models.ManyToManyField(Jobs, blank=True)
+
+    # location=
+    class Meta:
+        verbose_name = "user profile"
+        verbose_name_plural = "user profile"
+
+    def __unicode__(self):
+        return self.user.username
+
+    def __str__(self):
+        return "%s 's profile" % self.user.username
 
 
 class UploadModel(models.Model):
