@@ -24,6 +24,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
 from .constant_variables import fields, education_choices
 from json import dumps
+
 logger = logging.getLogger(__name__)
 
 
@@ -59,7 +60,8 @@ def register_view(request):
                 user.groups.add(group)
                 deactivate_user(user)
                 send_activation_email(request, user)
-                return render(request, "../templates/home.html", {"activated": False, "message": "Please Check your email for the verification", })
+                return render(request, "../templates/home.html",
+                              {"activated": False, "message": "Please Check your email for the verification", })
 
         else:
             form = RegistrationForm()
@@ -154,14 +156,14 @@ def profile(request, username):
                 if user.profile.profile_pic:
                     profile_pic = user.profile.profile_pic
                 else:
-                    profile_pic =None
+                    profile_pic = None
             try:
                 resume = request.FILES['resume']
             except:
                 if user.profile.resume:
                     resume = user.profile.resume
                 else:
-                    resume =None
+                    resume = None
 
             education = request.POST['education']
             sport = request.POST['sport']
@@ -183,40 +185,11 @@ def profile(request, username):
         return render(request, "profile.html", {"user_interests": user_interests_json,
                                                 "fields": fields_json,
                                                 "education_choices": education_choices,
-                                                "form":form,
+                                                "form": form,
                                                 })
     else:
         message = "You need to be logged in to access the profile page"
         return render(request, "home.html", {"message": message})
-
-
-# def create_profile(request, username, edit):
-#     if request.user.is_authenticated:
-#         if request.method == 'POST':
-#             birth_date = request.POST['birthday']
-#             profile_pic = request.FILES['profile_pic']
-#             edu_choices = request.POST['edu_choices']
-#             sport = request.POST['sport']
-#             resume = request.FILES['resume']
-#             user = User.objects.get(username=request.user.username)
-#             tags = request.POST.getlist("tags")
-#             profile = Profile.objects.update_or_create(
-#                 user=user,
-#                 defaults={
-#                     "profile_pic": profile_pic,
-#                     "birth_date": birth_date,
-#                     "education": edu_choices,
-#                     "sport": sport,
-#                     "resume": resume,
-#                     "interests": tags
-#                 }, )
-#             return redirect("/")
-#         else:
-#             form = ProfileForm()
-#         return render(request, "old_profile.html", {'form': form, "fields": fields})
-#     else:
-#         message = "You need to be logged in to access the profile page"
-#         return render(request, "home.html", {"message": message})
 
 
 def test(request):
@@ -234,24 +207,14 @@ def story_view(request, username):
             profile.save(update_fields=["success_story"])
             return redirect('/')
         else:
-            form = SuccessStoryForm(initial={"success_story":request.user.profile.success_story})
+            form = SuccessStoryForm(initial={"success_story": request.user.profile.success_story})
         return render(request, 'story.html', {"form": form})
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
 
 
-def all_jobs_view(request):
-    if request.user.is_authenticated:
-        jobs = Jobs.objects.all()
-        return render(request, "content.html", {"fields": fields, "contents": jobs,
-                                                "link_url": "/jobs/",
-                                                "active": "all"}, )
-    else:
-        message = "You need to be logged in to access the jobs page"
-        return render(request, "home.html", {"message": message})
-
-
+# jobs view helpers
 def contains(list1, list2):
     var = False
     for item1 in list1:
@@ -269,9 +232,40 @@ def contains_string(list, string):
     return var
 
 
+def save_job(request):
+    job = Jobs.objects.get(id=request.POST["selected_job"])
+    request.user.profile.saved_jobs.add(job)
+
+
+def get_saved_jobs(request):
+    saved_jobs = request.user.profile.saved_jobs.all()
+    saved_jobs_dict = {}
+    for job in saved_jobs:
+        saved_jobs_dict[job.pk] = job
+    return saved_jobs_dict
+
+
+def all_jobs_view(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            save_job(request)
+        jobs = Jobs.objects.all()
+        saved_jobs_dict = get_saved_jobs(request)
+        return render(request, "content.html", {"fields": fields,
+                                                "contents": jobs,
+                                                "saved_jobs": saved_jobs_dict,
+                                                "link_url": "/jobs/",
+                                                "active": "all"})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
 # pass a filter parameter
 def filtered_jobs(request, selected_filter):
     if request.user.is_authenticated:
+        if request.method == "POST":
+            save_job(request)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
         matched_jobs = []
@@ -282,9 +276,12 @@ def filtered_jobs(request, selected_filter):
                 matches = contains_string(job.interests, selected_filter)
             if matches is True:
                 matched_jobs.append(job)
-        return render(request, "content.html", {"fields": fields, "contents": matched_jobs,
+        saved_jobs_dict = get_saved_jobs(request)
+        return render(request, "content.html", {"fields": fields,
+                                                "contents": matched_jobs,
+                                                "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
-                                                "active": selected_filter}, )
+                                                "active": selected_filter})
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})

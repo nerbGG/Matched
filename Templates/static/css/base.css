@@ -109,6 +109,7 @@ a:hover{
 }
 .bold-link:hover{
     font-weight: bold;
+    color:black;
 }
 #profile-section{
     width: 46%;
@@ -127,6 +128,12 @@ a:hover{
     min-height:100%;
     padding: 1%;
     overflow: hidden;
+}
+.bookmark{
+
+}
+.bookmark :hover{
+    cursor: pointer;
 }
 /*small screens*/
 @media only screen and (max-width:800px){

@@ -15,10 +15,8 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-{#    <div class="w-100 h-100" style="overflow: auto">#}
     <div class="w-100 h-100">
         <div class="w-100 d-flex align-items-center border-bottom ">
-    {#        Filters:#}
             <div id="tags" class="w-100 d-flex flex-row "
             style="overflow:auto">
                 <a href="{{link_url}}">
@@ -50,29 +48,44 @@
            <div class="w-100 h-100 d-flex flex-column"style="overflow: auto;">
                 {% for content in contents %}
                     {% if link_url == "/jobs/" %}
-                        <div class="jobs p-2 d-flex flex-column border-bottom job-div">
-                            <h4> <strong>{{ content.position.title }}</strong></h4>
-                            <h5> {{ content.company.title }}</h5>
-                            <h5>Expected Salary: ${{ content.expected_salary }}</h5>
-                            <div class="p-1 d-flex flex-row">
-                                {% for field in content.interests %}
-                                    <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
-                                {% endfor %}
+                        <form class="jobs job-div p-2 d-flex flex-row align-items-center border-bottom" method="POST">
+                            {% csrf_token %}
+                            <input class="d-none" name="selected_job" value={{ content.id }}>
+                            <div class="w-100 h-100 d-flex flex-column">
+                                <h4> <strong>{{ content.position.title }}</strong></h4>
+                                <h5> {{ content.company.title }}</h5>
+                                <h5>Expected Salary: ${{ content.expected_salary }}</h5>
+                                <div class="p-1 d-flex flex-row">
+                                    {% for field in content.interests %}
+                                        <h6 class="mr-1 btn alert-dark ">{{ field }}</h6>
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
+                            <button class="btn bookmark" type="submit" style="background: transparent;">
+                                {% if content.id in saved_jobs%}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                    </svg>
+                                {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg"  class="bi bi-bookmark" width="20" height="20" fill="currentColor"  viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                    </svg>
+                                {% endif %}
+                            </button>
+                        </form>
                     {% elif link_url == "/success-stories/" %}
                         <div class="jobs p-2 d-flex flex-column border-bottom job-div">
                             <h4><strong>{{ content.user }}</strong></h4>
                             <h5 class="mb-3"> {{ content.story }}</h5>
                             <div class="p-1 d-flex flex-row">
                                 {% for field in content.interests %}
-                                    <h6 class="mr-1 btn btn-info ">{{ field }}</h6>
+                                    <h6 class="mr-1 btn alert-info ">{{ field }}</h6>
                                 {% endfor %}
                             </div>
                         </div>
                     {%  endif %}
                 {% endfor %}
-            </div>
+           </div>
         {% endblock %}
     </div>
 {% endblock %}
