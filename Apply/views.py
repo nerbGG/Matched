@@ -40,12 +40,15 @@ def deactivate_user(user):
 
 def home(request):
     # getting the recommended jobs
-    matched_jobs = []
-    for job in Jobs.objects.all():
-        matches = contains(job.interests, request.user.profile.interests)
-        if matches is True:
-            matched_jobs.append(job)
-    return render(request, "home.html", {"jobs": matched_jobs})
+    if request.user.is_authenticated:
+        matched_jobs = []
+        for job in Jobs.objects.all():
+            matches = contains(job.interests, request.user.profile.interests)
+            if matches is True:
+                matched_jobs.append(job)
+        return render(request, "home.html", {"jobs": matched_jobs})
+    else:
+        return render(request, "home.html", {"message": "Please Login"})
 
 
 def register_view(request):
