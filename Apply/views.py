@@ -38,10 +38,14 @@ def deactivate_user(user):
     user.save()
 
 
-# def home(request):
-#     user = User.objects.get(id=request.user.id)
-#     profile_pic = Profile.objects.get(user=user).profile_pic
-#     return render(request, "base.html", {"profile_pic": profile_pic})
+def home(request):
+    # getting the recommended jobs
+    matched_jobs = []
+    for job in Jobs.objects.all():
+        matches = contains(job.interests, request.user.profile.interests)
+        if matches is True:
+            matched_jobs.append(job)
+    return render(request, "home.html", {"jobs": matched_jobs})
 
 
 def register_view(request):
