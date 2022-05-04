@@ -1,10 +1,12 @@
 fields = [('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
           ('fin', 'Finance'), ('bus', 'Business')]
 education_choices = [
-        ("hs", "High School"),
-        ("ud", "Undergrad"),
-        ("gd", "graduate")
-    ]
+    ("hs", "High School"),
+    ("ud", "Undergrad"),
+    ("gd", "graduate")
+]
+salary_options = [50000, 75000, 100000, 150000, 175000, 200000, 250000, 805000]
+
 jobs = [
     {
         "company": "BitSight",
@@ -270,34 +272,6 @@ jobs = [
 
     },
 ]
-education = [
-    {
-        "title": "Bachelors in Computer Science",
-        "school": "Boston College",
-        "tution": 35000,
-        "interests": ["tech"]
-    },
-    {
-        "title": "Associates in Business Management",
-        "school": "Boston College",
-        "tution": 35000,
-        "interests": ["bus"]
-    },
-    {
-        "title": "Associates in Arts",
-        "school": "Boston College",
-        "tution": 35000,
-        "interests": ["art"]
-    },
-    {
-        "title": "Associates in Health Care Management",
-        "school": "Boston College",
-        "tution": 54000,
-        "interests": ["bio"]
-    },
-
-
-]
 groups = [
     {
         "name":"jobSeeker"
@@ -399,6 +373,4 @@ users = [
     },
 
 ]
-
-
 

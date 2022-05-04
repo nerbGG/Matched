@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}
+    Job
+{% endblock %}
+{% block content %}
+<div class="w-100 h-100 shadow p-3" style="overflow:auto;">
+<form class=" p-2 d-flex flex-row align-items-center border-bottom" method="POST">
+    {% csrf_token %}
+    <input class="d-none" name="selected_job" value={{ job.id }}>
+    <div class="w-100 h-100 d-flex flex-column">
+        <h4>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+              <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            <strong>{{ job.position.title }}</strong>
+        </h4>
+        <h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+              <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+            </svg>
+            Company:
+            {{ job.company.title }}
+        </h5>
+        <h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+            </svg>
+            Expected Salary: ${{ job.expected_salary }}
+        </h5>
+        <div class="p-1 d-flex flex-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+              <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+              <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+            </svg>
+            {% for field in job.interests %}
+                <h6 class="ml-2 mr-1 btn alert-info ">{{ field }}</h6>
+            {% endfor %}
+        </div>
+    </div>
+    <button class="btn bookmark" type="submit" style="background: transparent;">
+{#                            with this approach, checking if the job is a saved job is O(n), better than checking each saved job which would be O(N^2)#}
+        {% if job.id in saved_jobs%}
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-bookmark-check-fill" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+            </svg>
+        {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg"  class="bi bi-bookmark" width="20" height="20" fill="currentColor"  viewBox="0 0 16 16">
+                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+            </svg>
+        {% endif %}
+    </button>
+    </form>
+    <div class="w-75 p-3">
+        <h2>Description</h2>
+        <h4>
+            {{ job.description }}
+            <br>
+            <br>
+            {{ job.description }}
+        </h4>
+    </div>
+    <div class="w-100 p-2 d-flex ">
+        {% if previous_page == "home"%}
+            <a class="btn shadow-sm alert-warning bold-link" href="/">Return to Jobs Page</a>
+        {% elif previous_page %}
+            <a class="btn shadow-sm alert-warning bold-link" href="/jobs/{{ previous_page }}">Return to Jobs Page</a>
+        {% else %}
+           <a class="btn shadow-sm alert-warning bold-link" href="/jobs/">Return to Jobs Page</a>
+        {% endif %}
+        <div class="w-75 d-flex justify-content-end">
+                <a class="btn shadow-sm alert-primary bold-link" href="#">Submit Resume</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

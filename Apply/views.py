@@ -22,7 +22,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
-from .constant_variables import fields, education_choices
+from .constant_variables import fields, education_choices, salary_options
 from json import dumps
 
 logger = logging.getLogger(__name__)
@@ -38,10 +38,17 @@ def deactivate_user(user):
     user.save()
 
 
-# def home(request):
-#     user = User.objects.get(id=request.user.id)
-#     profile_pic = Profile.objects.get(user=user).profile_pic
-#     return render(request, "base.html", {"profile_pic": profile_pic})
+def home(request):
+    # getting the recommended jobs
+    if request.user.is_authenticated:
+        matched_jobs = []
+        for job in Jobs.objects.all():
+            matches = contains(job.interests, request.user.profile.interests)
+            if matches is True:
+                matched_jobs.append(job)
+        return render(request, "home.html", {"jobs": matched_jobs})
+    else:
+        return render(request, "home.html", {"message": "Please Login"})
 
 
 def register_view(request):
@@ -149,7 +156,6 @@ def profile(request, username):
     if request.user.is_authenticated:
         user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
-            # birth_date = request.POST['birthday']
             try:
                 profile_pic = request.FILES['profile_pic']
             except:
@@ -179,6 +185,8 @@ def profile(request, username):
                     "resume": resume,
                     "interests": tags
                 }, )
+            url = "/profile/" + user.username
+            return redirect(url)
         form = FileUploadForm()
         fields_json = dumps(fields)
         user_interests_json = dumps(user.profile.interests)
@@ -253,13 +261,16 @@ def all_jobs_view(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
+            return redirect("/jobs/")
         jobs = Jobs.objects.all()
         saved_jobs_dict = get_saved_jobs(request)
+
         return render(request, "content.html", {"fields": fields,
                                                 "contents": jobs,
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
-                                                "active": "all"})
+                                                "active": "all",
+                                                "salary_options": salary_options, })
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
@@ -270,6 +281,8 @@ def filtered_jobs(request, selected_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
+            url = "/jobs/" + selected_filter
+            return redirect(url)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
         matched_jobs = []
@@ -282,7 +295,8 @@ def filtered_jobs(request, selected_filter):
                                                         "contents": user.profile.saved_jobs.all(),
                                                         "saved_jobs": saved_jobs_dict,
                                                         "link_url": "/jobs/",
-                                                        "active": selected_filter})
+                                                        "active": selected_filter,
+                                                        "salary_options": salary_options, })
             else:
                 matches = contains_string(job.interests, selected_filter)
             if matches is True:
@@ -291,7 +305,8 @@ def filtered_jobs(request, selected_filter):
                                                 "contents": matched_jobs,
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
-                                                "active": selected_filter})
+                                                "active": selected_filter,
+                                                "salary_options": salary_options, })
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
@@ -310,24 +325,34 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
+            url = "/jobs/" + selected_filter + "/" + salary_filter
+            return redirect(url)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
         matched_jobs = []
         saved_jobs_dict = get_saved_jobs(request)
         if selected_filter == "saved":
             salary_filtered = filter_by_salary(request, user.profile.saved_jobs.all(), salary_filter)
-            return render(request, "content.html", {"fields": fields,
-                                                "contents": salary_filtered,
-                                                "saved_jobs": saved_jobs_dict,
-                                                "link_url": "/jobs/",
-                                                "active": selected_filter})
+            return render(request, "content.html", {
+                "fields": fields,
+                "contents": salary_filtered,
+                "saved_jobs": saved_jobs_dict,
+                "link_url": "/jobs/",
+                "active": selected_filter,
+                "salary_filter": int(salary_filter),
+                "salary_options": salary_options,
+            })
         elif selected_filter == "all":
             salary_filtered = filter_by_salary(request, Jobs.objects.all(), salary_filter)
-            return render(request, "content.html", {"fields": fields,
-                                                    "contents": salary_filtered,
-                                                    "saved_jobs": saved_jobs_dict,
-                                                    "link_url": "/jobs/",
-                                                    "active": selected_filter})
+            return render(request, "content.html", {
+                "fields": fields,
+                "contents": salary_filtered,
+                "saved_jobs": saved_jobs_dict,
+                "link_url": "/jobs/",
+                "active": selected_filter,
+                "salary_filter": int(salary_filter),
+                "salary_options": salary_options,
+            })
         else:
             for job in Jobs.objects.all():
                 if selected_filter == "recommended":
@@ -338,13 +363,29 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
                     matched_jobs.append(job)
             salary_filtered = filter_by_salary(request, matched_jobs, salary_filter)
             return render(request, "content.html", {"fields": fields,
-                                                "contents": salary_filtered,
-                                                "saved_jobs": saved_jobs_dict,
-                                                "link_url": "/jobs/",
-                                                "active": selected_filter})
+                                                    "contents": salary_filtered,
+                                                    "saved_jobs": saved_jobs_dict,
+                                                    "link_url": "/jobs/",
+                                                    "active": selected_filter,
+                                                    "salary_filter": int(salary_filter),
+                                                    "salary_options": salary_options,
+                                                    })
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
+
+
+def job_view(request, previous_page, job_id):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            save_or_remove_job(request)
+        job = Jobs.objects.get(id=job_id)
+        saved_jobs = get_saved_jobs(request)
+        if previous_page == "all":
+            return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs, })
+        return render(request, "job.html", {"job": job, "previous_page": previous_page, "saved_jobs": saved_jobs, })
+    else:
+        return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
 
 
 def get_stories():
