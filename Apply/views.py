@@ -260,7 +260,7 @@ def all_jobs_view(request):
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
                                                 "active": "all",
-                                                "salary_options":salary_options,})
+                                                "salary_options": salary_options, })
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
@@ -284,7 +284,7 @@ def filtered_jobs(request, selected_filter):
                                                         "saved_jobs": saved_jobs_dict,
                                                         "link_url": "/jobs/",
                                                         "active": selected_filter,
-                                                        "salary_options":salary_options,})
+                                                        "salary_options": salary_options, })
             else:
                 matches = contains_string(job.interests, selected_filter)
             if matches is True:
@@ -294,7 +294,7 @@ def filtered_jobs(request, selected_filter):
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
                                                 "active": selected_filter,
-                                                "salary_options":salary_options,})
+                                                "salary_options": salary_options, })
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
@@ -320,25 +320,25 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
         if selected_filter == "saved":
             salary_filtered = filter_by_salary(request, user.profile.saved_jobs.all(), salary_filter)
             return render(request, "content.html", {
-                                                    "fields": fields,
-                                                    "contents": salary_filtered,
-                                                    "saved_jobs": saved_jobs_dict,
-                                                    "link_url": "/jobs/",
-                                                    "active": selected_filter,
-                                                    "salary_filter" : int(salary_filter),
-                                                    "salary_options": salary_options,
-                                                    })
+                "fields": fields,
+                "contents": salary_filtered,
+                "saved_jobs": saved_jobs_dict,
+                "link_url": "/jobs/",
+                "active": selected_filter,
+                "salary_filter": int(salary_filter),
+                "salary_options": salary_options,
+            })
         elif selected_filter == "all":
             salary_filtered = filter_by_salary(request, Jobs.objects.all(), salary_filter)
             return render(request, "content.html", {
-                                                    "fields": fields,
-                                                    "contents": salary_filtered,
-                                                    "saved_jobs": saved_jobs_dict,
-                                                    "link_url": "/jobs/",
-                                                    "active": selected_filter,
-                                                    "salary_filter": int(salary_filter),
-                                                    "salary_options": salary_options,
-                                                    })
+                "fields": fields,
+                "contents": salary_filtered,
+                "saved_jobs": saved_jobs_dict,
+                "link_url": "/jobs/",
+                "active": selected_filter,
+                "salary_filter": int(salary_filter),
+                "salary_options": salary_options,
+            })
         else:
             for job in Jobs.objects.all():
                 if selected_filter == "recommended":
@@ -349,17 +349,27 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
                     matched_jobs.append(job)
             salary_filtered = filter_by_salary(request, matched_jobs, salary_filter)
             return render(request, "content.html", {"fields": fields,
-                                                "contents": salary_filtered,
-                                                "saved_jobs": saved_jobs_dict,
-                                                "link_url": "/jobs/",
-                                                "active": selected_filter,
-                                                "salary_filter": int(salary_filter),
-                                                "salary_options": salary_options,
-                                                })
+                                                    "contents": salary_filtered,
+                                                    "saved_jobs": saved_jobs_dict,
+                                                    "link_url": "/jobs/",
+                                                    "active": selected_filter,
+                                                    "salary_filter": int(salary_filter),
+                                                    "salary_options": salary_options,
+                                                    })
     else:
         message = "You need to be logged in to access the jobs page"
         return render(request, "home.html", {"message": message})
 
+
+def job_view(request, job_id):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            save_or_remove_job(request)
+        job = Jobs.objects.get(id=job_id)
+        saved_jobs = get_saved_jobs(request)
+        return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs,})
+    else:
+        return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
 
 def get_stories():
     story_list = []
