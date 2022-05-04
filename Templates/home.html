@@ -11,7 +11,7 @@
 {#        Logout#}
 {#    </a>#}
     <div class="w-100 h-100 d-flex flex-row flex-wrap justify-content-between ">
-        <div class=" rounded shadow p-2 mb-2" style="width:49%; height: 50%; overflow: hidden;">
+        <div class="bg-light shadow dashboard-item rounded p-2 mb-2" style="width:49.5%; height: 50%; overflow: hidden;">
             <a class="btn btn-light bold-link w-100" href="/jobs/recommended/"><h5 class="w-100 text-center">Recommended Jobs</h5> </a>
             <div class="mt-2 w-100 h-100 pb-0" style="overflow: auto;">
                 {% for job in jobs %}
@@ -50,15 +50,28 @@
                 {% endfor %}
             </div>
         </div>
-        <div class=" rounded shadow" style="width:49%; height: 50%; overflow: hidden;">
+        <div class="dashboard-item bg-light shadow rounded" style="width:49.5%; height: 50%; overflow: hidden;">
             <h5>Recommended Success Stories</h5>
         </div>
-        <div class=" rounded shadow "style="width:49%; height: 50%; overflow: hidden;">
+        <div class="dashboard-item bg-light shadow rounded"style="width:49%; height: 50%; overflow: hidden;">
             <h5>Recommended Education</h5>
         </div>
     </div>
 {%else%}
     <a class="bold-link" href="/accounts/login/">login</a>
 {%endif%}
+<script>
+    items= Array.from(document.getElementsByClassName("dashboard-item"));
+    items.forEach(item =>{
+        item.addEventListener("mouseenter", function (event){
+            item.classList.remove("bg-light");
+            item.classList.add("shadow-lg");
+        })
+        item.addEventListener("mouseleave", function (event){
+            item.classList.add("bg-light");
+            item.classList.remove("shadow-lg");
 
+        })
+    })
+</script>
 {% endblock %}
