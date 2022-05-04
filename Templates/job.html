@@ -62,7 +62,9 @@
         </h4>
     </div>
     <div class="w-100 p-2 d-flex ">
-        {% if previous_page %}
+        {% if previous_page == "home"%}
+            <a class="btn shadow-sm alert-warning bold-link" href="/">Return to Jobs Page</a>
+        {% elif previous_page %}
             <a class="btn shadow-sm alert-warning bold-link" href="/jobs/{{ previous_page }}">Return to Jobs Page</a>
         {% else %}
            <a class="btn shadow-sm alert-warning bold-link" href="/jobs/">Return to Jobs Page</a>
