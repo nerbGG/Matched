@@ -149,7 +149,6 @@ def profile(request, username):
     if request.user.is_authenticated:
         user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
-            # birth_date = request.POST['birthday']
             try:
                 profile_pic = request.FILES['profile_pic']
             except:
@@ -179,6 +178,8 @@ def profile(request, username):
                     "resume": resume,
                     "interests": tags
                 }, )
+            url = "/profile/"+user.username
+            return redirect(url)
         form = FileUploadForm()
         fields_json = dumps(fields)
         user_interests_json = dumps(user.profile.interests)
@@ -253,8 +254,10 @@ def all_jobs_view(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
+            return redirect("/jobs/")
         jobs = Jobs.objects.all()
         saved_jobs_dict = get_saved_jobs(request)
+
         return render(request, "content.html", {"fields": fields,
                                                 "contents": jobs,
                                                 "saved_jobs": saved_jobs_dict,
@@ -271,6 +274,8 @@ def filtered_jobs(request, selected_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
+            url = "/jobs/"+selected_filter
+            return redirect(url)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
         matched_jobs = []
@@ -313,6 +318,8 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
+            url = "/jobs/" + selected_filter+"/"+salary_filter
+            return redirect(url)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
         matched_jobs = []
@@ -367,9 +374,10 @@ def job_view(request, job_id):
             save_or_remove_job(request)
         job = Jobs.objects.get(id=job_id)
         saved_jobs = get_saved_jobs(request)
-        return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs,})
+        return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs, })
     else:
         return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
+
 
 def get_stories():
     story_list = []
