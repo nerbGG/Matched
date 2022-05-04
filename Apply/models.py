@@ -36,6 +36,17 @@ class Jobs(models.Model):
         return "%s job" % self.position
 
 
+class Education(models.Model):
+    title = models.CharField(max_length=100, blank=False)
+    school = models.CharField(max_length=200, blank=False)
+    expected_tution = models.IntegerField(blank=False)
+    interest_choices = fields
+    interests = MultiSelectField(choices=interest_choices, blank=True)
+
+    def __str__(self):
+        return "% s" % self.title
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # birth_date = models.DateField(blank=True, null=True)
