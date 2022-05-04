@@ -78,7 +78,7 @@ a:hover{
      height:50px;
     /*text-decoration: none;*/
 }
-. :hover{
+.link-container:hover{
     cursor: pointer;
     border-bottom: 1px solid black;
     font-size: large;
