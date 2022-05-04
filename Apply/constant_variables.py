@@ -1,17 +1,19 @@
 fields = [('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
           ('fin', 'Finance'), ('bus', 'Business')]
 education_choices = [
-        ("hs", "High School"),
-        ("ud", "Undergrad"),
-        ("gd", "graduate")
-    ]
+    ("hs", "High School"),
+    ("ud", "Undergrad"),
+    ("gd", "graduate")
+]
+salary_options = [50000, 75000, 100000, 150000, 175000, 200000, 250000, 805000]
+
 jobs = [
     {
         "company": "BitSight",
         "position": "Entry Software Engineer",
         "salary": 100000,
         "interests": ["tech"],
-        "descriptions":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
     },
     {
         "company": "Brigham and Women's",
@@ -272,11 +274,11 @@ jobs = [
 ]
 groups = [
     {
-        "name":"jobSeeker"
+        "name": "jobSeeker"
     },
     {
-        "name":"employer"
-     },
+        "name": "employer"
+    },
 ]
 users = [
     {
@@ -371,4 +373,3 @@ users = [
     },
 
 ]
-

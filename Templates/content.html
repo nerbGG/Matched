@@ -31,14 +31,21 @@
                 </a>
                 <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
                     <label class="text-center w-100">Greater Than</label>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/50000">$50,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/75000">$75,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/100000">$100,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/150000">$150,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/175000">$175,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/200000">$200,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/250000">$250,000</a>
-                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/805000">$805,000</a>
+                        {% for option in salary_options %}
+                            {% if option == salary_filter %}
+                                <a class="dropdown-item text-center bg-dark text-light" href="/jobs/{{ active }}/{{ option }}">{{ option }}</a>
+                            {% else %}
+                                <a class="dropdown-item text-center bg-light" href="/jobs/{{ active }}/{{ option }}">{{ option }}</a>
+                            {% endif %}
+                        {% endfor %}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/50000">$50,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/75000">$75,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/100000">$100,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/150000">$150,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/175000">$175,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/200000">$200,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/250000">$250,000</a>#}
+{#                    <a class="dropdown-item text-center" href="/jobs/{{ active }}/805000">$805,000</a>#}
                 </div>
                 <a href="{{ link_url }}recommended">
                     {% if active == "recommended" %}
