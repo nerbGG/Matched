@@ -178,7 +178,7 @@ def profile(request, username):
                     "resume": resume,
                     "interests": tags
                 }, )
-            url = "/profile/"+user.username
+            url = "/profile/" + user.username
             return redirect(url)
         form = FileUploadForm()
         fields_json = dumps(fields)
@@ -274,7 +274,7 @@ def filtered_jobs(request, selected_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
-            url = "/jobs/"+selected_filter
+            url = "/jobs/" + selected_filter
             return redirect(url)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
@@ -318,7 +318,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
-            url = "/jobs/" + selected_filter+"/"+salary_filter
+            url = "/jobs/" + selected_filter + "/" + salary_filter
             return redirect(url)
         user = User.objects.get(username=request.user.username)
         user_intrest = user.profile.interests
@@ -368,13 +368,15 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
         return render(request, "home.html", {"message": message})
 
 
-def job_view(request, job_id):
+def job_view(request, previous_page, job_id):
     if request.user.is_authenticated:
         if request.method == "POST":
             save_or_remove_job(request)
         job = Jobs.objects.get(id=job_id)
         saved_jobs = get_saved_jobs(request)
-        return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs, })
+        if previous_page == "all":
+            return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs, })
+        return render(request, "job.html", {"job": job, "previous_page": previous_page, "saved_jobs": saved_jobs, })
     else:
         return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
 

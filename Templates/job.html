@@ -62,7 +62,11 @@
         </h4>
     </div>
     <div class="w-100 p-2 d-flex ">
-        <a class="btn shadow-sm alert-warning bold-link" href="/jobs/">Return to Jobs Page</a>
+        {% if previous_page %}
+            <a class="btn shadow-sm alert-warning bold-link" href="/jobs/{{ previous_page }}">Return to Jobs Page</a>
+        {% else %}
+           <a class="btn shadow-sm alert-warning bold-link" href="/jobs/">Return to Jobs Page</a>
+        {% endif %}
     </div>
 
 </div>

@@ -29,7 +29,7 @@ urlpatterns = [
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
     # path("profile/<username>/<edit>/", apply_views.create_profile, name="FileUploadView"),
     path("jobs/", apply_views.all_jobs_view),
-    path("job/<job_id>/", apply_views.job_view),
+    path("job/<previous_page>/<job_id>/", apply_views.job_view),
     path("resume/", apply_views.test),
     path("story/<username>", apply_views.story_view, name="successStoryView"),
     path("success-stories/", apply_views.all_success_stories, name="allTheUsersSuccessStories"),
