@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from Apply.models import Profile, Jobs
+from Apply.models import Profile, Jobs, Education
 from Apply.constants import ActionNames
 from Apply.form import RegistrationForm, loginForm, FileUploadForm, SuccessStoryForm
 from Apply.utils import token_generator
@@ -427,6 +427,45 @@ def filtered_success_stories(request, selected_filter):
         return render(request, "content.html", {"fields": fields, "contents": stories,
                                                 "link_url": "/success-stories/",
                                                 "active": selected_filter}, )
+    else:
+        message = "You need to be logged in to access the stories"
+        return render(request, "home.html", {"message": message})
+
+
+def get_education():
+    edu_list = []
+    for edu in Education.objects.all():
+        edu_list.append(edu)
+    return edu_list
+
+
+def all_education(request):
+    if request.user.is_authenticated:
+        # l = list(Profile.objects.all().values_list('success_story', flat=True))
+        edu_list = get_education()
+        return render(request, "content.html", {"fields": fields, "contents": edu_list,
+                                                "link_url": "/education/",
+                                                "active": "all", })
+    else:
+        message = "You need to be logged in to access the education"
+        return render(request, "home.html", {"message": message})
+
+
+def recommended_education(request, selected_filter):
+    if request.user.is_authenticated:
+        edu_list = get_education()
+        user_intrest = Profile.objects.get(user=request.user).interests
+        edu_filter_list = []
+        for edu in edu_list:
+            if selected_filter == "recommended":
+                matches = contains(edu.interests, user_intrest)
+            else:
+                matches = contains_string(edu.interests, selected_filter)
+            if matches is True:
+                edu_filter_list.append(edu)
+        return render(request, "content.html", {"fields": fields, "contents": edu_filter_list,
+                                                "link_url": "/education/",
+                                                "active": selected_filter})
     else:
         message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})
