@@ -42,7 +42,7 @@ def create_jobs():
         new_job.save()
 
 
-def creat_eduaction():
+def create_education():
     edu_to_delete = Education.objects.all()
     edu_to_delete.delete()
     for edu in education:
@@ -87,4 +87,4 @@ def run():
     create_jobs()
     create_users()
     create_groups()
-    creat_eduaction()
+    create_education()
