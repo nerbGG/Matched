@@ -152,9 +152,11 @@ def verification_view(request, uidb64, token):
     # return redirect(redirect_link)
 
 
-def profile(request, username):
+def profile_view(request, username):
     if request.user.is_authenticated:
-        user = User.objects.get(id=request.user.id)
+        # this should allow users to search for other users
+        user = User.objects.get(username=username)
+        # user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
             try:
                 profile_pic = request.FILES['profile_pic']
@@ -190,7 +192,9 @@ def profile(request, username):
         form = FileUploadForm()
         fields_json = dumps(fields)
         user_interests_json = dumps(user.profile.interests)
-        return render(request, "profile.html", {"user_interests": user_interests_json,
+        return render(request, "profile.html", {
+                                                "profile_user":user,
+                                                "user_interests": user_interests_json,
                                                 "fields": fields_json,
                                                 "education_choices": education_choices,
                                                 "form": form,

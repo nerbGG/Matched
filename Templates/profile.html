@@ -8,18 +8,18 @@
             {% csrf_token %}
             <div id="profile-container">
                 <div id="img-div" class="border-right d-flex flex-column justify-content-center align-items-center">
-                    {%if user.profile.profile_pic %}
-                        <img class="rounded-circle border border-dark" src="https://matched-umb.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="150" width="150">
+                    {%if profile_user.profile.profile_pic %}
+                        <img class="rounded-circle border border-dark" src="https://matched-umb.s3.amazonaws.com/media/{{ profile_user.profile.profile_pic}}" height="150" width="150">
                     {% else %}
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">
                           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                           <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg>
                     {% endif %}
-                    <strong>{{ user.username }}</strong>
+                    <strong>{{ profile_user.username }}</strong>
 {#                    <p class="text-muted">Last login: {{ user.last_login }}</p>#}
-                    <p class="text-muted">Date Joined: {{ user.date_joined }}</p>
-                    <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2" href="/story/{{ user.username }}">
+                    <p class="text-muted">Date Joined: {{ profile_user.date_joined }}</p>
+                    <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2" href="/story/{{ profile_user.username }}">
                         View Success Story
                     </a>
                     <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2 mt-2" href="/jobs/saved/">
@@ -32,21 +32,21 @@
                        <div class="w-100 mb-3 d-flex flex-row justify-content-between">
                             <div class="d-flex flex-column" style="width: 45%;">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" value="{{ user.first_name }}" name="first_name">
+                                <input class="form-control" type="text" value="{{ profile_user.first_name }}" name="first_name">
                             </div>
                            <div class="d-flex flex-column" style="width: 45%;">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" value="{{ user.last_name }}" name="last_name">
+                                <input class="form-control" type="text" value="{{ profile_user.last_name }}" name="last_name">
                             </div>
                        </div>
                     </div>
                     <div class="w-100 mb-3 d-flex flex-column" >
                         <label>Username</label>
-                        <input class="form-control" type="text" value="{{ user.username }}" name="username">
+                        <input class="form-control" type="text" value="{{ profile_user.username }}" name="username">
                     </div>
                     <div class="w-100  mb-3 d-flex flex-column" >
                         <label>Email</label>
-                        <input class="form-control" type="text" value="{{ user.email }}" name="username">
+                        <input class="form-control" type="text" value="{{ profile_user.email }}" name="username">
                     </div>
 {#                    <div class="w-100 mb-3 d-flex flex-column" >#}
 {#                        <label>Date of birth</label>#}
@@ -54,13 +54,13 @@
 {#                    </div>#}
                     <div class="w-100 mb-3 d-flex flex-column" >
                         <label>Sport</label>
-                        <input class="form-control" type="text" value="{{ user.profile.sport }}" name="sport">
+                        <input class="form-control" type="text" value="{{ profile_user.profile.sport }}" name="sport">
                     </div>
                     <div class="w-100 mb-3 d-flex flex-column" style="width: 45%;">
                         <label for="education">Education</label>
                         <select id="education" name="education" class="form-control form-select">
                           {% for ed in education_choices %}
-                            {% if ed.0 == user.profile.education %}
+                            {% if ed.0 == profile_user.profile.education %}
                                  <option value={{ ed.0 }} selected>{{ ed.1 }}</option>
                             {% else %}
                                 <option value={{ ed.0 }}>{{ ed.1 }}</option>
@@ -76,15 +76,17 @@
                     </div>
                     <div class="w-100 mb-3 d-flex flex-column justify-content-between">
                         <label>Resume</label>
-                        <a class="form-control" href="https://matched-umb.s3.amazonaws.com/media/{{ user.profile.resume }}"target="_blank"
+                        <a class="form-control" href="https://matched-umb.s3.amazonaws.com/media/{{ profile_user.profile.resume }}"target="_blank"
                             style="overflow: hidden;">
-                            {{user.profile.resume}}
+                            {{profile_user.profile.resume}}
                         </a>
                     </div>
                 </div>
+{#                this should stop opeple from being able to chnage other user's data#}
+                {% if profile_user.id == user.id %}
                 <div id="upload-section" class="pr-0 d-flex flex-column" >
                     <h5>Upload Files</h5>
-                    <form action="/profile/{{ user.username }}/" method="POST"  enctype ="multipart/form-data">
+                    <form action="/profile/{{ profile_user.username }}/" method="POST"  enctype ="multipart/form-data">
                          {% csrf_token %}
                         {{ form | crispy}}
                         <div class ="w-100 h-75 d-flex justify-content-end align-items-end">
@@ -92,6 +94,7 @@
                         </div>
                     </form>
                 </div>
+                {% endif %}
             </div>
         </form>
     </div>
