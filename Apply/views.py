@@ -388,12 +388,12 @@ def job_view(request, previous_page, job_id):
         return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
 
 
-def get_stories():
+def get_stories(request):
     story_list = []
     profile_list = Profile.objects.all()
     for profile in profile_list:
         if not profile.success_story == "":
-            story = {"user": {"firstname": profile.user.first_name, "lastname": profile.user.last_name},
+            story = {"user": profile.user,
                      "story": profile.success_story,
                      "interests": profile.interests}
             story_list.append(story)
@@ -403,7 +403,7 @@ def get_stories():
 def all_success_stories(request):
     if request.user.is_authenticated:
         # l = list(Profile.objects.all().values_list('success_story', flat=True))
-        story_list = get_stories()
+        story_list = get_stories(request)
         return render(request, "content.html", {"fields": fields, "contents": story_list,
                                                 "link_url": "/success-stories/",
                                                 "active": "all", })
@@ -414,7 +414,7 @@ def all_success_stories(request):
 
 def filtered_success_stories(request, selected_filter):
     if request.user.is_authenticated:
-        story_list = get_stories()
+        story_list = get_stories(request)
         user_intrest = Profile.objects.get(user=request.user).interests
         stories = []
         for story in story_list:
