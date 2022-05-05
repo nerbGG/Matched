@@ -30,6 +30,7 @@
                     <a class="nav-item nav-link mt-2 " href="#">User Links</a>
 {#                   <p class="m-0 p-0">job Seekers</p>#}
                   </div>
+                {% block jobs-link %}
                 <a class=" w-100 link-container bold-link hover ml-2 d-flex flex-row align-items-center  " href="/jobs/">
                     <div class="w-100d-flex flex-row align-items-center ">
                      <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-briefcase" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -37,15 +38,20 @@
                         Matched Jobs
                     </div>
                 </a>
+                {% endblock %}
+                {% block education-link %}
                 <a class="w-100 link-container bold-link hover ml-2 d-flex flex-row align-items-center "href="/education">
                     <div class="w-100d-flex flex-row align-items-center ">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-speedometer2" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
-                        <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-mortarboard" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z"/>
+                          <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
                         </svg>
                         Education
                     </div>
                 </a>
+                {% endblock %}
+                {% block stories-link %}
+
                 <a class="w-100 link-container bold-link hover ml-2 d-flex flex-row align-items-center " href="/success-stories/">
                     <div class="w-100d-flex flex-row align-items-center ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-book" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -54,6 +60,8 @@
                         Success Stories
                     </div>
                 </a>
+                {% endblock %}
+                {% block resources-link %}
                  <a class=" btn disabled w-100 link-container bold-link hover ml-2 d-flex flex-row align-items-center  " href="#">
                     <div class="w-100d-flex flex-row align-items-center ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-tools" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -62,6 +70,7 @@
                         Resources
                     </div>
                 </a>
+                {% endblock %}
                  <div class="d-flex flex-row link-section-text"  style="font-size: small">
                     <a class="nav-item nav-link mt-2 " href="#">Employer Links</a>
 {#                   <p class="m-0 p-0">job Seekers</p>#}

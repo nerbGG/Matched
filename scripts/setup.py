@@ -2,10 +2,9 @@
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myapp.settings")
 # django.setup()
 
-from Apply.models import Jobs, Education
+from Apply.models import Jobs, Education, Profile
 from Apply.constant_variables import jobs, groups, users, education
-from django.contrib.auth.models import User
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User, Group
 
 
 def remove_all_jobs():
@@ -72,16 +71,16 @@ def create_users():
         username = user["username"]
         email = user["email"]
         password = user["password1"]
-        password2 = user["password2"]
         position = user["position"]
         new_user = User(first_name=first_name, last_name=last_name, email=email, username=username)
-        new_user.set_password('password1')
+        new_user.set_password(password)
         new_user.save()
+        profile = Profile(user=new_user)
+        profile.save()
         group_name = position
         group = Group.objects.get(name=group_name)
         new_user.groups.add(group)
         new_user.is_active = True
-
 
 def run():
     create_jobs()

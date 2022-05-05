@@ -94,20 +94,20 @@ def login_view(request):
                 user = None
             if user is not None:
                 if not user.is_active:
-                    return render(request, "../templates/registration/login.html",
+                    return render(request, "registration/login.html",
                                   {"form": form, "message": not_active})
             user = authenticate(request, username=username, password=password)
-            user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
+            user_login = "Please enter a correct username and password. Note that both fields may be case-sensitive."
             if user is not None:
                 login(request, user)
                 return redirect("/")
                 # message = "Welcome back, "+user.first_name+"!"
                 # return render(request, "home.html", {"message":message})
             else:
-                return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
+                return render(request, "registration/login.html", {"form": form, "message": user_login})
         else:
             form = loginForm
-            return render(request, "../templates/registration/login.html", {"form": form})
+            return render(request, "registration/login.html", {"form": form})
     else:
         message = "You need to be logged out to access the login page"
         return render(request, "home.html", {"message": message})
