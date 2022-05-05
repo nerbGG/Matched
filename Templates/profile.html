@@ -19,12 +19,14 @@
                     <strong>{{ profile_user.username }}</strong>
 {#                    <p class="text-muted">Last login: {{ user.last_login }}</p>#}
                     <p class="text-muted">Date Joined: {{ profile_user.date_joined }}</p>
-                    <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2" href="/story/{{ profile_user.username }}">
-                        View Success Story
-                    </a>
-                    <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2 mt-2" href="/jobs/saved/">
-                        View saved Jobs
-                    </a>
+                     {% if profile_user.id == user.id %}
+                        <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2" href="/story/{{ profile_user.username }}">
+                            View Success Story
+                        </a>
+                        <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2 mt-2" href="/jobs/saved/">
+                            View saved Jobs
+                        </a>
+                    {% endif %}
                 </div>
                 <div id="profile-section" class="shadow border-right d-flex flex-column">
                     <h3 class="pb-3 mb-3 border-bottom font-weight-bold">Profile</h3>
