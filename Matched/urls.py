@@ -24,7 +24,7 @@ urlpatterns = [
     path('accounts/login/', apply_views.login_view),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", apply_views.home, name="home"),
-    path("profile/<username>/", apply_views.profile),
+    path("profile/<username>/", apply_views.profile_view),
     path("accounts/register/", apply_views.register_view),
     path("activate/<uidb64>/<token>", apply_views.verification_view, name="activate"),
     # path("profile/<username>/<edit>/", apply_views.create_profile, name="FileUploadView"),

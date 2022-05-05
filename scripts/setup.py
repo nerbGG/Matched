@@ -2,10 +2,9 @@
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myapp.settings")
 # django.setup()
 
-from Apply.models import Jobs, Education
+from Apply.models import Jobs, Education, Profile
 from Apply.constant_variables import jobs, groups, users, education
-from django.contrib.auth.models import User
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User, Group
 
 
 def remove_all_jobs():
@@ -72,16 +71,17 @@ def create_users():
         username = user["username"]
         email = user["email"]
         password = user["password1"]
-        password2 = user["password2"]
         position = user["position"]
         new_user = User(first_name=first_name, last_name=last_name, email=email, username=username)
-        new_user.set_password('password1')
+        new_user.set_password(password)
         new_user.save()
+        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis eleifend. Sed ullamcorper morbi tincidunt ornare massa eget egestas. Maecenas accumsan lacus vel facilisis volutpat est velit. Turpis egestas maecenas pharetra convallis. Duis tristique sollicitudin nibh sit amet. Sit amet mauris commodo quis. In iaculis nunc sed augue lacus viverra vitae congue. Sit amet cursus sit amet dictum sit amet justo donec. Mauris pharetra et ultrices neque ornare aenean euismod elementum nisi. Tristique et egestas quis ipsum suspendisse ultrices gravida dictum fusce. Ornare aenean euismod elementum nisi quis eleifend. Diam in arcu cursus euismod quis viverra. Nibh tellus molestie nunc non blandit massa enim nec. Nulla at volutpat diam ut. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Volutpat maecenas volutpat blandit aliquam. Id aliquet lectus proin nibh nisl condimentum. Neque ornare aenean euismod elementum. Aliquet lectus proin nibh nisl condimentum id. Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. Praesent tristique magna sit amet purus. Mi ipsum faucibus vitae aliquet nec ullamcorper sit.Eget nulla facilisi etiam dignissim. aliquam eleifend mi in nulla posuere. Turpis massa sed elementum tempus egestas sed sed risus pretium. Pellentesque sit amet porttitor eget dolor morbi. Ornare massa eget egestas purus."
+        profile = Profile(user=new_user, success_story=text)
+        profile.save()
         group_name = position
         group = Group.objects.get(name=group_name)
         new_user.groups.add(group)
         new_user.is_active = True
-
 
 def run():
     create_jobs()

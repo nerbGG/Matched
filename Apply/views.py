@@ -94,20 +94,20 @@ def login_view(request):
                 user = None
             if user is not None:
                 if not user.is_active:
-                    return render(request, "../templates/registration/login.html",
+                    return render(request, "registration/login.html",
                                   {"form": form, "message": not_active})
             user = authenticate(request, username=username, password=password)
-            user_login = " Please enter a correct username and password. Note that both fields may be case-sensitive."
+            user_login = "Please enter a correct username and password. Note that both fields may be case-sensitive."
             if user is not None:
                 login(request, user)
                 return redirect("/")
                 # message = "Welcome back, "+user.first_name+"!"
                 # return render(request, "home.html", {"message":message})
             else:
-                return render(request, "../templates/registration/login.html", {"form": form, "message": user_login})
+                return render(request, "registration/login.html", {"form": form, "message": user_login})
         else:
             form = loginForm
-            return render(request, "../templates/registration/login.html", {"form": form})
+            return render(request, "registration/login.html", {"form": form})
     else:
         message = "You need to be logged out to access the login page"
         return render(request, "home.html", {"message": message})
@@ -152,9 +152,11 @@ def verification_view(request, uidb64, token):
     # return redirect(redirect_link)
 
 
-def profile(request, username):
+def profile_view(request, username):
     if request.user.is_authenticated:
-        user = User.objects.get(id=request.user.id)
+        # this should allow users to search for other users
+        user = User.objects.get(username=username)
+        # user = User.objects.get(id=request.user.id)
         if request.method == 'POST':
             try:
                 profile_pic = request.FILES['profile_pic']
@@ -190,7 +192,9 @@ def profile(request, username):
         form = FileUploadForm()
         fields_json = dumps(fields)
         user_interests_json = dumps(user.profile.interests)
-        return render(request, "profile.html", {"user_interests": user_interests_json,
+        return render(request, "profile.html", {
+                                                "profile_user":user,
+                                                "user_interests": user_interests_json,
                                                 "fields": fields_json,
                                                 "education_choices": education_choices,
                                                 "form": form,
@@ -388,12 +392,12 @@ def job_view(request, previous_page, job_id):
         return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
 
 
-def get_stories():
+def get_stories(request):
     story_list = []
     profile_list = Profile.objects.all()
     for profile in profile_list:
         if not profile.success_story == "":
-            story = {"user": {"firstname": profile.user.first_name, "lastname": profile.user.last_name},
+            story = {"user": profile.user,
                      "story": profile.success_story,
                      "interests": profile.interests}
             story_list.append(story)
@@ -403,7 +407,7 @@ def get_stories():
 def all_success_stories(request):
     if request.user.is_authenticated:
         # l = list(Profile.objects.all().values_list('success_story', flat=True))
-        story_list = get_stories()
+        story_list = get_stories(request)
         return render(request, "content.html", {"fields": fields, "contents": story_list,
                                                 "link_url": "/success-stories/",
                                                 "active": "all", })
@@ -414,7 +418,7 @@ def all_success_stories(request):
 
 def filtered_success_stories(request, selected_filter):
     if request.user.is_authenticated:
-        story_list = get_stories()
+        story_list = get_stories(request)
         user_intrest = Profile.objects.get(user=request.user).interests
         stories = []
         for story in story_list:
