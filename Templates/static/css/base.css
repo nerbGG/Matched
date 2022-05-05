@@ -122,6 +122,9 @@ a:hover{
     /*align-items: center;*/
     /*justify-content-center align-items-center*/
 }
+.profile-link:hover{
+  border-bottom: 2px solid black;
+}
 #upload-section{
     /*w-25 h-100 p-2*/
     width: 25%;
