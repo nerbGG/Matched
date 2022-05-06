@@ -45,12 +45,12 @@ def create_education():
     edu_to_delete = Education.objects.all()
     edu_to_delete.delete()
     for edu in education:
-        title= edu["title"]
+        title = edu["title"]
         school = edu['school']
-        tution= edu['tution']
+        tution = edu['tution']
         interest = edu['interests']
 
-        new_education=  Education(title = title, school= school, expected_tution=tution, interests= interest)
+        new_education = Education(title=title, school=school, expected_tution=tution, interests=interest)
         new_education.save()
 
 
@@ -82,6 +82,7 @@ def create_users():
         group = Group.objects.get(name=group_name)
         new_user.groups.add(group)
         new_user.is_active = True
+
 
 def run():
     create_jobs()
