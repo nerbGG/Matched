@@ -70,7 +70,6 @@
         </a>
     {% endif %}
 {% endblock %}
-
 {% block search %}
     {% if link_url == "/jobs/" %}
         <input type="search" id="form1" class="form-control" placeholder= "Search Jobs..." >
@@ -79,10 +78,10 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-    <div class="w-100 h-100">
+    <div class="w-100 h-100" style="overflow:visible;">
         <div class="w-100 d-flex align-items-center border-bottom ">
             <div id="tags" class="w-100 d-flex flex-row "
-            style="overflow:auto">
+            style="height:10%;overflow:auto;">
                 <a href="{{link_url}}">
                     {% if active == "all" %}
                         <h5 class="btn btn-dark fields mr-3 filter">All</h5>
@@ -121,7 +120,6 @@
                         {% endif %}
                     </a>
                 {% endif %}
-
                 {% for field in fields %}
                     <a href="{{link_url}}{{ field.0 }}">
                         {% if active == field.0 %}
@@ -134,10 +132,10 @@
             </div>
         </div>
         {% block data %}
-           <div class="w-100 h-100 d-flex flex-column"style="overflow: auto;">
-                {% for content in contents %}
+           <div id="content" class="w-100 d-flex flex-column"style="height:90%; overflow:scroll;">
+               {% for content in contents %}
                     {% if link_url == "/jobs/" %}
-                        <form class="jobs job-div pl-2 p-2 d-flex flex-row align-items-center border-bottom" method="POST">
+                        <form id ={{ link_url }}{{ forloop.counter }} class="jobs job-div pl-2 p-2 d-flex flex-row align-items-center border-bottom" method="POST">
                             {% csrf_token %}
                             <input class="d-none" name="selected_job" value={{ content.id }}>
                             <div class="w-100 h-100 d-flex flex-column">
@@ -240,8 +238,14 @@
                         </div>
                     {%  endif %}
                 {% endfor %}
+           <a id="to-top" class="alert alert-warning color-black rounded" href="{{ link_url }}{{ forloop.counter }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+            </a>
            </div>
-
         {% endblock %}
     </div>
+    <script>
+    </script>
 {% endblock %}
