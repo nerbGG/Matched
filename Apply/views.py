@@ -193,12 +193,12 @@ def profile_view(request, username):
         fields_json = dumps(fields)
         user_interests_json = dumps(user.profile.interests)
         return render(request, "profile.html", {
-                                                "profile_user":user,
-                                                "user_interests": user_interests_json,
-                                                "fields": fields_json,
-                                                "education_choices": education_choices,
-                                                "form": form,
-                                                })
+            "profile_user": user,
+            "user_interests": user_interests_json,
+            "fields": fields_json,
+            "education_choices": education_choices,
+            "form": form,
+        })
     else:
         message = "You need to be logged in to access the profile page"
         return render(request, "home.html", {"message": message})
@@ -470,6 +470,14 @@ def recommended_education(request, selected_filter):
         return render(request, "content.html", {"fields": fields, "contents": edu_filter_list,
                                                 "link_url": "/education/",
                                                 "active": selected_filter})
+    else:
+        message = "You need to be logged in to access the stories"
+        return render(request, "home.html", {"message": message})
+
+
+def resources(request):
+    if request.user.is_authenticated:
+        return render(request, "resources.html", {})
     else:
         message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})
