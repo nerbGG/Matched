@@ -124,7 +124,7 @@
                     {% if user.is_authenticated %}
                         <div class="d-flex flex-row">
                             {%if user.profile.profile_pic %}
-                                <img class="rounded-circle border border-dark" src="https://matched-umb.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="40" width="40">
+                                <img class="rounded-circle" src="https://matched-umb.s3.amazonaws.com/media/{{ user.profile.profile_pic}}" height="40" width="40" style="border: 2px solid black;">
                             {% else %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle " viewBox="0 0 16 16">
                                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
