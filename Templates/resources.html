@@ -1,59 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <div class="container overflow-auto" >
-        <div class="row overflow-auto">
-            <div class="col-md-6 col-lg-5">
-                <div class="card">
-                    <a href="https://www.resume.com/" target="_blank">
-                    <img src="/static/images/resume-logo.png" class="card-img-top w-100 h-75">
-                    <div class="card-block">
-                        <h3 class="card-title">Resume Builder</h3>
-                        </a>
-                    </div>
+<div class="w-100 h-100 d-flex justify-content-center align-items-center " style="overflow: auto">
+    <div class="w-100 d-flex flex-column flex-md-row align-items-center justify-content-around " style="height:95%;">
+        <div class="card resource border p-2 bg-light mr-2 mb-2"
+             style="width:35%; min-width: 300px; height: 281px; min-height:281px;">
+            <a class ="w-100 h-100" href="https://www.resume.com/" target="_blank" style="text-decoration: none;">
+                <img src="/static/images/resume-logo.png" class="card-img-top w-100" style="height: 90%;">
+                <div class="card-block w-100 text-center">
+                    <h4 class="card-title">Resume Builder</h4>
                 </div>
-            </div>
-        <div class="col-md-6 col-lg-5">
-                <div class="card">
-                    <a href="https://zety.com/cover-letter-builder" target="_blank">
-                    <img src="/static/images/Cover Letter.png" class="card-img-top">
-                    <div class="card-block">
-                        <h3 class="card-title">Cover Letter Builder</h3>
-                        </a>
-                    </div>
+            </a>
+        </div>
+        <div class="card resource border p-2 bg-light mr-2 mb-2"
+             style="width:35%; min-width: 300px; height: 281px;min-height:281px;  ">
+            <a class ="w-100 h-100" href="https://zety.com/cover-letter-builder" target="_blank" style="text-decoration: none;">
+                <img src="/static/images/Cover Letter.png" class="card-img-top w-100" style="height: 90%;">
+                <div class="card-block w-100 text-center">
+                    <h4 class="card-title">Cover Letter</h4>
                 </div>
-            </div>
+            </a>
+        </div>
+    </div>
 </div>
+    <script>
+      items= Array.from(document.getElementsByClassName("resource"));
+    items.forEach(item =>{
+        item.addEventListener("mouseenter", function (event){
+            item.classList.remove("bg-light");
+            item.classList.add("shadow-lg");
+        })
+        item.addEventListener("mouseleave", function (event){
+            item.classList.add("bg-light");
+            item.classList.remove("shadow-lg");
 
-
-
-<!--<div>-->
-<!--     <div class="container2" >-->
-<!--        <div class="row overflow-auto">-->
-<!--            <div class="col-md-6 col-lg-5">-->
-<!--                <div class="card">-->
-<!--                    <a href="https://www.resume.com/" target="_blank">-->
-<!--                    <img src="/static/images/resume-logo.png" class="card-img-top">-->
-<!--                    <div class="card-block">-->
-<!--                        <h3 class="card-title">Resume Builder</h3>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        <div class="col-md-6 col-lg-5">-->
-<!--                <div class="card">-->
-<!--                    <a href="https://www.resume.com/" target="_blank">-->
-<!--                    <img src="/static/images/Cover Letter.png" class="card-img-top">-->
-<!--                    <div class="card-block">-->
-<!--                        <h3 class="card-title">Cover Letter Builder</h3>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-<!--    </div>-->
-
-
-
+        })
+    })
+    </script>
 {% endblock %}

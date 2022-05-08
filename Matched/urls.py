@@ -31,7 +31,7 @@ urlpatterns = [
     path("jobs/", apply_views.all_jobs_view),
     path("job/<previous_page>/<job_id>/", apply_views.job_view),
     path("resume/", apply_views.test),
-    path("education/<selected_filter>", apply_views.recommended_education),
+    path("education/<selected_filter>", apply_views.filtered_education),
     path("education/", apply_views.all_education),
     path("story/<username>", apply_views.story_view, name="successStoryView"),
     path("success-stories/", apply_views.all_success_stories, name="allTheUsersSuccessStories"),
