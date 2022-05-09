@@ -35,8 +35,9 @@ def create_jobs():
         position = job["position"]
         salary = job["salary"]
         interests = job["interests"]
+        locations = job["locations"]
         description = job["descriptions"]
-        new_job = Jobs(company=company, position=position, expected_salary=salary, interests=interests,
+        new_job = Jobs(company=company, position=position, expected_salary=salary, interests=interests,locations=locations,
                        description=description)
         new_job.save()
 
