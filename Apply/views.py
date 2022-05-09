@@ -484,7 +484,7 @@ def filtered_education(request, selected_filter):
 
 def resources(request):
     if request.user.is_authenticated:
-        return render(request, "resources.html")
+        return render(request, "resources.html", {"link_url":"/resources/"})
     else:
         message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})
