@@ -22,7 +22,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import Group
-from .constant_variables import fields, education_choices, salary_options
+from .constant_variables import fields, education_choices, salary_options, cities
 from json import dumps
 
 logger = logging.getLogger(__name__)
@@ -177,6 +177,7 @@ def profile_view(request, username):
             sport = request.POST['sport']
             user = User.objects.get(username=request.user.username)
             tags = request.POST.getlist("tags")
+            locations = request.POST.getlist("cities")
             profile = Profile.objects.update_or_create(
                 user=user,
                 defaults={
@@ -185,17 +186,22 @@ def profile_view(request, username):
                     "education": education,
                     "sport": sport,
                     "resume": resume,
-                    "interests": tags
+                    "interests": tags,
+                    "locations": locations,
                 }, )
             url = "/profile/" + user.username
             return redirect(url)
         form = FileUploadForm()
         fields_json = dumps(fields)
         user_interests_json = dumps(user.profile.interests)
+        all_cities_json = dumps(cities)
+        user_cities_json = dumps(user.profile.locations)
         return render(request, "profile.html", {
             "profile_user": user,
             "user_interests": user_interests_json,
             "fields": fields_json,
+            "all_cities": all_cities_json,
+            "user_locations": user_cities_json,
             "education_choices": education_choices,
             "form": form,
         })
@@ -270,6 +276,7 @@ def all_jobs_view(request):
         saved_jobs_dict = get_saved_jobs(request)
 
         return render(request, "content.html", {"fields": fields,
+                                                "cities": cities,
                                                 "contents": jobs,
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",

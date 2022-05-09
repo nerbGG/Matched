@@ -76,6 +76,12 @@
 
                         </div>
                     </div>
+                    <div class="p-2 w-100 mb-3 d-flex flex-row justify-content-between">
+                        <label class="w-50" name="cities" class="form-control">Preferred Locations</label>
+                        <div id="cities-div" class="w-50 form-group d-flex flex-column">
+
+                        </div>
+                    </div>
                     <div class="w-100 mb-3 d-flex flex-column justify-content-between">
                         <label>Resume</label>
                         <a class="form-control" href="https://matched-umb.s3.amazonaws.com/media/{{ profile_user.profile.resume }}"target="_blank"
@@ -101,37 +107,76 @@
         </form>
     </div>
     <script>
-        {#grabbing data from the view#}
-        let fields  =  JSON.parse("{{fields|escapejs}}");
-        let userInterests = JSON.parse("{{ user_interests|escapejs }}");
-        console.log(fields);
-        console.log(userInterests);
-        let fieldsdiv = document.getElementById("fields-div");
-        for(let i=0;i < fields.length;i++){
-            let checked = false
-            for(let z=0; z < userInterests.length;z++){
-                if(fields[i][0] == userInterests[z]){
-                    checked = true ;
-                    break;
+
+        function handleTags() {
+            {#grabbing data from the view#}
+            let fields = JSON.parse("{{fields|escapejs}}");
+            let userInterests = JSON.parse("{{ user_interests|escapejs }}");
+            console.log(fields);
+            console.log(userInterests);
+            let fieldsdiv = document.getElementById("fields-div");
+            for (let i = 0; i < fields.length; i++) {
+                let checked = false
+                for (let z = 0; z < userInterests.length; z++) {
+                    if (fields[i][0] == userInterests[z]) {
+                        checked = true;
+                        break;
+                    }
                 }
+                let input = document.createElement("input");
+                input.id = fields[i][0];
+                input.type = "checkbox";
+                input.name = "tags";
+                input.value = fields[i][0];
+                input.checked = checked;
+                input.classList.add("mr-1");
+
+                let label = document.createElement("label");
+                label.setAttribute("for", input.id);
+                label.innerHTML = fields[i][1];
+
+                let inputAndLabelDiv = document.createElement("div");
+                inputAndLabelDiv.appendChild(input);
+                inputAndLabelDiv.appendChild(label);
+
+                fieldsdiv.appendChild(inputAndLabelDiv);
             }
-            let input  = document.createElement("input");
-            input.id = fields[i][0];
-            input.type = "checkbox";
-            input.name = "tags";
-            input.value = fields[i][0];
-            input.checked = checked;
-            input.classList.add("mr-1");
-
-            let label = document.createElement("label");
-            label.setAttribute("for", input.id);
-            label.innerHTML = fields[i][1];
-
-            let inputAndLabelDiv = document.createElement("div");
-            inputAndLabelDiv.appendChild(input);
-            inputAndLabelDiv.appendChild(label);
-
-            fieldsdiv.appendChild(inputAndLabelDiv);
         }
+        function handleCities(){
+                {#getting the cities#}
+            let cities  =  JSON.parse("{{all_cities|escapejs}}");
+            let userCities = JSON.parse("{{ user_locations|escapejs }}");
+            console.log(cities);
+            console.log(userCities);
+            let citiesDiv = document.getElementById("cities-div");
+            for(let i=0;i < cities.length;i++) {
+                let checked = false
+                for (let z = 0; z < userCities.length; z++) {
+                    if (cities[i][0] == userCities[z]) {
+                        checked = true;
+                        break;
+                    }
+                }
+                let input = document.createElement("input");
+                input.id = cities[i][0];
+                input.type = "checkbox";
+                input.name = "cities";
+                input.value = cities[i][0];
+                input.checked = checked;
+                input.classList.add("mr-1");
+
+                let label = document.createElement("label");
+                label.setAttribute("for", input.id);
+                label.innerHTML = cities[i][1];
+
+                let inputAndLabelDiv = document.createElement("div");
+                inputAndLabelDiv.appendChild(input);
+                inputAndLabelDiv.appendChild(label);
+
+                citiesDiv.appendChild(inputAndLabelDiv);
+            }
+        }
+        handleTags();
+        handleCities();
     </script>
 {% endblock %}

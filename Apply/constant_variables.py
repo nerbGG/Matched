@@ -1,5 +1,8 @@
 fields = [('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
           ('fin', 'Finance'), ('bus', 'Business')]
+cities = [("bos", "Boston, MA"), ("ny", "New York, NY"), ("chic", "Chicago, IL"), ("phil", "Philadelphia, PA"),
+          ("hous", "Houston, TX"),
+          ("phnx", "Phoenix, AZ"), ("sea", "Seattle, WA"), ("mia", "Miami, FL")]
 education_choices = [
     ("hs", "High School"),
     ("ud", "Undergrad"),
@@ -12,13 +15,15 @@ jobs = [
         "position": "Entry Software Engineer",
         "salary": 100000,
         "interests": ["tech"],
-        "descriptions":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+        "locations": ["bos", "sea"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
     },
     {
         "company": "Brigham and Women's",
         "position": "Neuroscientist",
         "salary": 300000,
         "interests": ["tech", "bio"],
+        "locations": ["ny", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -27,6 +32,7 @@ jobs = [
         "position": "protein expert",
         "salary": 500000,
         "interests": ["bio"],
+        "locations": ["mia"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -35,6 +41,7 @@ jobs = [
         "position": "test Subject",
         "salary": 50000,
         "interests": ["bio", "ath"],
+        "locations": ["phil", "hous", "phnx"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -43,6 +50,7 @@ jobs = [
         "position": "Junior Software Engineer",
         "salary": 150000,
         "interests": ["tech", "eng"],
+        "locations": ["phil", "hous", "phnx", "bos", "ny", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -51,6 +59,7 @@ jobs = [
         "position": "Senior Software Engineer",
         "salary": 200000,
         "interests": ["tech"],
+        "locations": ["phil", "hous", "ny", "mia"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -59,6 +68,7 @@ jobs = [
         "position": "Entry Software Developer",
         "salary": 100000,
         "interests": ["tech", "bio"],
+        "locations": ["hous", "ny", "mia"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -67,6 +77,7 @@ jobs = [
         "position": "AI engineer",
         "salary": 100000000,
         "interests": ["tech", "art"],
+        "locations": ["phil", "hous","mia"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -75,6 +86,15 @@ jobs = [
         "position": "Senior coach",
         "salary": 100000,
         "interests": ["tech", "ath"],
+        "locations": ["bos"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+    },
+    {
+        "company": "Ultimaco",
+        "position": "Senior CyberSecurity Expert",
+        "salary": 300000,
+        "interests": ["tech", "bus", "eng"],
+        "locations": ["chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -83,14 +103,7 @@ jobs = [
         "position": "Senior CyberSecurity Expert",
         "salary": 300000,
         "interests": ["tech", "bus", "eng"],
-        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
-
-    },
-    {
-        "company": "Ultimaco",
-        "position": "Senior CyberSecurity Expert",
-        "salary": 300000,
-        "interests": ["tech", "bus", "eng"],
+        "locations": ["mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -99,6 +112,7 @@ jobs = [
         "position": "Entry Software engineer",
         "salary": 100000,
         "interests": ["tech"],
+        "locations": ["ny", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -107,6 +121,7 @@ jobs = [
         "position": "Senior CyberSecurity Expert",
         "salary": 300000,
         "interests": ["tech", "bus", "eng"],
+        "locations": ["phil", "hous", "bos", "ny", ],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -115,6 +130,7 @@ jobs = [
         "position": "Bioinformatics Expert",
         "salary": 200000,
         "interests": ["tech", "bio"],
+        "locations": [ "phnx", "bos",  "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -123,6 +139,7 @@ jobs = [
         "position": "Junior Software Engineer",
         "salary": 150000,
         "interests": ["tech"],
+        "locations": ["phnx" ],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -131,7 +148,14 @@ jobs = [
         "position": "Senior Software Engineer",
         "salary": 300000,
         "interests": ["tech"],
-        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
+        "locations": ["phil", "hous", "phnx", "bos", "ny", "mia", "chic"],
+        "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut "
+                        "labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. "
+                        "Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam "
+                        "malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur "
+                        "adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis "
+                        "rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida "
+                        "arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies. "
 
     },
     {
@@ -139,6 +163,7 @@ jobs = [
         "position": "Financial Adivisor",
         "salary": 800000,
         "interests": ["tech", "fin"],
+        "locations": ["phil", "phnx", "bos", "ny"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -147,6 +172,7 @@ jobs = [
         "position": "Doctor",
         "salary": 800000,
         "interests": ["bio"],
+        "locations": [ "bos", "ny", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -155,6 +181,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["phil", "hous", "phnx"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -163,6 +190,7 @@ jobs = [
         "position": "Coach",
         "salary": 600000,
         "interests": ["ath"],
+        "locations": ["phil", "hous", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -171,6 +199,7 @@ jobs = [
         "position": "Coach",
         "salary": 900000,
         "interests": ["ath"],
+        "locations": ["mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -179,22 +208,23 @@ jobs = [
         "position": "Coach",
         "salary": 1000000,
         "interests": ["ath"],
+        "locations": ["phil","bos", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
-
     },
     {
         "company": "Boston Celtics",
         "position": "Coach",
         "salary": 700000,
         "interests": ["ath"],
+        "locations": ["ny", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
-
     },
     {
         "company": "New York Jets",
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["phnx", "bos"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -203,6 +233,7 @@ jobs = [
         "position": "Coach",
         "salary": 1500000,
         "interests": ["ath"],
+        "locations": ["hous"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -211,6 +242,7 @@ jobs = [
         "position": "Coach",
         "salary": 160000000,
         "interests": ["ath"],
+        "locations": ["bos", "ny", "mia"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -219,6 +251,7 @@ jobs = [
         "position": "Coach",
         "salary": 9000000,
         "interests": ["ath"],
+        "locations": ["phil", "hous", "phnx"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -227,6 +260,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["phil", "hous",],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -235,6 +269,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": [ "phnx", "bos", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -243,6 +278,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["bos", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -251,6 +287,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["phil", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -259,6 +296,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["phil", "phnx",  "ny", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -267,17 +305,18 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
+        "locations": ["phil", "hous",  "bos", "ny", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
 ]
 groups = [
     {
-        "name":"jobSeeker"
+        "name": "jobSeeker"
     },
     {
-        "name":"employer"
-     },
+        "name": "employer"
+    },
 ]
 users = [
     {
