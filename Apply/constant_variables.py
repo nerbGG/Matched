@@ -77,7 +77,7 @@ jobs = [
         "position": "AI engineer",
         "salary": 100000000,
         "interests": ["tech", "art"],
-        "locations": ["phil", "hous","mia"],
+        "locations": ["phil", "hous", "mia"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -130,7 +130,7 @@ jobs = [
         "position": "Bioinformatics Expert",
         "salary": 200000,
         "interests": ["tech", "bio"],
-        "locations": [ "phnx", "bos",  "mia", "chic"],
+        "locations": ["phnx", "bos", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -139,7 +139,7 @@ jobs = [
         "position": "Junior Software Engineer",
         "salary": 150000,
         "interests": ["tech"],
-        "locations": ["phnx" ],
+        "locations": ["phnx"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -172,7 +172,7 @@ jobs = [
         "position": "Doctor",
         "salary": 800000,
         "interests": ["bio"],
-        "locations": [ "bos", "ny", "chic"],
+        "locations": ["bos", "ny", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -208,7 +208,7 @@ jobs = [
         "position": "Coach",
         "salary": 1000000,
         "interests": ["ath"],
-        "locations": ["phil","bos", "mia", "chic"],
+        "locations": ["phil", "bos", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
     },
     {
@@ -260,7 +260,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
-        "locations": ["phil", "hous",],
+        "locations": ["phil", "hous", ],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -269,7 +269,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
-        "locations": [ "phnx", "bos", "chic"],
+        "locations": ["phnx", "bos", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -296,7 +296,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
-        "locations": ["phil", "phnx",  "ny", "chic"],
+        "locations": ["phil", "phnx", "ny", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -305,7 +305,7 @@ jobs = [
         "position": "Coach",
         "salary": 800000,
         "interests": ["ath"],
-        "locations": ["phil", "hous",  "bos", "ny", "mia", "chic"],
+        "locations": ["phil", "hous", "bos", "ny", "mia", "chic"],
         "descriptions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Nec sagittis aliquam malesuada bibendum. Massa eget egestas purus viverra. Ipsum dolor sit amet consectetur adipiscing. Lacus sed viverra tellus in hac habitasse platea. Sagittis nisl rhoncus mattis rhoncus urna. Senectus et netus et malesuada fames ac turpis egestas. Non curabitur gravida arcu ac tortor dignissim convallis. Vestibulum lorem sed risus ultricies."
 
     },
@@ -411,35 +411,34 @@ users = [
     },
 
 ]
-# title = models.CharField(max_length=100, blank=False)
-# school = models.CharField(max_length=200, blank=False)
-# expected_tution = models.IntegerField(blank=False)
-# interest_choices = fields
-# interests = MultiSelectField(choices=interest_choices, blank=True)
 education = [
     {
         "title": "Bachelors in Computer Science",
         "school": "Boston College",
-        "tution": 35000,
+        "tuition": 35000,
+        "locations": ["ny"],
         "interests": ["tech"]
     },
     {
         "title": "Associates in Business Management",
-        "school": "Boston College",
-        "tution": 35000,
+        "school": "UMASS Lowell",
+        "tuition": 35000,
+        "locations": ["ny", "mia"],
         "interests": ["bus"]
     },
     {
         "title": "Associates in Arts",
-        "school": "Boston College",
-        "tution": 35000,
-        "interests": ["art"]
+        "school": "UMASS Amherst",
+        "tuition": 35000,
+        "interests": ["art"],
+        "locations": ["ny", "sea"],
     },
     {
         "title": "Associates in Health Care Management",
-        "school": "Boston College",
-        "tution": 54000,
-        "interests": ["bio"]
+        "school": "UMASS Boston",
+        "tuition": 54000,
+        "interests": ["bio"],
+        "locations": ["bos", "chi"],
     },
 
 ]
