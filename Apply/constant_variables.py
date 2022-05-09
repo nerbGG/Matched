@@ -1,5 +1,7 @@
 fields = [('tech', 'Technology'), ('eng', 'Engineering'), ('bio', 'Biology'), ('art', 'Art'), ('ath', 'Athletics'),
           ('fin', 'Finance'), ('bus', 'Business')]
+cities = [("bos", "Boston, MA"), ("ny", "New York, NY"), ("chic","Chicago, IL"), ("phil", "Philadelphia, PA"), ("hous", "Houston, TX"),
+          ("phnx", "Phoenix, AZ"), ("sea", "Seattle, WA"), ("mia", "Miami, FL")]
 education_choices = [
     ("hs", "High School"),
     ("ud", "Undergrad"),

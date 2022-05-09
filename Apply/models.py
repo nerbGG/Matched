@@ -1,24 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .constant_variables import fields
+from .constant_variables import fields, cities
 from .validators import validate_file_extension
 from multiselectfield import MultiSelectField
 
-
-# Create your models here.
-# class user_Interests(models.Model):
-#     tech = models.BooleanField(default=False)
-#     bio = models.BooleanField(default=False)
-#     art = models.BooleanField(default=False)
-#     athletics = models.BooleanField(default=False)
-#     finance = models.BooleanField(default=False)
-#     business = models.BooleanField(default=False)
-#
-#     class Meta:
-#         verbose_name = "user interests"
-#
-#     def __str__(self):
-#         return "user Interests"
 
 class Jobs(models.Model):
     # user = models.ManyToManyField(User, blank=True)
@@ -31,6 +16,7 @@ class Jobs(models.Model):
     # location =
     interest_choices = fields
     interests = MultiSelectField(choices=interest_choices, blank=True)
+    locations = MultiSelectField(choices=cities, blank=True)
 
     def __str__(self):
         return "%s job" % self.position
@@ -58,11 +44,10 @@ class Profile(models.Model):
     # pdf only
     resume = models.FileField(upload_to="pdfs/", blank=True)
     profile_pic = models.FileField(upload_to="images/", blank=True)
-    # profile_pic = models.ImageField(blank=True)
     success_story = models.TextField(blank=True, max_length=8000)
     saved_jobs = models.ManyToManyField(Jobs, blank=True)
+    locations = MultiSelectField(choices=cities, blank=True)
 
-    # location=
     class Meta:
         verbose_name = "user profile"
         verbose_name_plural = "user profile"

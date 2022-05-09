@@ -92,7 +92,7 @@
                     {% endif %}
                 </a>
                 {% if link_url == "/jobs/" %}
-                     <a class="btn btn-light mr-3 h-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-light mr-3 h-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        Salary
                     </a>
                     <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
@@ -102,6 +102,19 @@
                                     <a class="dropdown-item text-center bg-dark text-light" href="/jobs/{{ active }}/{{ option }}">{{ option }}</a>
                                 {% else %}
                                     <a class="dropdown-item text-center bg-light" href="/jobs/{{ active }}/{{ option }}">{{ option }}</a>
+                                {% endif %}
+                            {% endfor %}
+                    </div>
+                    <a class="btn btn-light mr-3 h-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Location
+                    </a>
+                    <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink1">
+                        <label class="text-center w-100">City</label>
+                            {% for city in cities %}
+                                {% if city == city_filter %}
+                                    <a class="dropdown-item text-center bg-dark text-light" href="#">{{ city }}</a>
+                                {% else %}
+                                    <a class="dropdown-item text-center bg-light" href="#">{{ city }}</a>
                                 {% endif %}
                             {% endfor %}
                     </div>
