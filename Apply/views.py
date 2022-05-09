@@ -455,7 +455,7 @@ def all_education(request):
         return render(request, "home.html", {"message": message})
 
 
-def recommended_education(request, selected_filter):
+def filtered_education(request, selected_filter):
     if request.user.is_authenticated:
         edu_list = get_education()
         user_intrest = Profile.objects.get(user=request.user).interests
@@ -477,7 +477,7 @@ def recommended_education(request, selected_filter):
 
 def resources(request):
     if request.user.is_authenticated:
-        return render(request, "resources.html", {})
+        return render(request, "resources.html")
     else:
         message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})
