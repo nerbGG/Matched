@@ -25,10 +25,10 @@ class Jobs(models.Model):
 class Education(models.Model):
     title = models.CharField(max_length=100, blank=False)
     school = models.CharField(max_length=200, blank=False)
-    expected_tution = models.IntegerField(blank=False)
+    expected_tuition = models.IntegerField(blank=False)
     interest_choices = fields
     interests = MultiSelectField(choices=interest_choices, blank=True)
-
+    locations = MultiSelectField(choices=cities, blank=True)
     def __str__(self):
         return "% s" % self.title
 

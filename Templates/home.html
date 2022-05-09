@@ -52,15 +52,53 @@
                               <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                             </svg>
                             {% for field in job.interests %}
-                                <h6 class="ml-2 mr-1 btn alert-info ">{{ field }}</h6>
+                                <h6 class="ml-2 btn alert-info ">{{ field }}</h6>
                             {% endfor %}
                         </div>
                     </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="dashboard-item bg-light shadow rounded"style="width:49%; height: 50%; overflow: hidden;">
-            <h5>Recommended Education</h5>
+        <div class="card bg-light dashboard-item rounded p-2 mb-2" style="width:49.5%; height: 60%; overflow: hidden;">
+            <a class="btn btn-light bold-link w-100" href="/education/recommended/"><h5 class="w-100 text-center">Recommended Degrees</h5> </a>
+            <div class="mt-2 w-100 pb-2" style="height:90%; overflow: auto;">
+                {% for edu in education %}
+                    <div class="w-100 mb-2 d-flex flex-column border-bottom">
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-mortarboard" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z"/>
+                              <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
+                            </svg>
+                            <strong>{{ edu.title }} </strong>
+                        </h5>
+                        <h5 class="mt-3 mb-4">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                              <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                            </svg>
+                            {{ edu.school }}
+                        </h5>
+                         <div class="d-flex flex-row">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-geo-alt" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                              <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                            {% for city in edu.locations %}
+                                <h6 class="mr-1 btn alert-danger ">{{ city}}</h6>
+                            {% endfor %}
+                        </div>
+                        <div class="p-1 d-flex flex-row">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                              <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+                              <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+                            </svg>
+                            {% for field in edu.interests %}
+                                <h6 class="ml-2 btn alert-info ">{{ field }}</h6>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {%else%}

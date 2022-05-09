@@ -42,11 +42,17 @@ def home(request):
     # getting the recommended jobs
     if request.user.is_authenticated:
         matched_jobs = []
+        matched_education = []
         for job in Jobs.objects.all():
             matches = contains(job.interests, request.user.profile.interests)
             if matches is True:
                 matched_jobs.append(job)
-        return render(request, "home.html", {"jobs": matched_jobs})
+        for edu in Education.objects.all():
+            matches = contains(edu.interests, request.user.profile.interests)
+            if matches is True:
+                matched_education.append(edu)
+        return render(request, "home.html", {"jobs": matched_jobs,
+                                            "education": matched_education})
     else:
         return render(request, "home.html", {"message": "Please Login"})
 
