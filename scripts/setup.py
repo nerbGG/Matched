@@ -75,6 +75,18 @@ def create_story(user, text):
     p.save()
 
 
+#     story_to_delete = Story.objects.all()
+#     story_to_delete.delete()
+#
+#     for story in stories:
+#         author = story["author"]
+#         text = story["text"]
+#         likes = story["likes"]
+#         interests = story["interests"]
+#         new_story = Story(author=author, text=text, likes=likes, interests=interests)
+#         new_story.save()
+
+
 def create_users():
     remove_all_users()
     #  Creating the new users
@@ -99,9 +111,9 @@ def create_users():
 
 
 def run():
-    remove_all_stories()
+    # remove_all_stories()
     create_jobs()
     create_users()
     create_groups()
     create_education()
-    Story.objects.all()
+    # Story.objects.all()

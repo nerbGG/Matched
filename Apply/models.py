@@ -35,7 +35,7 @@ class Education(models.Model):
 
 class Story(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE)
-    text = models.TextField(blank=True, max_length=8000)
+    text = models.TextField(blank=True, max_length=8000, null= True)
     likes = models.IntegerField(default=0, blank=True, null=True)
     interests = MultiSelectField(choices=fields, blank=True)
 

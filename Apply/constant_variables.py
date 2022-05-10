@@ -9,6 +9,7 @@ education_choices = [
     ("gd", "graduate")
 ]
 salary_options = [50000, 75000, 100000, 150000, 175000, 200000, 250000, 805000]
+
 jobs = [
     {
         "company": "BitSight",
