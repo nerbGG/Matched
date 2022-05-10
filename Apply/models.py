@@ -26,8 +26,7 @@ class Education(models.Model):
     title = models.CharField(max_length=100, blank=False)
     school = models.CharField(max_length=200, blank=False)
     expected_tuition = models.IntegerField(blank=False)
-    interest_choices = fields
-    interests = MultiSelectField(choices=interest_choices, blank=True)
+    interests = MultiSelectField(choices=fields, blank=True)
     locations = MultiSelectField(choices=cities, blank=True)
 
     def __str__(self):
@@ -37,7 +36,11 @@ class Education(models.Model):
 class Story(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE)
     text = models.TextField(blank=True, max_length=8000)
-    likes = models.IntegerField(blank=True)
+    likes = models.IntegerField(default=0, blank=True, null=True)
+    interests = MultiSelectField(choices=fields, blank=True)
+
+    def __str__(self):
+        return "%s's story" % self.author.username
 
 
 # comments for each story
@@ -45,7 +48,10 @@ class Comment(models.Model):
     linked_story = models.ForeignKey(Story, on_delete=models.CASCADE, blank=True)
     author = models.OneToOneField(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=5000)
-    likes = models.IntegerField(blank=True)
+    likes = models.IntegerField(default=0, blank=True, null=True)
+
+    def __str__(self):
+        return "%s's comment" % self.author.username
 
 
 class Profile(models.Model):

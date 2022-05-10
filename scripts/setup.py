@@ -7,6 +7,11 @@ from Apply.constant_variables import jobs, groups, users, education
 from django.contrib.auth.models import User, Group
 
 
+def remove_all_stories():
+    stories_to_delete = Story.objects.all()
+    stories_to_delete.delete()
+
+
 def remove_all_jobs():
     jobs_to_delete = Jobs.objects.all()
     jobs_to_delete.delete()
@@ -37,7 +42,8 @@ def create_jobs():
         interests = job["interests"]
         locations = job["locations"]
         description = job["descriptions"]
-        new_job = Jobs(company=company, position=position, expected_salary=salary, interests=interests,locations=locations,
+        new_job = Jobs(company=company, position=position, expected_salary=salary, interests=interests,
+                       locations=locations,
                        description=description)
         new_job.save()
 
@@ -51,7 +57,8 @@ def create_education():
         tuition = edu['tuition']
         interest = edu['interests']
         locations = edu["locations"]
-        new_education = Education(title=title, school=school, expected_tuition=tuition,locations=locations, interests=interest)
+        new_education = Education(title=title, school=school, expected_tuition=tuition, locations=locations,
+                                  interests=interest)
         new_education.save()
 
 
@@ -65,6 +72,7 @@ def create_groups():
 
 def create_story(user, text):
     p = Story(author=user, text=text)
+    p.save()
 
 
 def create_users():
@@ -91,6 +99,7 @@ def create_users():
 
 
 def run():
+    remove_all_stories()
     create_jobs()
     create_users()
     create_groups()
