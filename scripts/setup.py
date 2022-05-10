@@ -51,7 +51,7 @@ def create_education():
         tuition = edu['tuition']
         interest = edu['interests']
         locations = edu["locations"]
-        new_education = Education(title=title, school=school, expected_tution=tuition,locations=locations, interests=interest)
+        new_education = Education(title=title, school=school, expected_tuition=tuition,locations=locations, interests=interest)
         new_education.save()
 
 
