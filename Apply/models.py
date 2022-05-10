@@ -29,8 +29,23 @@ class Education(models.Model):
     interest_choices = fields
     interests = MultiSelectField(choices=interest_choices, blank=True)
     locations = MultiSelectField(choices=cities, blank=True)
+
     def __str__(self):
         return "% s" % self.title
+
+
+class Story(models.Model):
+    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    text = models.TextField(blank=True, max_length=8000)
+    likes = models.IntegerField(blank=True)
+
+
+# comments for each story
+class Comments(models.Model):
+    linked_story = models.ForeignKey(Story, on_delete=models.CASCADE)
+    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    text = models.TextField(max_length=5000)
+    likes = models.IntegerField(blank=True)
 
 
 class Profile(models.Model):
@@ -44,7 +59,7 @@ class Profile(models.Model):
     # pdf only
     resume = models.FileField(upload_to="pdfs/", blank=True)
     profile_pic = models.FileField(upload_to="images/", blank=True)
-    success_story = models.TextField(blank=True, max_length=8000)
+    # success_story = models.TextField(blank=True, max_length=8000)
     saved_jobs = models.ManyToManyField(Jobs, blank=True)
     locations = MultiSelectField(choices=cities, blank=True)
 

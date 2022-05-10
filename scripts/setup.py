@@ -2,7 +2,7 @@
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myapp.settings")
 # django.setup()
 
-from Apply.models import Jobs, Education, Profile
+from Apply.models import Jobs, Education, Profile, Story
 from Apply.constant_variables import jobs, groups, users, education
 from django.contrib.auth.models import User, Group
 
@@ -63,6 +63,10 @@ def create_groups():
         new_group.save()
 
 
+def create_story(user, text):
+    p = Story(author=user, text=text)
+
+
 def create_users():
     remove_all_users()
     #  Creating the new users
@@ -77,7 +81,8 @@ def create_users():
         new_user.set_password(password)
         new_user.save()
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis eleifend. Sed ullamcorper morbi tincidunt ornare massa eget egestas. Maecenas accumsan lacus vel facilisis volutpat est velit. Turpis egestas maecenas pharetra convallis. Duis tristique sollicitudin nibh sit amet. Sit amet mauris commodo quis. In iaculis nunc sed augue lacus viverra vitae congue. Sit amet cursus sit amet dictum sit amet justo donec. Mauris pharetra et ultrices neque ornare aenean euismod elementum nisi. Tristique et egestas quis ipsum suspendisse ultrices gravida dictum fusce. Ornare aenean euismod elementum nisi quis eleifend. Diam in arcu cursus euismod quis viverra. Nibh tellus molestie nunc non blandit massa enim nec. Nulla at volutpat diam ut. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Volutpat maecenas volutpat blandit aliquam. Id aliquet lectus proin nibh nisl condimentum. Neque ornare aenean euismod elementum. Aliquet lectus proin nibh nisl condimentum id. Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. Praesent tristique magna sit amet purus. Mi ipsum faucibus vitae aliquet nec ullamcorper sit.Eget nulla facilisi etiam dignissim. aliquam eleifend mi in nulla posuere. Turpis massa sed elementum tempus egestas sed sed risus pretium. Pellentesque sit amet porttitor eget dolor morbi. Ornare massa eget egestas purus."
-        profile = Profile(user=new_user, success_story=text)
+        create_story(user, text)
+        profile = Profile(user=new_user)
         profile.save()
         group_name = position
         group = Group.objects.get(name=group_name)
