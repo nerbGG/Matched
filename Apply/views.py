@@ -14,9 +14,10 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from Apply.models import Profile, Jobs, Education
+from Apply.models import Profile, Jobs, Education, Story, Comment
 from Apply.constants import ActionNames
-from Apply.form import RegistrationForm, loginForm, FileUploadForm, SuccessStoryForm
+from Apply.form import RegistrationForm, loginForm, FileUploadForm
+# SuccessStoryForm
 from Apply.utils import token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -52,7 +53,7 @@ def home(request):
             if matches is True:
                 matched_education.append(edu)
         return render(request, "home.html", {"jobs": matched_jobs,
-                                            "education": matched_education})
+                                             "education": matched_education})
     else:
         return render(request, "home.html", {"message": "Please Login"})
 
@@ -222,20 +223,21 @@ def test(request):
     return render(request, 'aws-test.html', {'resume': resume})
 
 
-def story_view(request, username):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            story = request.POST['success_story']
-            user = User.objects.get(username=request.user.username)
-            profile = Profile(user=user, success_story=story)
-            profile.save(update_fields=["success_story"])
-            return redirect('/')
-        else:
-            form = SuccessStoryForm(initial={"success_story": request.user.profile.success_story})
-        return render(request, 'story.html', {"form": form})
-    else:
-        message = "You need to be logged in to access the jobs page"
-        return render(request, "home.html", {"message": message})
+#
+# def story_view(request, username):
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
+#             story = request.POST['success_story']
+#             user = User.objects.get(username=request.user.username)
+#             profile = Profile(user=user, success_story=story)
+#             profile.save(update_fields=["success_story"])
+#             return redirect('/')
+#         else:
+#             form = SuccessStoryForm(initial={"success_story": request.user.profile.success_story})
+#         return render(request, 'story.html', {"form": form})
+#     else:
+#         message = "You need to be logged in to access the jobs page"
+#         return render(request, "home.html", {"message": message})
 
 
 # jobs view helpers
@@ -405,43 +407,70 @@ def job_view(request, previous_page, job_id):
         return render(request, "home.html", {"message": "You need to be logged in to access the Job page"})
 
 
-def get_stories(request):
-    story_list = []
-    profile_list = Profile.objects.all()
-    for profile in profile_list:
-        if not profile.success_story == "":
-            story = {"user": profile.user,
-                     "story": profile.success_story,
-                     "interests": profile.interests}
-            story_list.append(story)
-    return story_list
+# def get_stories(request):
+#     story_list = []
+#     profile_list = Profile.objects.all()
+#     for profile in profile_list:
+#         if not profile.success_story == "":
+#             story = {"user": profile.user,
+#                      "story": profile.success_story,
+#                      "interests": profile.interests}
+#             story_list.append(story)
+#     return story_list
+
+#
+# def all_success_stories(request):
+#     if request.user.is_authenticated:
+#         # l = list(Profile.objects.all().values_list('success_story', flat=True))
+#         story_list = get_stories(request)
+#         return render(request, "content.html", {"fields": fields, "contents": story_list,
+#                                                 "link_url": "/success-stories/",
+#                                                 "active": "all", })
+#     else:
+#         message = "You need to be logged in to access the stories page"
+#         return render(request, "home.html", {"message": message})
+#
+#
+# def filtered_success_stories(request, selected_filter):
+#     if request.user.is_authenticated:
+#         story_list = get_stories(request)
+#         user_intrest = Profile.objects.get(user=request.user).interests
+#         stories = []
+#         for story in story_list:
+#             if selected_filter == "recommended":
+#                 matches = contains(story["interests"], user_intrest)
+#             else:
+#                 matches = contains_string(story["interests"], selected_filter)
+#             if matches is True:
+#                 stories.append(story)
+#         return render(request, "content.html", {"fields": fields, "contents": stories,
+#                                                 "link_url": "/success-stories/",
+#                                                 "active": selected_filter}, )
+#     else:
+#         message = "You need to be logged in to access the stories"
+#         return render(request, "home.html", {"message": message})
+def get_stories(user, stories, selected_filter):
+    stories_list = []
+    for story in stories:
+        matches = False
+        if selected_filter == "recommended":
+            matches = contains(story.interests, user.profile.interests)
+        else:
+            matches = contains_string(story.interests, selected_filter)
+
+        if matches:
+            stories_list.append(story)
+
+    return stories_list
 
 
-def all_success_stories(request):
+def stories_view(request, selected_filter="all"):
     if request.user.is_authenticated:
-        # l = list(Profile.objects.all().values_list('success_story', flat=True))
-        story_list = get_stories(request)
-        return render(request, "content.html", {"fields": fields, "contents": story_list,
-                                                "link_url": "/success-stories/",
-                                                "active": "all", })
-    else:
-        message = "You need to be logged in to access the stories page"
-        return render(request, "home.html", {"message": message})
-
-
-def filtered_success_stories(request, selected_filter):
-    if request.user.is_authenticated:
-        story_list = get_stories(request)
-        user_intrest = Profile.objects.get(user=request.user).interests
-        stories = []
-        for story in story_list:
-            if selected_filter == "recommended":
-                matches = contains(story["interests"], user_intrest)
-            else:
-                matches = contains_string(story["interests"], selected_filter)
-            if matches is True:
-                stories.append(story)
-        return render(request, "content.html", {"fields": fields, "contents": stories,
+        if selected_filter == "all":
+            contents = Story.objects.all()
+        else:
+            contents = get_stories(request.user,Story.objects.all(), selected_filter)
+        return render(request, "content.html", {"fields": fields, "contents": contents,
                                                 "link_url": "/success-stories/",
                                                 "active": selected_filter}, )
     else:
@@ -490,7 +519,7 @@ def filtered_education(request, selected_filter):
 
 def resources(request):
     if request.user.is_authenticated:
-        return render(request, "resources.html", {"link_url":"/resources/"})
+        return render(request, "resources.html", {"link_url": "/resources/"})
     else:
         message = "You need to be logged in to access the stories"
         return render(request, "home.html", {"message": message})
