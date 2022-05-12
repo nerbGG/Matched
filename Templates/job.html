@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="w-100 h-100 shadow p-3" style="overflow:auto;">
-<form class=" p-2 d-flex flex-row align-items-center border-bottom" method="POST">
+<form class="p-2 d-flex flex-row align-items-center border-bottom" method="POST">
     {% csrf_token %}
     <input class="d-none" name="selected_job" value={{ job.id }}>
     <div class="w-100 h-100 d-flex flex-column">

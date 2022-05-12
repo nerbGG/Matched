@@ -94,7 +94,7 @@ def create_users():
 
 
 def run():
+    create_groups()
     create_jobs()
     create_users()
-    create_groups()
     create_education()

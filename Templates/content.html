@@ -229,23 +229,23 @@
                                                 {% endif %}
                                             </a>
                                         </div>
-                                       <a href="#"><strong>{{ content.author.first_name}} {{ content.author.last_name }} </strong></a>
+                                       <a href="/story/{{ content.author.username }}/"><strong>{{ content.author.first_name}} {{ content.author.last_name }} </strong></a>
                                     </h4>
                                 </a>
-                                <h5 class="mt-3 mb-4 w-100" style="height: 200px; overflow: auto;"> {{ content.text }}</h5>
-                                <div class="p-1 d-flex flex-row justify-content-between">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-tags" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <h5 class="mt-3 mb-4 w-100" style="height: 200px; overflow: hidden;"> {{ content.text }}</h5>
+                                <div class="p-1 d-flex flex-row">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 bi bi-tags" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                           <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
                                           <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                                         </svg>
                                         {% for field in content.interests %}
                                             <h6 class="mr-1 btn alert-info ">{{ field }}</h6>
                                         {% endfor %}
-                                    </div>
-                                     <button class="btn btn-light border-left" type="submit" style="margin-right: 40%;">
+                                </div>
+                                <div class="w-100 d-flex mb-2">
+                                    <button class="mt-1 mr-5 btn btn-light border-left" type="submit" style="width:60px;">
                                         {% if content.id in liked_stories%}
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-hand-thumbs-up-fill" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                               <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
                                             </svg>
                                         {% else %}
@@ -255,12 +255,6 @@
                                         {% endif %}
                                         {{ content.likes }}
                                     </button>
-                                </div>
-                                <div class="w-100 d-flex flex-row justify-content-end">
-
-    {#                                <div class="w-50">#}
-    {#                                    <a class=" btn btn-light bold-link">Comments</a>#}
-    {#                                </div>#}
                                 </div>
                             </div>
                         </form>

@@ -223,8 +223,21 @@ def test(request):
     return render(request, 'aws-test.html', {'resume': resume})
 
 
-#
-# def story_view(request, username):
+def story_view(request, username):
+    if request.user.is_authenticated:
+        user = User.objects.get(username=username)
+        story = Story.objects.get(author=user)
+        liked_stories = get_liked_stories(request)
+        if request.method == "POST":
+            like_or_unlike_story(request)
+            redirect_link = "/story/"+username+"/"
+            return redirect(redirect_link)
+        return render(request, "story.html", {"content":story, "liked_stories":liked_stories})
+    else:
+        message = "You need to be logged in to access the story page"
+        return render(request, "home.html", {"message": message})
+
+    # def story_view(request, username):
 #     if request.user.is_authenticated:
 #         if request.method == 'POST':
 #             story = request.POST['success_story']
@@ -396,10 +409,12 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
 
 def job_view(request, previous_page, job_id):
     if request.user.is_authenticated:
-        if request.method == "POST":
-            save_or_remove_job(request)
         job = Jobs.objects.get(id=job_id)
         saved_jobs = get_saved_jobs(request)
+        if request.method == "POST":
+            save_or_remove_job(request)
+            redirect_link = "/job/"+previous_page+"/"+job_id+"/"
+            return redirect(redirect_link)
         if previous_page == "all":
             return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs, })
         return render(request, "job.html", {"job": job, "previous_page": previous_page, "saved_jobs": saved_jobs, })
@@ -504,7 +519,7 @@ def stories_view(request, selected_filter="all"):
     if request.user.is_authenticated:
         if request.method == "POST":
             like_or_unlike_story(request)
-            redirect_link = "/success-stories/" + selected_filter
+            redirect_link = "/success-stories/" + selected_filter+"/"
             return redirect(redirect_link)
         if selected_filter == "all":
             contents = Story.objects.all()

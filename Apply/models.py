@@ -4,6 +4,7 @@ from .constant_variables import fields, cities
 from .validators import validate_file_extension
 from multiselectfield import MultiSelectField
 
+
 class Story(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE)
     text = models.TextField(blank=True, max_length=8000, null=True)
@@ -23,6 +24,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return "%s's comment" % self.author.username
+
 
 class Jobs(models.Model):
     # user = models.ManyToManyField(User, blank=True)
