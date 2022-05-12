@@ -159,9 +159,9 @@ a:hover{
 #to-top:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
-.resource ::hover {
+/*.resource ::hover {*/
 
-}
+/*}*/
 /*small screens*/
 @media only screen and (max-width:800px){
     #profile-form{
@@ -179,19 +179,11 @@ a:hover{
     #profile-form div{
         width: 100%;
     }
-    /*#img-div{*/
-    /*    !*margin-top:600px;*!*/
-    /*    height: 200px;*/
-    /*    min-height: 200px;*/
-    /*}*/
     #profile-section{
         height:999px;
         min-height: 999px;
-        /*margin-bottom:5px;*/
     }
     #upload-section{
-        /*height:200px;*/
-        /*max-height: 200px;*/
         height: 100px;
         max-height: 300px;
         min-height: 300px;
