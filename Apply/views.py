@@ -223,8 +223,21 @@ def test(request):
     return render(request, 'aws-test.html', {'resume': resume})
 
 
-#
-# def story_view(request, username):
+def story_view(request, username):
+    if request.user.is_authenticated:
+        user = User.objects.get(username=username)
+        story = Story.objects.get(author=user)
+        liked_stories = get_liked_stories(request)
+        if request.method == "POST":
+            like_or_unlike_story(request)
+            redirect_link = "/story/"+username+"/"
+            return redirect(redirect_link)
+        return render(request, "story.html", {"content":story, "liked_stories":liked_stories})
+    else:
+        message = "You need to be logged in to access the story page"
+        return render(request, "home.html", {"message": message})
+
+    # def story_view(request, username):
 #     if request.user.is_authenticated:
 #         if request.method == 'POST':
 #             story = request.POST['success_story']
@@ -396,10 +409,12 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
 
 def job_view(request, previous_page, job_id):
     if request.user.is_authenticated:
-        if request.method == "POST":
-            save_or_remove_job(request)
         job = Jobs.objects.get(id=job_id)
         saved_jobs = get_saved_jobs(request)
+        if request.method == "POST":
+            save_or_remove_job(request)
+            redirect_link = "/job/"+previous_page+"/"+job_id+"/"
+            return redirect(redirect_link)
         if previous_page == "all":
             return render(request, "job.html", {"job": job, "saved_jobs": saved_jobs, })
         return render(request, "job.html", {"job": job, "previous_page": previous_page, "saved_jobs": saved_jobs, })
@@ -464,13 +479,54 @@ def get_stories(user, stories, selected_filter):
     return stories_list
 
 
+# def get_saved_jobs(request):
+#     saved_jobs = request.user.profile.saved_jobs.all()
+#     saved_jobs_dict = {}
+#     for job in saved_jobs:
+#         saved_jobs_dict[job.pk] = job
+#     return saved_jobs_dict
+
+def get_liked_stories(request):
+    liked_stories = request.user.profile.liked_stories.all()
+    liked_stories_dict = {}
+    for story in liked_stories:
+        liked_stories_dict[story.pk] = story
+    return liked_stories_dict
+
+
+# def save_or_remove_job(request):
+#     job = Jobs.objects.get(id=request.POST["selected_job"])
+#     saved_jobs = get_saved_jobs(request)
+#     if job.id in saved_jobs:
+#         request.user.profile.saved_jobs.remove(job)
+#     else:
+#         request.user.profile.saved_jobs.add(job)
+
+def like_or_unlike_story(request):
+    story = Story.objects.get(id=request.POST["selected_story"])
+    liked_stories = get_liked_stories(request)
+    if story.id in liked_stories:
+        request.user.profile.liked_stories.remove(story)
+        story.likes = story.likes - 1
+        story.save()
+    else:
+        request.user.profile.liked_stories.add(story)
+        story.likes = story.likes + 1
+        story.save()
+
+
 def stories_view(request, selected_filter="all"):
     if request.user.is_authenticated:
+        if request.method == "POST":
+            like_or_unlike_story(request)
+            redirect_link = "/success-stories/" + selected_filter+"/"
+            return redirect(redirect_link)
         if selected_filter == "all":
             contents = Story.objects.all()
         else:
-            contents = get_stories(request.user,Story.objects.all(), selected_filter)
-        return render(request, "content.html", {"fields": fields, "contents": contents,
+            contents = get_stories(request.user, Story.objects.all(), selected_filter)
+        liked_stories = get_liked_stories(request)
+        return render(request, "content.html", {"fields": fields, "liked_stories": liked_stories, "contents": contents,
                                                 "link_url": "/success-stories/",
                                                 "active": selected_filter}, )
     else:
