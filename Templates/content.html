@@ -121,6 +121,15 @@
                     </div>
                     </div>
                 {% endif %}
+                {% if link_url == "/success-stories/" %}
+                    <a href="{{ link_url }}my-story">
+                        {% if active == "saved" %}
+                            <h5 class="btn btn-dark mr-3 filter"> My Story</h5>
+                        {% else%}
+                            <h5 class="btn btn-light fields mr-3 filter">My Story</h5>
+                        {% endif %}
+                    </a>
+                {% endif %}
                 <a href="{{ link_url }}recommended">
                     {% if active == "recommended" %}
                         <h5 class="btn btn-dark mr-3 filter"> Recommended</h5>
