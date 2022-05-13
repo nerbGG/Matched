@@ -16,8 +16,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from Apply.models import Profile, Jobs, Education, Story, Comment
 from Apply.constants import ActionNames
-from Apply.form import RegistrationForm, loginForm, FileUploadForm
-# SuccessStoryForm
+from Apply.form import RegistrationForm, loginForm, FileUploadForm, SuccessStoryForm
 from Apply.utils import token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -73,6 +72,8 @@ def register_view(request):
                 group = Group.objects.get(name=group_name)
                 user.groups.add(group)
                 deactivate_user(user)
+                profile = Profile(user=user)
+                profile.save()
                 send_activation_email(request, user)
                 return render(request, "../templates/home.html",
                               {"activated": False, "message": "Please Check your email for the verification", })
@@ -94,7 +95,7 @@ def login_view(request):
             form = loginForm
             username = request.POST['username']
             password = request.POST["password"]
-            not_active = "Please check you email to activate your account."
+            not_active = "Please check your email to activate your account."
             try:
                 user = User.objects.get(username=username)
             except:
@@ -217,6 +218,27 @@ def profile_view(request, username):
         return render(request, "home.html", {"message": message})
 
 
+def personal_story(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            text = request.POST['text']
+            user = User.objects.get(username=request.user.username)
+            story = Story.objects.update_or_create(
+                author=user,
+                defaults={
+                    "text": text
+                }, )
+            # story.save(update_fields=["text"])
+            return redirect('/personal-story/')
+        else:
+            user = User.objects.get(username=request.user.username)
+            form = SuccessStoryForm(initial={"text": Story.objects.get(author=user).text})
+        return render(request, 'edit_story.html', {"form": form})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
 def test(request):
     user = User.objects.get(username=request.user.username)
     resume = user.profile.resume
@@ -230,7 +252,19 @@ def add_comment(request, username, post):
         text = request.POST["comment"]
         comment = Comment(author=request.user, text=text, linked_story=story)
         comment.save()
-        redirect_link = "/story/"+username+"/"
+        redirect_link = "/story/" + username + "/"
+    return redirect(redirect_link)
+
+
+def remove_comment(request, username):
+    if request.method == "POST":
+        user = User.objects.get(username=username)
+        # story = Story.objects.get(author=user)
+        comment_id = request.POST["comment"]
+        int_id = int(comment_id)
+        comment = Comment.objects.get(id=int_id)
+        comment.delete()
+        redirect_link = "/story/" + username + "/"
     return redirect(redirect_link)
 
 
@@ -337,6 +371,7 @@ def filtered_jobs(request, selected_filter):
                 matches = contains(job.interests, user_intrest)
             elif selected_filter == "saved":
                 return render(request, "content.html", {"fields": fields,
+                                                        "cities": cities,
                                                         "contents": user.profile.saved_jobs.all(),
                                                         "saved_jobs": saved_jobs_dict,
                                                         "link_url": "/jobs/",
@@ -347,6 +382,7 @@ def filtered_jobs(request, selected_filter):
             if matches is True:
                 matched_jobs.append(job)
         return render(request, "content.html", {"fields": fields,
+                                                "cities": cities,
                                                 "contents": matched_jobs,
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
@@ -380,6 +416,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
             salary_filtered = filter_by_salary(request, user.profile.saved_jobs.all(), salary_filter)
             return render(request, "content.html", {
                 "fields": fields,
+                "cities": cities,
                 "contents": salary_filtered,
                 "saved_jobs": saved_jobs_dict,
                 "link_url": "/jobs/",
@@ -391,6 +428,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
             salary_filtered = filter_by_salary(request, Jobs.objects.all(), salary_filter)
             return render(request, "content.html", {
                 "fields": fields,
+                "cities": cities,
                 "contents": salary_filtered,
                 "saved_jobs": saved_jobs_dict,
                 "link_url": "/jobs/",
@@ -408,6 +446,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
                     matched_jobs.append(job)
             salary_filtered = filter_by_salary(request, matched_jobs, salary_filter)
             return render(request, "content.html", {"fields": fields,
+                                                    "cities": cities,
                                                     "contents": salary_filtered,
                                                     "saved_jobs": saved_jobs_dict,
                                                     "link_url": "/jobs/",
@@ -481,7 +520,10 @@ def stories_view(request, selected_filter="all"):
         if selected_filter == "all":
             contents = Story.objects.all()
         elif selected_filter == "my-story":
-            contents.append(Story.objects.get(author=request.user))
+            try:
+                contents.append(Story.objects.get(author=request.user))
+            except:
+                contents = []
         else:
             contents = get_stories(request.user, Story.objects.all(), selected_filter)
         liked_stories = get_liked_stories(request)

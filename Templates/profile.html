@@ -20,7 +20,7 @@
 {#                    <p class="text-muted">Last login: {{ user.last_login }}</p>#}
                     <p class="text-muted">Date Joined: {{ profile_user.date_joined }}</p>
                      {% if profile_user.id == user.id %}
-                        <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2" href="/story/{{ profile_user.username }}">
+                        <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2" href="/personal-story/">
                             View Success Story
                         </a>
                         <a class="bold-link shadow-sm rounded text-center w-100 alert-warning p-2 mt-2" href="/jobs/saved/">
