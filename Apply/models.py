@@ -18,7 +18,7 @@ class Story(models.Model):
 # comments for each story
 class Comment(models.Model):
     linked_story = models.ForeignKey(Story, on_delete=models.CASCADE, blank=True)
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=5000)
     likes = models.IntegerField(default=0, blank=True, null=True)
 

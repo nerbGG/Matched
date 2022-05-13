@@ -34,6 +34,8 @@ urlpatterns = [
     path("education/<selected_filter>/", apply_views.filtered_education),
     path("education/", apply_views.all_education),
     path("story/<username>/", apply_views.story_view),
+    path("story/<username>/<message>", apply_views.story_view),
+    path("story/<username>/<post>/", apply_views.add_comment),
     path("success-stories/", apply_views.stories_view),
     path("success-stories/<selected_filter>/", apply_views.stories_view),
     path("story/<selected_filter>/", apply_views.stories_view),
