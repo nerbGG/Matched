@@ -71,6 +71,28 @@ class Profile(models.Model):
     liked_stories = models.ManyToManyField(Story, blank=True)
     locations = MultiSelectField(choices=cities, blank=True)
 
+    @property
+    def percentage_complete(self):
+        percent = {'education': 14, 'interests': 14, 'locations': 14, 'sport': 14, 'resume': 14, 'profile_pic': 14, 'saved_jobs': 14}
+        total = 0
+        if self.education:
+            total += percent.get('education')
+        if self.interests:
+            total += percent.get('interests')
+        if self.locations:
+            total += percent.get('locations')
+        if self.sport:
+            total += percent.get('sport')
+        if self.resume:
+            total += percent.get('resume')
+        if self.profile_pic:
+            total += percent.get('profile_pic')
+        if self.saved_jobs:
+            total += percent.get('saved_jobs')
+        total+=2
+        # and so on
+        return "%s" % total
+
     class Meta:
         verbose_name = "user profile"
         verbose_name_plural = "user profile"

@@ -73,6 +73,8 @@ def register_view(request):
                 group = Group.objects.get(name=group_name)
                 user.groups.add(group)
                 deactivate_user(user)
+                profile = Profile(user=user)
+                profile.save()
                 send_activation_email(request, user)
                 return render(request, "../templates/home.html",
                               {"activated": False, "message": "Please Check your email for the verification", })
@@ -94,7 +96,7 @@ def login_view(request):
             form = loginForm
             username = request.POST['username']
             password = request.POST["password"]
-            not_active = "Please check you email to activate your account."
+            not_active = "Please check your email to activate your account."
             try:
                 user = User.objects.get(username=username)
             except:
@@ -230,7 +232,19 @@ def add_comment(request, username, post):
         text = request.POST["comment"]
         comment = Comment(author=request.user, text=text, linked_story=story)
         comment.save()
-        redirect_link = "/story/"+username+"/"
+        redirect_link = "/story/" + username + "/"
+    return redirect(redirect_link)
+
+
+def remove_comment(request, username):
+    if request.method == "POST":
+        user = User.objects.get(username=username)
+        # story = Story.objects.get(author=user)
+        comment_id = request.POST["comment"]
+        int_id = int(comment_id)
+        comment = Comment.objects.get(id=int_id)
+        comment.delete()
+        redirect_link = "/story/" + username + "/"
     return redirect(redirect_link)
 
 
@@ -481,7 +495,10 @@ def stories_view(request, selected_filter="all"):
         if selected_filter == "all":
             contents = Story.objects.all()
         elif selected_filter == "my-story":
-            contents.append(Story.objects.get(author=request.user))
+            try:
+                contents.append(Story.objects.get(author=request.user))
+            except:
+                contents = []
         else:
             contents = get_stories(request.user, Story.objects.all(), selected_filter)
         liked_stories = get_liked_stories(request)

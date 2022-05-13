@@ -39,6 +39,7 @@ urlpatterns = [
     path("success-stories/", apply_views.stories_view),
     path("success-stories/<selected_filter>/", apply_views.stories_view),
     path("story/<selected_filter>/", apply_views.stories_view),
+    path("comment/delete/<username>/", apply_views.remove_comment),
     # path("success-stories/<selected_filter>/", apply_views.filtered_success_stories),
     path("jobs/<selected_filter>/<salary_filter>/", apply_views.filtered_jobs_salary),
     path("jobs/<selected_filter>/", apply_views.filtered_jobs),

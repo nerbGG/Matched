@@ -7,9 +7,10 @@
 
 {% if user.is_authenticated %}
     <div class="alert alert-info w-100 ">Welcome back {{ user.first_name }}!</div>
-{#    <a class="bold-link" href="/accounts/logout/">#}
-{#        Logout#}
-{#    </a>#}
+    <label for="file">Profile Complete</label>
+    <progress class="w-100 mb-2" id="file" value={{ user.profile.percentage_complete }} max="100">
+        {{user.profile.percentage_complete }}
+    </progress>
     <div class="w-100 h-100 d-flex flex-row flex-wrap justify-content-between ">
         <div class="card bg-light dashboard-item rounded p-2 mb-2" style="width:49.5%; height: 60%; overflow: hidden;">
             <a class="btn btn-light bold-link w-100" href="/jobs/recommended/"><h5 class="w-100 text-center">Recommended Jobs</h5> </a>
