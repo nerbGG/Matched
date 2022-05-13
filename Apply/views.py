@@ -16,8 +16,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from Apply.models import Profile, Jobs, Education, Story, Comment
 from Apply.constants import ActionNames
-from Apply.form import RegistrationForm, loginForm, FileUploadForm
-# SuccessStoryForm
+from Apply.form import RegistrationForm, loginForm, FileUploadForm, SuccessStoryForm
 from Apply.utils import token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -219,6 +218,27 @@ def profile_view(request, username):
         return render(request, "home.html", {"message": message})
 
 
+def personal_story(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            text = request.POST['text']
+            user = User.objects.get(username=request.user.username)
+            story = Story.objects.update_or_create(
+                author=user,
+                defaults={
+                    "text": text
+                }, )
+            # story.save(update_fields=["text"])
+            return redirect('/personal-story/')
+        else:
+            user = User.objects.get(username=request.user.username)
+            form = SuccessStoryForm(initial={"text": Story.objects.get(author=user).text})
+        return render(request, 'edit_story.html', {"form": form})
+    else:
+        message = "You need to be logged in to access the jobs page"
+        return render(request, "home.html", {"message": message})
+
+
 def test(request):
     user = User.objects.get(username=request.user.username)
     resume = user.profile.resume
@@ -351,6 +371,7 @@ def filtered_jobs(request, selected_filter):
                 matches = contains(job.interests, user_intrest)
             elif selected_filter == "saved":
                 return render(request, "content.html", {"fields": fields,
+                                                        "cities": cities,
                                                         "contents": user.profile.saved_jobs.all(),
                                                         "saved_jobs": saved_jobs_dict,
                                                         "link_url": "/jobs/",
@@ -361,6 +382,7 @@ def filtered_jobs(request, selected_filter):
             if matches is True:
                 matched_jobs.append(job)
         return render(request, "content.html", {"fields": fields,
+                                                "cities": cities,
                                                 "contents": matched_jobs,
                                                 "saved_jobs": saved_jobs_dict,
                                                 "link_url": "/jobs/",
@@ -394,6 +416,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
             salary_filtered = filter_by_salary(request, user.profile.saved_jobs.all(), salary_filter)
             return render(request, "content.html", {
                 "fields": fields,
+                "cities": cities,
                 "contents": salary_filtered,
                 "saved_jobs": saved_jobs_dict,
                 "link_url": "/jobs/",
@@ -405,6 +428,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
             salary_filtered = filter_by_salary(request, Jobs.objects.all(), salary_filter)
             return render(request, "content.html", {
                 "fields": fields,
+                "cities": cities,
                 "contents": salary_filtered,
                 "saved_jobs": saved_jobs_dict,
                 "link_url": "/jobs/",
@@ -422,6 +446,7 @@ def filtered_jobs_salary(request, selected_filter, salary_filter):
                     matched_jobs.append(job)
             salary_filtered = filter_by_salary(request, matched_jobs, salary_filter)
             return render(request, "content.html", {"fields": fields,
+                                                    "cities": cities,
                                                     "contents": salary_filtered,
                                                     "saved_jobs": saved_jobs_dict,
                                                     "link_url": "/jobs/",

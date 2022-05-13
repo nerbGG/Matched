@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from Apply.models import Profile
+from Apply.models import Profile, Story
 from .constant_variables import fields, education_choices
 
 
@@ -27,12 +27,12 @@ class FileUploadForm(forms.ModelForm):
         # fields = ('profile_pic', 'sport', 'resume', 'edu_choices',)
 
 
-# class SuccessStoryForm(forms.ModelForm):
-#     success_story = forms.TextInput()
-#
-#     class Meta:
-#         model = Profile
-#         fields = ('success_story',)
+class SuccessStoryForm(forms.ModelForm):
+    success_story = forms.TextInput()
+
+    class Meta:
+        model = Story
+        fields = ('text',)
 
 
 class RegistrationForm(UserCreationForm):

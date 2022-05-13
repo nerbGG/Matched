@@ -56,7 +56,10 @@
                     </div>
                 </div>
                 <h2>Story</h2>
-                <h5 class="mb-4 w-75 p-1" > {{ content.text }}{{ content.text }}</h5>
+                <div class="d-flex mb-4 p-1 "
+                     style="max-width:100%;min-height:40%;word-break: break-all;overflow-wrap: break-word; ">
+                    {{ content.text }}{{ content.text }}
+                </div>
             </div>
             <a class="btn shadow-sm alert-warning bold-link" href="/success-stories/">Return to Stories Page</a>
         </form>
@@ -129,7 +132,7 @@
 {#                    </div>#}
                 </div>
                     <div class="w-100 d-flex justify-content-center ">
-                        <div style="width:95%;">
+                        <div style="width:95%; max-width:100%;min-height:40%;word-break: break-all;overflow-wrap: break-word;">
                             {{ comment.text }}
                         </div>
                     </div>
