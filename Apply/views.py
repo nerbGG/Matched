@@ -80,7 +80,7 @@ def register_view(request):
 
         else:
             form = RegistrationForm()
-        return render(request, "../templates/registration/registration.html", {"form": form})
+        return render(request, "registration/registration.html", {"form": form})
     else:
         message = "You need to be logged out to access the registration page"
         return render(request, "home.html", {"message": message})
