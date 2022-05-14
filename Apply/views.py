@@ -75,7 +75,7 @@ def register_view(request):
                 profile = Profile(user=user)
                 profile.save()
                 send_activation_email(request, user)
-                return render(request, "../templates/home.html",
+                return render(request, "home.html",
                               {"activated": False, "message": "Please Check your email for the verification", })
 
         else:
@@ -154,7 +154,7 @@ def verification_view(request, uidb64, token):
     user = User.objects.get(username=login_name)
     activate_user(user)
     logger.debug("Verification link has been generated")
-    return render(request, "../Templates/home.html",
+    return render(request, "home.html",
                   {"message": "Thank you for activating your account, please login!"})
     # redirect_link = "/profile/" + user.username + "/"
     # return redirect(redirect_link)
