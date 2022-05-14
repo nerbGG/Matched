@@ -232,7 +232,11 @@ def personal_story(request):
             return redirect('/personal-story/')
         else:
             user = User.objects.get(username=request.user.username)
-            form = SuccessStoryForm(initial={"text": Story.objects.get(author=user).text})
+            try:
+                text = Story.objects.get(author=user).text
+            except:
+                text = None
+            form = SuccessStoryForm(initial={"text":text})
         return render(request, 'edit_story.html', {"form": form})
     else:
         message = "You need to be logged in to access the jobs page"
