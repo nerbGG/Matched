@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+import django_heroku
+import dj_database_url
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(z5-j7#3#+ta+xq)r^5rbrus^q_(!ies&tojfc&8#ujcowt-a^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -50,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Matched.urls'
@@ -57,7 +61,7 @@ ROOT_URLCONF = 'Matched.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'Templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,12 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "Templates/static"),
 )
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -132,7 +135,6 @@ LOGOUT_REDIRECT_URL = "/"
 EMAIL_HOST_USER = "team.matched@gmail.com"
 EMAIL_HOST_PASSWORD = "ulafhiefetwackeb"
 
-
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
@@ -142,7 +144,7 @@ EMAIL_USE_SSL = False
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-#S3 BUCKETS CONFIG
+# S3 BUCKETS CONFIG
 AWS_ACCESS_KEY_ID = 'AKIATS4DULUZRCBJLMVO'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'matched-umb'
@@ -155,4 +157,5 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_S3_FILE_OVERWRITE = True
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'Matched.storage_backends.MediaStorage'
-#DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
+
+django_heroku.settings(locals())

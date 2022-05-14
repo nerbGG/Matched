@@ -75,12 +75,12 @@ def register_view(request):
                 profile = Profile(user=user)
                 profile.save()
                 send_activation_email(request, user)
-                return render(request, "../templates/home.html",
+                return render(request, "home.html",
                               {"activated": False, "message": "Please Check your email for the verification", })
 
         else:
             form = RegistrationForm()
-        return render(request, "../templates/registration/registration.html", {"form": form})
+        return render(request, "registration/registration.html", {"form": form})
     else:
         message = "You need to be logged out to access the registration page"
         return render(request, "home.html", {"message": message})
@@ -154,7 +154,7 @@ def verification_view(request, uidb64, token):
     user = User.objects.get(username=login_name)
     activate_user(user)
     logger.debug("Verification link has been generated")
-    return render(request, "../Templates/home.html",
+    return render(request, "home.html",
                   {"message": "Thank you for activating your account, please login!"})
     # redirect_link = "/profile/" + user.username + "/"
     # return redirect(redirect_link)
@@ -232,7 +232,11 @@ def personal_story(request):
             return redirect('/personal-story/')
         else:
             user = User.objects.get(username=request.user.username)
-            form = SuccessStoryForm(initial={"text": Story.objects.get(author=user).text})
+            try:
+                text = Story.objects.get(author=user).text
+            except:
+                text = None
+            form = SuccessStoryForm(initial={"text":text})
         return render(request, 'edit_story.html', {"form": form})
     else:
         message = "You need to be logged in to access the jobs page"
