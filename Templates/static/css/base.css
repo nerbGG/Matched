@@ -25,7 +25,7 @@ html, body {
     padding: 0;
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 html{
     scroll-behavior: smooth;
@@ -37,8 +37,11 @@ html{
     width:20%;
     display: flex;
  }
-#page-btn{
+#page-btn, #nav-btn{
     display:none;
+}
+#nav-btn{
+    transform: rotate(.5deg);
 }
  #main{
      height: 85%;
@@ -165,14 +168,22 @@ a:hover{
     align-items: center;
     width:65%;
 }
+#register-div{
+    width:57%
+}
 #login-container{
     padding: 3% 10% 3%;
     width: 85%;
     height: 85%;
     max-width: 1200px;
 }
+.home-card{
+    width:49.5%;
+    height: 75%;
+    overflow: hidden;
+}
 /*small screens*/
-@media only screen and (max-width:576px) {
+@media only screen and (max-width:768px) {
     #login-div{
         width: 100%;
         justify-content: unset;
@@ -183,7 +194,13 @@ a:hover{
         width: 100%;
         height: 100%;
     }
-
+    .home-card{
+        width: 100%;
+        min-height: 45%;
+    }
+    #register-div{
+        width:100%
+    }
 }
 @media only screen and (max-width:800px){
     #profile-form{
@@ -216,7 +233,7 @@ a:hover{
         width: 100px;
     }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     #main {
         width:100%;
     }
@@ -224,7 +241,7 @@ a:hover{
         width:100%;
         display: none;
     }
-    #page-btn{
+    #page-btn, #nav-btn{
         display:block;
     }
     header{

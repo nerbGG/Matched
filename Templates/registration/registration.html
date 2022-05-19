@@ -17,8 +17,7 @@
         <body>
         <div class="shadow-lg d-flex flex-row justify-content-center align-items-center"
              style="width: 100%; height:100%;">
-            <div class=" bg-light h-100 d-flex justify-content-end align-items-center"
-                style="width:65%;">
+            <div id="register-div" class=" bg-light h-100 d-flex justify-content-end align-items-center">
                 <div class="p-1 w-100 h-100 " style="overflow: auto;">
                     <h2 class="p-3 w-100 text-center font-weight-bold">Registration</h2>
                     <form  method="POST" class="p-3 from-group nt-weight-bold p-2 border-bottom">
@@ -32,7 +31,7 @@
                     <p style="font-size: 14px;">Already have an account? <a href="/accounts/login"><strong>Login</strong></a>!</p>
                 </div>
             </div>
-            <div class=" h-100 bg-dark d-flex justify-content-center align-items-center"
+            <div class="h-100 bg-dark d-none d-md-flex justify-content-center align-items-center"
             style="width: 35%;" >
                 <img class="p-4 align-items-center" width="250" height="350" src= "{% static 'images/matched.png' %}">
             </div>
