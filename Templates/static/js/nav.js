@@ -28,20 +28,22 @@ toggleDisplayNavBar = () =>{
     let navBar = document.getElementById("navigation-bar");
     // navBar.classList.toggle("d-none");
     if (displayNav == false) {
-        pageBtn.classList.remove("rotate");
+        // pageBtn.classList.remove("rotate");
+        document.getElementById("main").style.display="none";
         document.getElementById("main").style.width = " 0%";
         navBar.style.display = "flex";
         displayNav = true;
     }
     else if (displayNav == true) {
-        pageBtn.classList.add("rotate");
-        document.getElementById("main").style.width = "80%";
+        document.getElementById("main").style.removeProperty("display");
+        // pageBtn.classList.add("rotate");
+        document.getElementById("main").style.width = "100%";
         navBar.style.display = "none";
         displayNav = false;
     }
 };
 window.addEventListener('resize',function(event){
-      if(window.innerWidth > 500) {
+      if(window.innerWidth > 768) {
         document.getElementById("main").style.width ="80%";
         document.getElementById("navigation-bar").style.display ="flex";
       }
@@ -59,10 +61,13 @@ window.addEventListener('resize',function(event){
 // let navBtn = document.getElementById("nav-toggle");
 // navBtn.addEventListener("click", toggleShrinkNav);
 const pageBtn = document.getElementById("page-btn");
+const navBtn = document.getElementById("nav-btn");
 const jobs = Array.from(document.getElementsByClassName("jobs"));
 const labels = Array.from(document.getElementsByTagName("label"));
 
 pageBtn.addEventListener("click", toggleDisplayNavBar);
+navBtn.addEventListener("click", toggleDisplayNavBar);
+
 jobs.forEach(job => {
   job.addEventListener('mouseenter', function (event) {
     // console.log('box clicked', event);
