@@ -4,15 +4,14 @@
 {% if message %}
      <div class="alert alert-warning w-100 ">{{ message }}</div>
 {% endif%}
-
 {% if user.is_authenticated %}
     <div class="alert alert-info w-100 ">Welcome back {{ user.first_name }}!</div>
     <label for="file">Profile Complete</label>
     <progress class="w-100 mb-2" id="file" value={{ user.profile.percentage_complete }} max="100">
         {{user.profile.percentage_complete }}
     </progress>
-    <div class="w-100 h-100 d-flex flex-row flex-wrap justify-content-between ">
-        <div class="card bg-light dashboard-item rounded p-2 mb-2" style="width:49.5%; height: 60%; overflow: hidden;">
+    <div class="w-100 d-flex flex-column flex-md-row justify-content-between"style="height: 85%; overflow-y: auto;">
+        <div class="home-card card bg-light dashboard-item rounded p-2 mb-2">
             <a class="btn btn-light bold-link w-100" href="/jobs/recommended/"><h5 class="w-100 text-center">Recommended Jobs</h5> </a>
             <div class="mt-2 w-100 pb-2" style="height:90%; overflow: auto;">
                 {% for job in jobs %}
@@ -60,7 +59,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="card bg-light dashboard-item rounded p-2 mb-2" style="width:49.5%; height: 60%; overflow: hidden;">
+        <div class="home-card card bg-light dashboard-item rounded p-2 mb-2">
             <a class="btn btn-light bold-link w-100" href="/education/recommended/"><h5 class="w-100 text-center">Recommended Degrees</h5> </a>
             <div class="mt-2 w-100 pb-2" style="height:90%; overflow: auto;">
                 {% for edu in education %}

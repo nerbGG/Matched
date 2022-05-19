@@ -25,6 +25,7 @@ html, body {
     padding: 0;
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow: hidden;
     /*overflow: hidden;*/
 }
 html{
@@ -171,6 +172,11 @@ a:hover{
     height: 85%;
     max-width: 1200px;
 }
+.home-card{
+    width:49.5%;
+    height: 75%;
+    overflow: hidden;
+}
 /*small screens*/
 @media only screen and (max-width:576px) {
     #login-div{
@@ -182,6 +188,10 @@ a:hover{
         padding: 5%;
         width: 100%;
         height: 100%;
+    }
+    .home-card{
+        width: 100%;
+        min-height: 45%;
     }
 
 }
@@ -216,7 +226,7 @@ a:hover{
         width: 100px;
     }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
     #main {
         width:100%;
     }
