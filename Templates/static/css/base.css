@@ -163,6 +163,12 @@ a:hover{
 
 /*}*/
 /*small screens*/
+@media only screen and (max-width:576px) {
+    #login-div{
+        width: 100%;
+    }
+
+}
 @media only screen and (max-width:800px){
     #profile-form{
         height: 100%;
